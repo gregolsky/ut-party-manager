@@ -29,20 +29,48 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-view=""></div>
+	<div ng-controller="PartyCreatorController">
+        <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6. chromium.org/developers/how-tos/chrome-frame-getting-started -->
+        <!--[if lt IE 7]>
+            <p class=chromeframe>Your browser is
+                <em>ancient!</em>
+                <a href="http://browsehappy.com/">Upgrade to a different browser</a>or
+                <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a>to experience this site.</p>
+        <![endif]-->
+        <nav class="navbar navbar-inverse" role="navigation">
+            <div class='container'>
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Przełącz nawigację</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Drużyny Umbra Turris</a>
+                </div>
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="#">
+                                <i class='icon-home'></i>&nbsp;Strona Główna</a>
+                        </li>
+                        <li>
+                            <a href="#about">
+                                <i class='icon-question-sign'></i>&nbsp;O projekcie</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class='main container'>
+            <div class='row'>
+                <div class="col-md-9" ng-view></div>
+                <div class="col-md-3" ng-include="'views/party/list.html'"></div>
+            </div>
+        </div>
+    </div>
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-     <script>
-       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-       ga('create', 'UA-XXXXX-X');
-       ga('send', 'pageview');
-    </script>
-
-
+    <script src="bower_components/lodash/dist/lodash.js"></script>
     <script src="bower_components/angular/angular.js"></script>
 
         <!-- build:js scripts/modules.js -->
@@ -51,11 +79,22 @@
         <script src="bower_components/angular-cookies/angular-cookies.js"></script>
         <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
         <script src="bower_components/angular-animate/angular-animate.js"></script>
+        <script src="bower_components/angular-mocks/angular-mocks.js"></script>
+        <script src="bower_components/jquery/jquery.js"></script>
+        <script src="bower_components/bootstrap-sass/dist/js/bootstrap.js"></script>
         <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
+        <script type="text/javascript" src="scripts/mock-data.js"></script>
+        <script type="text/javascript" src="scripts/model.js"></script>
+        <script type="text/javascript" src="scripts/constants.js"></script>
+        <script type="text/javascript" src="scripts/calc.js"></script>
+        <script type="text/javascript" src="scripts/services.js"></script>
+        <script type="text/javascript" src="scripts/filters.js"></script>
+        <script type="text/javascript" src="scripts/directives.js"></script>
+        <script type="text/javascript" src="scripts/controllers.js"></script>
+        <script type="text/javascript" src="scripts/httpMock.js"></script>
+        <script type="text/javascript" src="scripts/app.js"></script>
         <!-- endbuild -->
 </body>
 </html>

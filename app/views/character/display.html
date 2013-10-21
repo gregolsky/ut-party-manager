@@ -1,0 +1,90 @@
+<div class='row-fluid character' >
+	
+	<div class="span2" >
+		<img src='images/portraits/{{ member.img }}.jpg' class='img-rounded' />
+	</div>
+	
+	<div class="span10">
+		<div class='row-fluid'>
+			<div class='span3'>
+				<h4>{{ member.name }} </h4>
+				<small class='muted'>({{ calcMemberCost(member.id, party) }} punktów)</small>
+			</div>
+			<div class='span9'>
+				<table class="attributesTable table table-condensed center" >
+					<thead>
+						<tr>
+							<th>LD</th><th>M</th><th>WS</th><th>S</th><th>SP</th><th>BS</th><th>T</th><th>W</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><span class='badge badge-inverse' >{{ races[member.race].attributes.command }}</span></td>
+							<td><span class='badge badge-inverse' >{{ races[member.race].attributes.mobility }}</span></td>
+							<td><span class='badge badge-inverse' >{{ races[member.race].attributes.normalCombat }}</span></td>
+							<td><span class='badge badge-inverse' >{{ races[member.race].attributes.strength }}</span></td>
+							<td><span class='badge badge-inverse' >{{ races[member.race].attributes.condition }}</span></td>
+							<td><span class='badge badge-inverse' >{{ races[member.race].attributes.rangeWeapons }}</span></td>
+							<td><span class='badge badge-inverse' >{{ races[member.race].attributes.toughness }}</span></td>
+							<td><span class='badge badge-inverse' >{{ races[member.race].attributes.vitality }}</span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class='row-fluid' >
+			<div class="span2 b right">
+				<i class='icon-suitcase'></i> Profesja:
+			</div>
+			<div class="span4">
+				{{ professions[member.profession].name }}
+			</div>
+
+			<div class="span2 b right">
+				<i class='icon-legal'></i> Broń:
+			</div>
+			<div class="span4 tags">
+				<div class="label " ng-class="{true:'label-success', false:'label-important'}[isItemARangedWeapon(itemId)]" ng-repeat='itemId in member.equipment | filter: isItemAWeapon' >
+					{{ items[itemId].name }}
+				</div>
+			</div>
+
+		</div>
+
+		<div class='row-fluid' >
+			<div class="span2 b right">
+				<i class='icon-user'></i> Rasa:
+			</div>
+			<div class="span4">
+				{{ races[member.race].name }}
+			</div>
+
+			<div class="span2 b right">
+				<i class='icon-umbrella'></i> Pancerz:
+			</div>
+			<div class="span4 tags">
+				<div class="label label-info" ng-repeat='itemId in member.equipment | filter: isItemAnArmor ' >
+					{{ items[itemId].name }}
+				</div>
+			</div>
+		</div>
+
+		<div class='row-fluid' >
+			<div class="span2 b right">
+				<i class='icon-star'></i> Zdolności:
+			</div>
+			<div class="span4 tags">
+				<span class='label label-warning'>{{ races[member.race].talent }}</span><span class='label label-warning'>{{ professions[member.profession].talent }}</span>
+			</div>
+
+			<div class="span2 b right">
+				<i class='icon-gift'></i> Ekwipunek:
+			</div>
+			<div class="span4 tags">
+				&nbsp;
+			</div>
+		</div>
+
+	</div>
+</div>

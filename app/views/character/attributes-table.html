@@ -1,0 +1,42 @@
+<table class="attributesTable table table-condensed center">
+    <thead>
+        <tr>
+            <th>LD</th>
+            <th>M</th>
+            <th>WS</th>
+            <th>S</th>
+            <th>SP</th>
+            <th>BS</th>
+            <th>T</th>
+            <th>W</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                {{ lookups.races[character.race].attributes.command }}
+            </td>
+            <td>
+                {{ lookups.races[character.race].attributes.mobility }}
+            </td>
+            <td>
+                {{ lookups.races[character.race].attributes.normalCombat }}
+            </td>
+            <td>
+                {{ lookups.races[character.race].attributes.strength }}
+            </td>
+            <td>
+                {{ lookups.races[character.race].attributes.condition }}
+            </td>
+            <td>
+                {{ lookups.races[character.race].attributes.rangeWeapons }}
+            </td>
+            <td>
+                {{ lookups.races[character.race].attributes.toughness }}
+            </td>
+            <td>
+                {{ lookups.races[character.race].attributes.vitality }}
+            </td>
+        </tr>
+    </tbody>
+</table>

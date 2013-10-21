@@ -1,0 +1,32 @@
+
+<div class='card' ng-class='{ delete: managePartyState.deleteMode }' ng-click='editCharacter(member)'>
+    <i ng-click='removeCharacter($event, member)' ng-show='managePartyState.deleteMode' class='icon-remove-sign icon-3x text-danger i-top-left' ></i>
+	<div class='row'>
+		<div class="col-md-12" >
+			<img src='images/portraits/{{ member.img || "default" }}.jpg' class='img-rounded av-thmb' />
+		</div>
+	</div>
+    
+	<hr class='no-margin'/>
+    
+	<div class='row'>
+		<div class="col-md-12">
+			<strong>{{ member.name }} </strong> 
+			<span class='pull-right label label-warning points'>
+                {{ calcMemberCostInParty(member) }}
+            </span>
+		</div>
+	</div>
+	<div class='row'>
+		<div class='col-md-12'>
+			{{ lookups.professions[member.profession].name }} &nbsp;
+		</div>
+	</div>	
+	<div class='row'>
+		<div class='col-md-12'>
+			{{ lookups.races[member.race].name }} &nbsp;
+		</div>
+	</div>
+    
+</div>
+

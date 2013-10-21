@@ -1,0 +1,105 @@
+<form class='form-horizontal' novalidate>
+    <div class='row'>
+        <div class='col-md-4'>
+            <img ng-src='images/portraits/{{ character.img || "default" }}.jpg' class='img-thumbnail max' />
+            
+            <div ng-include="'views/character/attributes-bars.html'"></div>
+        </div>
+        <div class='col-md-8'>
+            
+            <div class="form-group">
+                <label class="control-label col-md-3">Imię</label>
+                <div class="col-md-9">
+                    <input ng-model='character.name' class='form-control' type="text" placeholder="np. Roman Niszczyciel">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3">
+                    <i class='icon-user'></i>&nbsp; Rasa</label>
+                <div class="col-md-9">
+                    <select name='character.race' ng-model='character.race' ng-options="r.id as r.name for r in lists.races" class='form-control'></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3">
+                    <i class='icon-suitcase'></i>&nbsp; Profesja</label>
+                <div class="col-md-9">
+                    <select name='character.profession' ng-model='character.profession' ng-options="p.id as p.name for p in lists.professions" class="form-control"></select>
+                </div>
+            </div>
+            
+            
+            <div class='form-group'>
+                <div class='control-label col-md-3'>
+                    <i class='icon-star'></i>&nbsp;Zdolności
+                </div>
+                <div class='col-md-9'>
+                    <p class="form-control-static">
+                        <span class='label label-warning'>{{ lookups.races[character.race].talent }}</span>
+                        <span class='label label-danger'>{{ lookups.professions[character.profession].talent }}</span>
+                    </p>
+                </div>
+            </div>
+            
+            <hr/>
+            
+            <div class='form-group'>
+                <div class='control-label col-md-3'>
+                    <i class='icon-legal'></i>&nbsp;Broń
+                </div>
+                <div class='col-md-8'>
+                    <div class="form-control-static items-bag">
+                        <div class="label label-success" 
+                             ng-repeat='itemId in character.equipment | filter: isItemAWeapon'
+                             ng-click='removeItemFromEquipment(itemId)' >
+                           {{ lookups.items[itemId].name }}
+                        </div>
+                    </div>
+                    <div class="form-control-static items-bag">
+                        <div class="label label-default" 
+                             ng-repeat='item in lists.items | filter: isItemAWeapon | filter: itemCanBeUsedByCharacter'
+                             ng-click='addItemToEquipment(item)'>
+                           {{ item.name }}
+                        </div>
+                    </div>
+                </div>
+                <div class='col-md-1' >
+                    <a class='btn btn-link'><i class='icon-edit'></i></a>
+                </div>
+            </div>
+            
+            <div class='form-group'>
+                <div class='control-label col-md-3'>
+                    <i class='icon-shield'></i> &nbsp;Pancerz:
+                </div>
+                <div class='col-md-8'>
+                    <div class="form-control-static items-bag">
+                        <div class="label label-primary" 
+                             ng-repeat='itemId in character.equipment | filter: isItemAnArmor'
+                             ng-click='removeItemFromEquipment(itemId)' >
+                            {{ lookups.items[itemId].name }}
+                        </div>
+                    </div>
+                    <div class="form-control-static items-bag">
+                        <div class="label label-default" 
+                             ng-repeat='item in lists.items | filter: isItemAnArmor | filter: itemCanBeUsedByCharacter'
+                             ng-click='addItemToEquipment(item)'>
+                           {{ item.name }}
+                        </div>
+                    </div>                    
+                </div>
+                <div class='col-md-1' >
+                    <a class='btn btn-link' ><i class='icon-edit'></i></a>
+                </div>
+            </div>
+            
+            <div class='form-group'>
+                <div class='control-label col-md-3'>
+                    <i class='icon-beaker'></i> &nbsp;Ekwipunek:
+                </div>
+                <div class='col-md-9'></div>
+            </div>            
+            
+        </div>
+    </div>
+</form>
