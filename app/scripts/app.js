@@ -8,7 +8,7 @@ angular.module('utPartyManagerApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngAnimate',
+  //'ngAnimate',
   'ngMockE2E', 
   'ut.model', 'ut.constant.lists', 'ut.constant.lookups', 'ut.filters', 'ut.services', 'ut.directives', 'ut.mock'
 ])

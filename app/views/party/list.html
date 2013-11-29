@@ -1,4 +1,4 @@
-<div class='container'>
+<div class=''>
 	<div class='row'>
 		<div class='col-md-12'></div>
 	</div>
@@ -9,7 +9,7 @@
 			</li>
 		</ul>
 		<ul class='partiesList nav nav-pills nav-stacked' >
-			<li class="partyLi" ng-class="{ active: party.id == activePartyId }" ng-repeat='party in parties' >
+			<li class="partyLi" class='eth' ng-class="{ active: party.id == activePartyId }" ng-repeat='party in parties' >
 				<a href="#/party/{{ party.id }}" ng-click="activateParty(party.id)" data-title='Members' >{{ party.name }}</a>
 			</li>
 		</ul>
