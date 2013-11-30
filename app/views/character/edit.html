@@ -1,7 +1,10 @@
 <form class='form-horizontal' novalidate>
-    <div class='row'>
+    <div class='row' ng-show='chooseAvatarMode' >
+        <div ng-include='"views/character/choose-avatar.html"'></div>
+    </div>
+    <div class='row' ng-hide='chooseAvatarMode' >
         <div class='col-md-4'>
-            <img ng-src='images/portraits/{{ character.img || "default" }}.jpg' class='img-thumbnail max' />
+            <img ng-click='showAvailableAvatars()' ng-src='images/portraits/{{ character.img || "default" }}.jpg' class='img-thumbnail max' />
             
             <div ng-include="'views/character/attributes-bars.html'"></div>
         </div>

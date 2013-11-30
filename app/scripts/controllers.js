@@ -153,7 +153,7 @@ function EditPartyController($scope, $location, $routeParams, party) {
 EditPartyController.$inject = ['$scope', '$location', '$routeParams', 'party'];
 
 
-function EditCharacterController($scope, session, usability) {
+function EditCharacterController($scope, session, usability, avatars) {
     $scope.character = session.character;
     
     $scope.itemCanBeUsedByCharacter = function(item){
@@ -170,6 +170,18 @@ function EditCharacterController($scope, session, usability) {
         eq.splice(i, 1);
     };
     
+    $scope.chooseAvatarMode = false;
+    
+    $scope.showAvailableAvatars = function(){
+        $scope.avatars = avatars;
+        $scope.chooseAvatarMode = true;
+    }
+    
+    $scope.chooseAvatar = function(imgPath){
+        $scope.character.img = imgPath;
+        $scope.chooseAvatarMode = false;
+    }
+    
     function readdItemsToEquipment(character) {
         var oldEq = character.equipment;
         character.equipment = [];
@@ -184,5 +196,5 @@ function EditCharacterController($scope, session, usability) {
     });
 }
 
-EditCharacterController.$inject = ['$scope', 'session', 'usability'];
+EditCharacterController.$inject = ['$scope', 'session', 'usability', 'avatars'];
 
