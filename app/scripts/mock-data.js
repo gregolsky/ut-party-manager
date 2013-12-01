@@ -44,18 +44,6 @@ var utMock = {
 		}
 		
 		]
-	}, {
-		"name" : "Banda wieśniaków",
-		"points" : "1000",
-		"nature" : "Good",
-		"id" : 2,
-		"members" : []
-	}, {
-		"name" : "Wędrowny Cyrk Zakrzewski",
-		"points" : "1000",
-		"nature" : "Good",
-		"id" : 3,
-		"members" : []
 	}
 	]
 

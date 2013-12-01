@@ -59,7 +59,6 @@ angular.module('ut.services', ['ut.model', 'ut.constant.lists', 'ut.constant.loo
 "Cyberpunk_7",
 "Cyberpunk_8",
 "Cyberpunk_9",
-"default",
 "Dwarf_1",
 "Dwarf_2",
 "Dwarf_3",

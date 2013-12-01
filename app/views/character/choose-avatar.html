@@ -1,7 +1,9 @@
-<div >
+<div class='col-md-12'>
     <ul class='list-unstyled'>
-        <li ng-click="chooseAvatar(a)" ng-repeat='a in avatars' >
-            <img ng-src="{{ 'images/portraits/' + a + '.jpg' }}" />
+        <li class='pull-left' ng-click="chooseAvatar(a)" ng-repeat='a in avatars'>
+            <div class='card'>
+                <img class='img-circle av-thmb' ng-src="{{ 'images/portraits/' + a + '.jpg' }}" />
+            </div>
         </li>
     </ul>
 </div>
