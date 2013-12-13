@@ -99,6 +99,10 @@ function ManagePartyController($scope, $routeParams, session, partyManager, cost
         deleteMode: false
     };
     
+    $scope.saveChanges = function() {
+        partyManager.save($scope.party);
+    };
+    
     $scope.removeCharacter = function($event, character){
         $event.stopImmediatePropagation();
         

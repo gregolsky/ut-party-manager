@@ -1,16 +1,19 @@
 'use strict';
 
-angular.module('ut.config', [])
-    .constant('useHttpMocks', true);
-
 angular.module('utPartyManagerApp', [
   'ngRoute',
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  //'ngAnimate',
+  'ngAnimate',
   'ngMockE2E', 
-  'ut.model', 'ut.constant.lists', 'ut.constant.lookups', 'ut.filters', 'ut.services', 'ut.directives', 'ut.mock'
+  'ut.model', 
+  'ut.constant.lists', 
+  'ut.constant.lookups', 
+  'ut.filters', 
+  'ut.services', 
+  'ut.directives', 
+  'ut.backend'
 ])
   .config(function ($routeProvider) {
         $routeProvider

@@ -155,20 +155,22 @@ angular.module('ut.services', ['ut.model', 'ut.constant.lists', 'ut.constant.loo
     ];
 }])
 
-.factory("party", ['$resource', function($resource) {
+.factory("party", [ '$q', '$resource', function($q, $resource) {
 	var PartyResource = $resource('/party/:partyId', {
 		partyId : '@id'
 	});
 	
 	var service = {
-		'create' : function(party, successCb, errorCb) {
-			var p = new PartyResource(party);
-			p.$save(function(p, req) {
-				successCb(p);
-			});
-		},
 		'save' : function(party) {
-
+            var q = $q.defer();
+			var p = new PartyResource(party);
+			
+            p.$save(function(p, req) {
+                console.log(arguments);
+				q.resolve(p);
+			});
+            
+            return q.promise;
 		},
 		'get' : function(id) {
 			return PartyResource.get(

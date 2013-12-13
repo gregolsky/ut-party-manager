@@ -16,6 +16,10 @@
             <ul class="nav navbar-nav pull-right">
                 <li>
                     <div class='navbar-form btn-group'>
+                        <button ng-hide="managePartyState.deleteMode"  class='btn btn-primary' ng-click='saveChanges()' >
+                            <i class='icon-save'></i>
+                            Zapisz zmiany
+                        </button>
                         <button ng-hide="managePartyState.deleteMode"  class='btn btn-inverse' ng-click='addCharacter()' >
                             <i class='icon-plus-sign'></i>
                             Dodaj postać
