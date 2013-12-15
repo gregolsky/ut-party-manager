@@ -1,30 +1,50 @@
-
-<div class="page-header">
-  <h1>Create a new party 
-	<small ng-show='party.name' > {{ party.name }} 
-		<span class="badge badge-important badge-label">Brand new!</span>
-	</small>
-  </h1>
+<div class='row'>
+    <div class='col-md-12'>
+        <h1>
+            <i class='fa fa-users'></i>&nbsp; Dodaj drużynę</h1>
+    </div>
+    <p></p>
 </div>
 
-<section>
-    <form name='createPartyForm' class='form-horizontal' novalidate>
-
-			<div ng-include src="'views/basic.html'" ></div>
-            
-            <div class="control-group form-inline" >
-                <div class='controls' >
-                    <input type='button' 
-                           value='Create' 
-                           class='btn btn-primary' 
-                           name='create' 
-                           ng-disabled='createPartyForm.$invalid'
-                           ng-click="createParty()"
-                           />
-
-                       <a href='#' class='btn' >Cancel</a>
-                </div>
-            </div>
-    </form>
-</section>
+<form class="form-horizontal col-md-8" role="form" name='createPartyForm' novalidate ng-submit='createParty()' >
+    <div class="form-group" ng-class="{ 'has-error': createPartyForm.name.$invalid && createPartyForm.name.$dirty }" >
+        <label for="name" class="col-md-4 control-label">Nazwa drużyny</label>
+        <div class="col-md-8">
+            <input ng-model='party.name' type="text" name='name' class="form-control" id="name" placeholder="Nazwa drużyny" required />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="nature" class="col-md-4 control-label">Charakter</label>
+        <div class="col-md-8">
+            <select ng-model='party.nature' name='nature' class='form-control' id='nature' required>
+                <option value="">Wybierz charakter</option>
+                <option value='D'>Dobry</option>
+                <option value='N'>Neutralny</option>
+                <option value='Z'>Zły</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="points" class="col-md-4 control-label">Ilość punktów</label>
+        <div class="col-md-8">
+            <select ng-model='party.points' name='points' class="form-control" required >
+                <option value="">Wybierz liczbę punktów</option>
+                <option>750</option>
+                <option>1000</option>
+                <option>1500</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-primary" ng-disabled="createPartyForm.$invalid"  >
+                <i class='fa fa-magic'></i> &nbsp;
+                Utwórz
+            </button>
+            <button onclick='history.back()' type="button" class="btn btn-default">
+                 <i class='fa fa-level-up'></i> &nbsp;
+                Anuluj</button>
+        </div>
+    </div>
+</form>
 

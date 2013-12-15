@@ -4,12 +4,12 @@
             <ul class="nav navbar-nav">
                 <li>
                     <a href="#">
-                        <i class='icon-list'></i>
+                        <i class='fa fa-list'></i>
                     </a>
                 </li>
                 <li class='active'>
                     <a href="#">
-                        <i class='icon-th-large'></i>
+                        <i class='fa fa-th-large'></i>
                     </a>
                 </li>
             </ul>
@@ -17,33 +17,33 @@
                 <li>
                     <div class='navbar-form btn-group'>
                         <button ng-hide="managePartyState.deleteMode"  class='btn btn-primary' ng-click='saveChanges()' >
-                            <i class='icon-save'></i>
+                            <i class='fa fa-save'></i>&nbsp;
                             Zapisz zmiany
                         </button>
                         <button ng-hide="managePartyState.deleteMode"  class='btn btn-inverse' ng-click='addCharacter()' >
-                            <i class='icon-plus-sign'></i>
+                            <i class='fa fa-plus'></i>&nbsp;
                             Dodaj postać
                         </button>
                         <button ng-show="managePartyState.deleteMode" style='border-top-left-radius: 4px; border-bottom-left-radius: 4px;' ng-click='managePartyState.deleteMode = false' href="#" class='btn btn-inverse' ng-click='toggleDeleteMode()' >
-                            <i class='icon-ok'></i>
+                            <i class='fa fa-ok'></i>&nbsp;
                             Zakończ usuwanie
                         </button>                        
                         <button href="#" class='btn dropdown-toggle' data-toggle="dropdown">
                             &nbsp;
-                            <i class='icon-ellipsis-vertical'></i>
+                            <i class='fa fa-ellipsis-v'></i>
                             &nbsp;
                         </button>
                         <ul class="dropdown-menu">
                             <li>
                                 <a ng-click='managePartyState.deleteMode = true' >
-                                    <i class='icon-minus-sign'></i>
+                                    <i class='fa fa-minus'></i>&nbsp;
                                     Usuń członka
                                 </a>
                             </li>
                             <li class="divider"></li>
                             <li>
                                 <a href='#'>
-                                    <i class='icon-trash'></i> 
+                                    <i class='fa fa-trash-o'></i> &nbsp;
                                     Zniszcz drużynę
                                 </a>
                             </li>

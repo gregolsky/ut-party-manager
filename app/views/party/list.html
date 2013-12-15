@@ -2,14 +2,14 @@
 	<div class='row'>
 		<div class='col-md-12'></div>
 	</div>
-	<div ng-controller="PartyListController" >
+	<div class='col-md-12' ng-controller="PartyListController" >
 		<ul class="nav nav-pills nav-stacked">
 			<li>
-				<a href="" ><i class="icon-plus"></i> Dodaj drużynę </a>
+				<a href="#/party" ><i class="fa fa-plus"></i> Dodaj drużynę </a>
 			</li>
 		</ul>
 		<ul class='partiesList nav nav-pills nav-stacked' >
-			<li class="partyLi" class='eth' ng-class="{ active: party.id == activePartyId }" ng-repeat='party in parties' >
+			<li class="partyLi" class='eth' ng-class="{ active: party.id == context.activePartyId }" ng-repeat='party in parties' >
 				<a href="#/party/{{ party.id }}" ng-click="activateParty(party.id)" data-title='Members' >{{ party.name }}</a>
 			</li>
 		</ul>

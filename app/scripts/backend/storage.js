@@ -14,6 +14,14 @@ storage.factory(
                     name: entity.name
                 };
             };
+                     
+            var getId = function(x){
+              return x.id;  
+            };
+                     
+            var idEquals = function(id, comp){
+                return id == comp;   
+            }
 
             var entityDigestsKey = function (entityName) {
                 return entityName + IDS_POSTFIX;
@@ -30,9 +38,8 @@ storage.factory(
 
             var newId = function (entityName) {
                 var ids = _(getEntityDigests(entityName) || [])
-                    .map(function (x) {
-                        return x.id;
-                    }).value();
+                    .map(getId)
+                    .value();
 
                 var result = ids.length ? _.max(ids) + 1 : 0;
                 return result + 1;
@@ -58,12 +65,18 @@ storage.factory(
 
                 writeLock = true;
 
+                var digests = getEntityDigests(entityName) || [];
                 if (!entity.id) {
                     entity.id = newId(entityName);
-                    var digests = getEntityDigests(entityName) || [];
                     digests.push(digest(entity));
                     setEntityDigests(entityName, digests);
                 }
+                else {
+                    var d = _.find(digests, function (x) { return x.id == entity.id });
+                    d.name = entity.name;
+                }
+                
+                setEntityDigests(entityName, digests);
 
                 localStorageService.set(entityKey(entityName, entity.id), entity);
 

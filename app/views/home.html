@@ -1,25 +1,19 @@
-<div class='clearfix'>
-	<div ng-show="parties == undefined || parties.length == 0" >
-		<div  class='jumbotron'>
-			<h1>Witaj, podróżniku!</h1>
-			<p>
-				Kreuj, dziel się i drukuj swoje drużyny do gry bitewnej Umbra Turris.
-			</p>
-			<p>
-				<a href="#/party/new" class="btn btn-primary btn-large"> Zaczynajmy! <i class="icon-hand-right icon-white"></i> </a>
-			</p>
-		</div>
-	</div>
-
-	<div ng-show='parties'>
-		<div class='jumbotron'>
-			<h1>Witaj z powrotem!</h1>
-			<p>
-				Kreuj, dziel się i drukuj swoje drużyny do gry bitewnej Umbra Turris. <br/>
-				Możesz przeglądać i edytować uprzednio edytowane drużyny za pomocą paska bocznego.<br/>
-				Baw się dobrze!
-			</p>
-		</div>
-	</div>
+<div class="page-header">
+    <h1>Umbra Turris
+        <small>Menedżer drużyn</small>
+    </h1>
 </div>
-
+<div class='row'>
+    <div class='col-md-12'>
+        <p class='lead'>
+            Projektuj i drukuj swoje drużyny do gry bitewnej Umbra Turris.
+            <br/>Możesz przeglądać i edytować uprzednio edytowane drużyny za pomocą paska bocznego.
+            <br/>Baw się dobrze!
+        </p>
+    </div>
+</div>
+<div class='row'>
+    <div class='col-md-offset-8 col-md-4'>
+        <a href='#/party' class="btn btn-primary btn-lg" role="button">Utwórz nową drużynę</a>
+    </div>
+</div>

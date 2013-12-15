@@ -1,29 +1,39 @@
 "use strict";
 
-function PartyCreatorController($scope, $location, $routeParams, session, lookups, lists, party, cost) {
+var ACTIVE_PARTY_CHANGED = 'activePartyChanged';
+var PARTY_LIST_CHANGED = 'partyListChanged';
+
+function MainController($scope, $location, $routeParams, session, lookups, lists, party, cost) {
     var self = this;
 
-    self.locationService = $location;
-
-    $scope.parties = party.list();
-
+    $scope.topMenuSelected = 'home';
+    
     $scope.lists = lists;
 
     $scope.lookups = lookups;
+    
+    $scope.context = {};
+    
+    var loadParties = function(){
+        party.list()
+            .then(function(data){
+               $scope.parties = data; 
+            });
+    };
 
     $scope.isItemAWeapon = function (item) {
         if (item.id) {
             return $scope.isItemAWeapon(item.id);
         }
-        
+
         return $scope.lookups.items[item].isWeapon();
     };
 
     $scope.isItemAnArmor = function (item) {
         if (item.id) {
             return $scope.isItemAnArmor(item.id);
-        }        
-        
+        }
+
         return $scope.lookups.items[item].isArmor();
     };
 
@@ -31,7 +41,7 @@ function PartyCreatorController($scope, $location, $routeParams, session, lookup
         if (item.id) {
             return $scope.isItemARangedWeapon(item.id);
         }
-        
+
         return $scope.lookups.items[item].isRangedWeapon();
     };
 
@@ -39,16 +49,30 @@ function PartyCreatorController($scope, $location, $routeParams, session, lookup
         return cost.calculatePartyCost.apply(cost, party);
     };
 
-    $scope.calcMemberCost = function(member, party) {
+    $scope.calcMemberCost = function (member, party) {
         return cost.calculatePartyMemberCost(member, party);
     };
 
     $scope.changeActiveParty = function (partyId) {
-        session.activePartId = partyId;
+        $scope.$emit(ACTIVE_PARTY_CHANGED, partyId);
     };
+    
+    $scope.updatePartyList = function () {
+        $scope.$emit(PARTY_LIST_CHANGED);
+    };
+    
+    $scope.$on(PARTY_LIST_CHANGED, function(e, args){
+       loadParties();
+    });
+    
+    $scope.$on(ACTIVE_PARTY_CHANGED, function(e, partyId) {
+        $scope.context.activePartyId = partyId;
+    });
+    
+    loadParties();
 }
 
-PartyCreatorController.$inject = ['$scope', '$location', '$routeParams', 'session', 'lookups', 'lists', 'party', 'cost'];
+MainController.$inject = ['$scope', '$location', '$routeParams', 'session', 'lookups', 'lists', 'party', 'cost'];
 
 function PartyListController($scope, $location, $routeParams) {
 
@@ -63,10 +87,11 @@ PartyListController.$inject = ['$scope', '$location', '$routeParams'];
 
 function ManagePartyController($scope, $routeParams, session, partyManager, costCalculator, model) {
 
-    $scope.party = partyManager.get($routeParams.partyId);
+    var partyId = $routeParams.partyId;
 
-    if ($routeParams.partyId) {
+    if (partyId) {
         $scope.changeActiveParty($routeParams.partyId);
+        $scope.party = partyManager.get(partyId);
     }
 
     $scope.action = 'list_characters';
@@ -74,17 +99,17 @@ function ManagePartyController($scope, $routeParams, session, partyManager, cost
     $scope.calcPartyCost = function () {
         return costCalculator.calculatePartyCost($scope.party);
     };
-    
-    $scope.calcMemberCostInParty = function(member) {
+
+    $scope.calcMemberCostInParty = function (member) {
         return $scope.calcMemberCost(member, $scope.party);
     };
-    
+
     $scope.editCharacter = function (character) {
         session.character = character;
         $scope.action = 'edit_character';
     };
-    
-    $scope.manageParty = function() {
+
+    $scope.manageParty = function () {
         session.character = null;
         $scope.action = 'list_characters';
     };
@@ -94,22 +119,23 @@ function ManagePartyController($scope, $routeParams, session, partyManager, cost
         $scope.party.members.push(character);
         $scope.editCharacter(character);
     };
-    
+
     $scope.managePartyState = {
         deleteMode: false
     };
-    
-    $scope.saveChanges = function() {
+
+    $scope.saveChanges = function () {
         partyManager.save($scope.party);
+        $scope.updatePartyList();
     };
-    
-    $scope.removeCharacter = function($event, character){
+
+    $scope.removeCharacter = function ($event, character) {
         $event.stopImmediatePropagation();
-        
+
         var members = $scope.party.members;
         var i = members.indexOf(character);
-        if (i != -1){
-          members.splice(i, 1);   
+        if (i != -1) {
+            members.splice(i, 1);
         }
     }
 }
@@ -124,28 +150,27 @@ function HomeController($scope, $location, party) {
 HomeController.$inject = ['$scope', '$location', 'party'];
 
 
-function CreatePartyController($scope, $location, party) {
-    var self = this;
-    self.scope = $scope;
-    self.locationService = $location;
-    self.partyService = party;
+function CreatePartyController($scope, $location, partyManager) {
 
-    this.scope.createParty = function () {
-        self.partyService.create(this.party, function success(data) {
-            self.locationService.path("/party/edit/" + data.id);
-        }, function error() {
-            self.locationService.path("/error");
-        });
+    $scope.createParty = function () {
+        try {
+            $scope.party.members = [];
+            partyManager.save($scope.party)
+                .then(function (party) {
+                    $scope.updatePartyList();
+                    $location.path("/party/" + party.id);
+                });
+        } catch (error) {
+            $location.path("/error");
+        }
     };
 
-    return this;
-}
+};
 
 CreatePartyController.$inject = ['$scope', '$location', 'party'];
 
 
 function EditPartyController($scope, $location, $routeParams, party) {
-    var self = this;
 
     $scope.party = party.get($routeParams.partyId);
 
@@ -159,46 +184,45 @@ EditPartyController.$inject = ['$scope', '$location', '$routeParams', 'party'];
 
 function EditCharacterController($scope, session, usability, avatars) {
     $scope.character = session.character;
-    
-    $scope.itemCanBeUsedByCharacter = function(item){
+
+    $scope.itemCanBeUsedByCharacter = function (item) {
         return usability.itemCanBeUsedBy(item, $scope.character);
     };
-    
-    $scope.addItemToEquipment = function(item){
+
+    $scope.addItemToEquipment = function (item) {
         $scope.character.equipment.push(item.id);
     };
-    
-    $scope.removeItemFromEquipment = function(itemId){
+
+    $scope.removeItemFromEquipment = function (itemId) {
         var eq = $scope.character.equipment;
         var i = eq.indexOf(itemId);
         eq.splice(i, 1);
     };
-    
+
     $scope.chooseAvatarMode = false;
-    
-    $scope.showAvailableAvatars = function(){
+
+    $scope.showAvailableAvatars = function () {
         $scope.avatars = avatars;
         $scope.chooseAvatarMode = true;
     }
-    
-    $scope.chooseAvatar = function(imgPath){
+
+    $scope.chooseAvatar = function (imgPath) {
         $scope.character.img = imgPath;
         $scope.chooseAvatarMode = false;
     }
-    
+
     function readdItemsToEquipment(character) {
         var oldEq = character.equipment;
         character.equipment = [];
-        character.equipment = _.filter(oldEq, function(eqItemId){
+        character.equipment = _.filter(oldEq, function (eqItemId) {
             var item = $scope.lookups.items[eqItemId];
             return usability.itemCanBeUsedBy(item, character);
         });
     }
     
-    $scope.$watch('character.profession', function(newValue, oldValue){
+    $scope.$watch('character.profession', function (newValue, oldValue) {
         readdItemsToEquipment($scope.character);
     });
 }
 
 EditCharacterController.$inject = ['$scope', 'session', 'usability', 'avatars'];
-

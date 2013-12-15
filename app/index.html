@@ -30,7 +30,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-	<div ng-controller="PartyCreatorController">
+	<div ng-controller="MainController">
         <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6. chromium.org/developers/how-tos/chrome-frame-getting-started -->
         <!--[if lt IE 7]>
             <p class=chromeframe>Your browser is
@@ -43,21 +43,21 @@
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                         <span class="sr-only">Przełącz nawigację</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+                        <span class="fa fa-bar"></span>
+                        <span class="fa-bar"></span>
+                        <span class="fa-bar"></span>
                     </button>
                     <a class="navbar-brand" href="#">Drużyny Umbra Turris</a>
                 </div>
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active">
-                            <a href="#">
-                                <i class='icon-home'></i>&nbsp;Strona Główna</a>
+                        <li ng-class='{ active: topMenuSelected == "home" }'>
+                            <a ng-click='topMenuSelected="home"' href="#">
+                                <i class='fa fa-home fa-2x'></i>&nbsp;Strona Główna</a>
                         </li>
-                        <li>
-                            <a href="#about">
-                                <i class='icon-question-sign'></i>&nbsp;O projekcie</a>
+                        <li ng-class='{ active: topMenuSelected == "about" }' >
+                            <a ng-click='topMenuSelected="about"' href="#about">
+                                <i class='fa fa-question fa-2x'></i>&nbsp;O projekcie</a>
                         </li>
                     </ul>
                 </div>
