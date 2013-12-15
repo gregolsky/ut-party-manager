@@ -1,4 +1,4 @@
-// Generated on 2013-10-19 using generator-angular 0.5.0
+// Generated on 2013-12-15 using generator-angular 0.5.1
 'use strict';
 
 // # Globbing
@@ -210,7 +210,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= yeoman.app %>',
-          src: ['*.html', 'views/*.html'],
+          src: ['*.html', 'views/**/*.html'],
           dest: '<%= yeoman.dist %>'
         }]
       }
@@ -244,6 +244,12 @@ module.exports = function (grunt) {
         cwd: '<%= yeoman.app %>/styles',
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
+      },
+      components: {
+        expand: true,
+        cwd: '<%= yeoman.app %>',
+        dest: '.tmp/',
+        src: [ 'bower_components/**/*' ]
       }
     },
     concurrent: {
@@ -319,6 +325,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'copy:components',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',

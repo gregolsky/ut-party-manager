@@ -11,10 +11,13 @@
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <!-- build:css(.tmp) styles/main.css -->
+        <!-- build:css styles/default.css -->
         <link rel="stylesheet" href="bower_components/bootstrap-sass/dist/css/bootstrap.css">
         <link rel="stylesheet" href="bower_components/bootstrap-sass/dist/css/bootstrap-theme.css">
         <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
+        <!-- endbuild -->
+      
+        <!-- build:css(.tmp) styles/app.css -->
         <link rel="stylesheet" href="styles/main.css">
         <link rel="stylesheet" href="styles/animations.css">
         <!-- endbuild -->
@@ -51,12 +54,12 @@
                 </div>
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav">
-                        <li ng-class='{ active: topMenuSelected == "home" }'>
-                            <a ng-click='topMenuSelected="home"' href="#">
+                        <li ng-class="{ active: topMenuSelected == 'home' }">
+                            <a ng-click="topMenuSelected='home'" href="#">
                                 <i class='fa fa-home fa-2x'></i>&nbsp;Strona Główna</a>
                         </li>
-                        <li ng-class='{ active: topMenuSelected == "about" }' >
-                            <a ng-click='topMenuSelected="about"' href="#about">
+                        <li ng-class="{ active: topMenuSelected == 'about' }" >
+                            <a ng-click="topMenuSelected='about'" href="#about">
                                 <i class='fa fa-question fa-2x'></i>&nbsp;O projekcie</a>
                         </li>
                     </ul>
@@ -70,11 +73,14 @@
             </div>
         </div>
     </div>
-
-    <script src="bower_components/lodash/dist/lodash.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-
+      
+        <!-- build:js scripts/lib.js -->
+        <script src="bower_components/lodash/dist/lodash.js"></script>
+        <script src="bower_components/angular/angular.js"></script>   
+        <!-- endbuild -->
+      
         <!-- build:js scripts/modules.js -->
+   
         <script src="bower_components/angular-route/angular-route.js"></script>
         <script src="bower_components/angular-resource/angular-resource.js"></script>
         <script src="bower_components/angular-cookies/angular-cookies.js"></script>
