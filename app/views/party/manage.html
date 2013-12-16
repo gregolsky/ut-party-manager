@@ -21,14 +21,14 @@
     </div>
 
     <div ng-switch='action'>
-        <div ng-switch-when='list_characters'>
+        <div class='characters-list' ng-switch-when='list_characters'>
 
             <div ng-include="'views/party/manage-menu-list.html'"></div>
 
-            <ul class="col-md-12 unstyled">
-                <li class="pull-left eth" ng-include="'views/character/action.html'" ng-repeat="member in party.members">
-                </li>
-            </ul>
+            <div class='row'>
+                <div ng-include="'views/character/action.html'" ng-repeat="member in party.members"></div>
+            </div>
+
         </div>
         <div ng-switch-when='edit_character' ng-controller='EditCharacterController'>
             <div ng-include="'views/character/edit.html'"></div>

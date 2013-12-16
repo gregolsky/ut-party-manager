@@ -105,15 +105,13 @@ hr.no-margin {
 	border: solid 1px #ccc;
 }
 
-.card	{
+.card {
     position: relative;
 	margin: 0.7em;
 	padding: 0.5em;
-	width: auto;
-	min-height: 100px;
     box-shadow:0 1px 2px #aaa;
     border: solid 1px #fff;
-    background:white;
+    background: white;
     margin:0 1rem 1rem;
     border-radius:3px;
     transition: 0.3s;
@@ -124,6 +122,11 @@ hr.no-margin {
     border: solid 1px #ccc;
 	-webkit-transform: translate(0px, -10px) scale(1.05);
     -moz-transform: translate(0px, -10px) scale(1.05);
+}
+
+.card.character{
+ 	width: auto;
+	min-height: 100px;   
 }
 
 .max {
@@ -166,3 +169,22 @@ hr.no-margin {
     -moz-transform: scale(1.05) rotate(180deg);    
 }
 
+.portrait {
+     background-position: center bottom;
+     -webkit-background-size: 100% 100%;           /* Safari 3.0 */
+         -moz-background-size: 100% 100%;           /* Gecko 1.9.2 (Firefox 3.6) */
+           -o-background-size: 100% 100%;           /* Opera 9.5 */
+              background-size: 100% 100%;    
+}
+
+.characterForm .portrait {
+    height: 300px;
+}
+
+.characterForm .avatar-chooser .portrait {
+    height: 150px;
+}
+
+.characters-list .portrait {
+    height: 250px; 
+}
