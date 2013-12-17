@@ -177,6 +177,10 @@ hr.no-margin {
               background-size: 100% 100%;    
 }
 
+.portrait.default {
+    background-image: url('../images/portraits/default.jpg')   
+}
+
 .characterForm .portrait {
     height: 300px;
 }
