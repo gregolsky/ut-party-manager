@@ -59,7 +59,6 @@ angular.module('ut.services', ['ut.model', 'ut.constant.lists', 'ut.constant.loo
                 var p = new PartyResource(party);
 
                 p.$save(function (p, req) {
-                    console.log(arguments);
                     q.resolve(p);
                 });
 

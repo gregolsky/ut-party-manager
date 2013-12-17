@@ -1,31 +1,26 @@
-<div class='card col-md-3' ng-class='{ delete: managePartyState.deleteMode }' ng-click='editCharacter(member)'>
+<div class='col-md-4' ng-class='{ delete: managePartyState.deleteMode }' ng-click='editCharacter(member)'>
     <i ng-click='removeCharacter($event, member)' ng-show='managePartyState.deleteMode' class='fa fa-times-circle fa-3x text-danger i-top-left'></i>
-    <div class='row'>
-        <div class='col-md-12'>
-            <div class=' portrait' ng-class="member.img || 'default.jpg'" />
-        </div>
-    </div>
+    <div class='card row'>
 
-    <hr class='no-margin' />
-
-    <div class='row'>
-        <div class="col-md-12">
-            <strong>{{ member.name }}</strong>
-            <span class='pull-right label label-warning points'>
-                {{ calcMemberCostInParty(member) }}
-            </span>
-        </div>
-    </div>
-    <div class='row'>
         <div class='col-md-12'>
-            {{ lookups.professions[member.profession].name }} &nbsp;
+            <div class='portrait ' ng-class="member.img || 'default.jpg'" >
+            </div>
         </div>
-    </div>
-    <div class='row'>
-        <div class='col-md-12'>
-            {{ lookups.races[member.race].name }} &nbsp;
-        </div>
-    </div>
 
+        <div class="col-md-9">{{ member.name }}</div>
+        
+        <div class="col-md-2 pull-left">
+            <span class="label label-warning points">{{ calcMemberCostInParty(member) }}</span>
+        </div>
+
+        <div class='col-md-12'>
+            {{ lookups.professions[member.profession].name }}
+        </div>
+
+        <div class='col-md-12'>
+            {{ lookups.races[member.race].name }}
+        </div>
+
+    </div>
 </div>
 
