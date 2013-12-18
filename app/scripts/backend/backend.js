@@ -7,14 +7,14 @@ angular.module('ut.backend', ['ut.backend.storage'])
             .respond(function(method, url, data, headers) {
                 var partyId = url.match(/^\/?party\/?\?id=([0-9]+)/)[1];
                 var party = storageService.load('party', partyId);
-                return [ 200, JSON.stringify(party || utMock.parties[0]) ];
+                return [ 200, JSON.stringify(party) ];
             });
             
         $httpBackend
             .when('GET', /^\/?party\/?/, '{"isArray":true}')
             .respond(function(method, url, data, headers) {
                 var parties = storageService.list('party');
-                return [ 200, angular.toJson(parties || utMock.parties) ];
+                return [ 200, angular.toJson(parties) ];
             });
             
 		$httpBackend
