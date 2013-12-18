@@ -7,7 +7,7 @@ angular.module('ut.backend', ['ut.backend.storage'])
             .respond(function(method, url, data, headers) {
                 var partyId = url.match(/^\/?party\/?\?id=([0-9]+)/)[1];
                 var party = storageService.load('party', partyId);
-                return [ 200, JSON.stringify(party) ];
+                return [ 200, angular.toJson(party) ];
             });
             
         $httpBackend
