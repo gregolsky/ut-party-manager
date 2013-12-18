@@ -226,10 +226,11 @@ module.exports = function (grunt) {
           src: [
             '*.{ico,png,txt}',
             '.htaccess',
-            'bower_components/**/*',
+            
             'images/{,*/}*.{gif,webp}',
             'styles/fonts/*',
-            'fonts/*'
+            'fonts/*',
+            
           ]
         }, {
           expand: true,
@@ -245,6 +246,19 @@ module.exports = function (grunt) {
         cwd: '<%= yeoman.app %>/styles',
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
+      },
+      fonts: {
+        expand: true,
+        cwd: '<%= yeoman.app %>',
+        dest: '<%= yeoman.dist %>/fonts',
+        flatten: true,
+        src: [ 
+            'bower_components/*/*.eot', 
+            'bower_components/**/*.svg', 
+            'bower_components/**/*.ttf', 
+            'bower_components/**/*.woff',
+            'bower_components/**/*.otf'
+        ]
       },
       components: {
         expand: true,
@@ -332,6 +346,7 @@ module.exports = function (grunt) {
     'autoprefixer',
     'concat',
     'copy:dist',
+    'copy:fonts',
     'cdnify',
     'ngmin',
     'cssmin',
