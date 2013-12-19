@@ -18,12 +18,6 @@ angular.module('ut.services', ['ut.model', 'ut.constant.lists', 'ut.constant.loo
         return costCalculator;
 }])
 
-.factory('session', [
-    function () {
-        var sessionObject = {};
-        return sessionObject;
-}])
-
 .factory(
     'usability', ['racesLookup', 'professionsLookup', 'itemsLookup',
         function (races, professions, items) {

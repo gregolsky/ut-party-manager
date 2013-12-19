@@ -3,7 +3,7 @@
 var ACTIVE_PARTY_CHANGED = 'activePartyChanged';
 var PARTY_LIST_CHANGED = 'partyListChanged';
 
-function MainController($scope, $location, $routeParams, session, lookups, lists, party, cost) {
+function MainController($scope, $location, $routeParams, lookups, lists, party, cost) {
     var self = this;
 
     $scope.topMenuSelected = 'home';
@@ -72,7 +72,7 @@ function MainController($scope, $location, $routeParams, session, lookups, lists
     loadParties();
 }
 
-MainController.$inject = ['$scope', '$location', '$routeParams', 'session', 'lookups', 'lists', 'party', 'cost'];
+MainController.$inject = ['$scope', '$location', '$routeParams', 'lookups', 'lists', 'party', 'cost'];
 
 function PartyListController($scope, $location, $routeParams) {
 
@@ -85,7 +85,7 @@ function PartyListController($scope, $location, $routeParams) {
 PartyListController.$inject = ['$scope', '$location', '$routeParams'];
 
 
-function ManagePartyController($scope, $routeParams, session, partyManager, costCalculator, model) {
+function ManagePartyController($scope, $routeParams, partyManager, costCalculator, model) {
 
     var partyId = $routeParams.partyId;
 
@@ -105,12 +105,12 @@ function ManagePartyController($scope, $routeParams, session, partyManager, cost
     };
 
     $scope.editCharacter = function (character) {
-        session.character = character;
+        $scope.context.character = character;
         $scope.action = 'edit_character';
     };
 
     $scope.manageParty = function () {
-        session.character = null;
+        $scope.context.character = null;
         $scope.action = 'list_characters';
     };
 
@@ -140,7 +140,7 @@ function ManagePartyController($scope, $routeParams, session, partyManager, cost
     }
 }
 
-ManagePartyController.$inject = ['$scope', '$routeParams', 'session', 'party', 'costCalculator', 'model'];
+ManagePartyController.$inject = ['$scope', '$routeParams', 'party', 'costCalculator', 'model'];
 
 
 function HomeController($scope, $location, party) {
@@ -182,8 +182,8 @@ function EditPartyController($scope, $location, $routeParams, party) {
 EditPartyController.$inject = ['$scope', '$location', '$routeParams', 'party'];
 
 
-function EditCharacterController($scope, session, usability, avatars) {
-    $scope.character = session.character;
+function EditCharacterController($scope, usability, avatars) {
+    $scope.character = $scope.context.character;
 
     $scope.itemCanBeUsedByCharacter = function (item) {
         return usability.itemCanBeUsedBy(item, $scope.character);
@@ -225,4 +225,4 @@ function EditCharacterController($scope, session, usability, avatars) {
     });
 }
 
-EditCharacterController.$inject = ['$scope', 'session', 'usability', 'avatars'];
+EditCharacterController.$inject = ['$scope', 'usability', 'avatars'];
