@@ -63,6 +63,20 @@ angular.module('ut.services', ['ut.model', 'ut.constant.lists', 'ut.constant.loo
                     'id': id
                 });
             },
+            'remove': function(party){
+                var q = $q.defer();
+                if (!party.id){
+                    q.resolve();
+                    return q.promise;
+                }
+                
+                PartyResource.delete({ 'id': party.id }).$promise
+                    .then(function(){
+                       q.resolve(); 
+                    });
+                
+                return q.promise;  
+            },
             'list': function () {
                 var q = $q.defer();
 

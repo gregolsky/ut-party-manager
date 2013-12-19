@@ -23,6 +23,14 @@ angular.module('ut.backend', ['ut.backend.storage'])
                 var party = storageService.save('party', angular.fromJson(data));
                 return [ 200, angular.toJson(party) ];
             });
+        
+		$httpBackend
+            .whenDELETE(/^\/?party\/?\?id=[0-9]+/)
+            .respond(function(method, url, data, headers) {
+                var partyId = url.match(/^\/?party\/?\?id=([0-9]+)/)[1];
+                var party = storageService.remove('party', partyId);
+                return [ 200, angular.toJson(party) ];
+            });        
             
         $httpBackend
             .whenGET(/^views\//)

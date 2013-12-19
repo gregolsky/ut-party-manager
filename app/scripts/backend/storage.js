@@ -54,6 +54,13 @@ storage.factory(
                     localStorageService.get(
                         entityKey(entityName, id)));
             };
+                     
+            var remove = function (entityName, id) {
+                localStorageService.set(entityKey(entityName, id), null);
+
+                var digests = _.filter(getEntityDigests(entityName), function (x) { return x.id != id; });
+                setEntityDigests(entityName, digests);
+            };
 
             var writeLock = false;
 
@@ -92,6 +99,7 @@ storage.factory(
             return {
                 load: load,
                 save: save,
-                list: list
+                list: list,
+                remove: remove
             };
 }]);

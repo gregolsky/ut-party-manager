@@ -85,7 +85,7 @@ function PartyListController($scope, $location, $routeParams) {
 PartyListController.$inject = ['$scope', '$location', '$routeParams'];
 
 
-function ManagePartyController($scope, $routeParams, partyManager, costCalculator, model) {
+function ManagePartyController($scope, $routeParams, $location, partyManager, costCalculator, model) {
 
     var partyId = $routeParams.partyId;
 
@@ -138,9 +138,23 @@ function ManagePartyController($scope, $routeParams, partyManager, costCalculato
             members.splice(i, 1);
         }
     }
+    
+    $scope.destroyParty = function () {
+        if (!confirm("Czy jesteś pewien?")) {
+            return;   
+        }
+        
+        partyManager.remove($scope.party)
+            .then(function(){
+              $scope.updatePartyList();    
+              $location.path('/');  
+            });
+        
+        return false;
+    }
 }
 
-ManagePartyController.$inject = ['$scope', '$routeParams', 'party', 'costCalculator', 'model'];
+ManagePartyController.$inject = ['$scope', '$routeParams', '$location', 'party', 'costCalculator', 'model'];
 
 
 function HomeController($scope, $location, party) {
