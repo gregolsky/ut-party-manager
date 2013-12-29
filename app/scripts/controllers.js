@@ -225,9 +225,8 @@ function EditCharacterController($scope, usability, avatars) {
         $scope.chooseAvatarMode = false;
     }
 
-    function readdItemsToEquipment(character) {
+    function readdItemsToEquipmentIfEligible(character) {
         var oldEq = character.equipment;
-        character.equipment = [];
         character.equipment = _.filter(oldEq, function (eqItemId) {
             var item = $scope.lookups.items[eqItemId];
             return usability.itemCanBeUsedBy(item, character);
@@ -235,7 +234,7 @@ function EditCharacterController($scope, usability, avatars) {
     }
     
     $scope.$watch('character.profession', function (newValue, oldValue) {
-        readdItemsToEquipment($scope.character);
+        readdItemsToEquipmentIfEligible($scope.character);
     });
 }
 
