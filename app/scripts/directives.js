@@ -49,13 +49,55 @@ angular.module('ut.directives', [])
             }
         };
     })
-    .directive('partyCardRender', ['$q',
-        function ($q) {
+    .directive('partyCardRender', ['$q', 'racesLookup', 'professionsLookup', 'itemsLookup',
+        function ($q, races, professions, items) {
 
             var CARD_IMAGE_SRC = '/images/card.jpg'
-            
-            var CARD_GENERAL_COORDS = {
-              name: [ 20, 75 ]  
+
+            var FieldCoords = function (x, y, maxWidth) {
+                this.x = x;
+                this.y = y;
+                this.maxWidth = maxWidth || null;
+            }
+
+            var buildCoords = function (x, y, maxWidth) {
+                return new FieldCoords(x, y, maxWidth);
+            }
+
+            var CHARACTER_CARDS = [
+             buildCoords(3, 125),
+             buildCoords(3, 587),
+             buildCoords(3, 1048),
+             buildCoords(1034, 125),
+             buildCoords(1034, 587),
+             buildCoords(1034, 1048)
+            ];
+
+            var CHARACTER_FIELDS = {
+                name: buildCoords(24, 300),
+                race: buildCoords(24, 353),
+                profession: buildCoords(24, 406),
+                raceSkill: buildCoords(335, 353),
+                professionSkill: buildCoords(335, 406),
+                ld: buildCoords(380, 35),
+                m: buildCoords(380, 69),
+                ws: buildCoords(380, 103),
+                s: buildCoords(380, 137),
+                sp: buildCoords(380, 171),
+                bs: buildCoords(380, 205),
+                t: buildCoords(380, 239),
+                w: buildCoords(380, 273),
+                weapon: buildCoords(437, 50),
+                armor: buildCoords(437, 138),
+                equipment: buildCoords(437, 225),
+                psychology: buildCoords(592, 335)
+            };
+
+            var PARTY_FIELDS = {
+                partyName: buildCoords(20, 75),
+                nature: buildCoords(460, 75),
+                guild: buildCoords(1255, 75),
+                points: buildCoords(1550, 75)
             };
 
             var loadImage = function (src) {
@@ -70,7 +112,7 @@ angular.module('ut.directives', [])
 
                 return q.promise;
             };
-            
+
             var cardImageLoading = loadImage(CARD_IMAGE_SRC);
 
             var link = function (scope, element, attrs) {
@@ -93,11 +135,71 @@ angular.module('ut.directives', [])
                 var render = function (cardImg, party) {
                     canvas.width = cardImg.width;
                     canvas.height = cardImg.height;
-                    
+                    console.log(party);
                     var context = canvas.getContext('2d');
                     context.drawImage(cardImg, 0, 0);
-                    context.font= "20px Georgia";
-                    context.fillText(party.name, CARD_GENERAL_COORDS.name[0], CARD_GENERAL_COORDS.name[1]);
+                    context.font = "18px Georgia";
+
+                    var renderText = function (text, coords) {
+                        context.fillText(text, coords.x, coords.y);
+                    };
+                    
+                    renderText(party.name, PARTY_FIELDS.partyName);
+                    renderText(party.nature, PARTY_FIELDS.nature);
+                    renderText(party.guild, PARTY_FIELDS.guild);
+                    renderText(party.points, PARTY_FIELDS.points);
+                    //renderText(party.name, PARTY_FIELDS.point1);
+
+                    var renderCharacter = function (character, cardCoords) {
+                        var fields = CHARACTER_FIELDS;
+                        
+                        var adjustToCard = function (fieldsCoords) {
+                            return new FieldCoords(fieldsCoords.x + cardCoords.x, fieldsCoords.y + cardCoords.y);
+                        };
+                        
+                        var renderCharacterText = function(text, fieldCoords) {
+                            renderText(text, adjustToCard(fieldCoords));
+                        };
+                        
+                        renderCharacterText(character.name, CHARACTER_FIELDS.name);
+                        
+                        var race = races[character.race];
+                        var profession = professions[character.profession];
+                        var attrs = race.attributes;
+                        renderCharacterText(race.name, CHARACTER_FIELDS.race);
+                        renderCharacterText(profession.name, CHARACTER_FIELDS.profession);
+                        renderCharacterText(race.talent, CHARACTER_FIELDS.raceSkill);
+                        renderCharacterText(profession.talent, CHARACTER_FIELDS.professionSkill);
+                        renderCharacterText(attrs.command, CHARACTER_FIELDS.ld);
+                        renderCharacterText(attrs.mobility, CHARACTER_FIELDS.m);
+                        renderCharacterText(attrs.normalCombat, CHARACTER_FIELDS.ws);
+                        renderCharacterText(attrs.strength, CHARACTER_FIELDS.s);
+                        renderCharacterText(attrs.condition, CHARACTER_FIELDS.sp);
+                        renderCharacterText(attrs.rangeWeapons, CHARACTER_FIELDS.bs);
+                        renderCharacterText(attrs.toughness, CHARACTER_FIELDS.t);
+                        renderCharacterText(attrs.vitality, CHARACTER_FIELDS.w);
+                        
+                        var describeFilteredEq = function(filter){
+                            return _(character.equipment)
+                            .map(function (id) { return items[id]; })
+                            .filter(filter)
+                            .map(function (x) { return x.name; })
+                            .value()
+                            .join(", ");
+                        };
+                        
+                        var weapons = describeFilteredEq(function (x) { return x.isWeapon(); });
+                        var armor = describeFilteredEq(function (x) { return x.isArmor(); });                       
+                        
+                        renderCharacterText(weapons, CHARACTER_FIELDS.weapon);
+                        renderCharacterText(armor, CHARACTER_FIELDS.armor);
+                        renderCharacterText("?", CHARACTER_FIELDS.equipment);
+                        renderCharacterText("?", CHARACTER_FIELDS.psychology);
+                    };
+                    
+                    _.each(party.members, function (e, i) {
+                        renderCharacter(party.members[i], CHARACTER_CARDS[i]);
+                    });
                 };
             };
 
