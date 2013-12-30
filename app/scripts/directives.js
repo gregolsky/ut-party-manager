@@ -98,7 +98,6 @@ angular.module('ut.directives', [])
                     context.drawImage(cardImg, 0, 0);
                     context.font= "20px Georgia";
                     context.fillText(party.name, CARD_GENERAL_COORDS.name[0], CARD_GENERAL_COORDS.name[1]);
-                    window.open(canvas.toDataURL('image/png'));
                 };
             };
 
