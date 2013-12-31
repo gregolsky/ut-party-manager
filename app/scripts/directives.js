@@ -90,7 +90,9 @@ angular.module('ut.directives', ['ut.helpers'])
                 weapon: buildCoords(437, 50),
                 armor: buildCoords(437, 138),
                 equipment: buildCoords(437, 225),
-                psychology: buildCoords(592, 335)
+                psychology: buildCoords(592, 335),
+                portraitStart: buildCoords(57, 10),
+                portraitEnd: buildCoords(258, 248)
             };
 
             var PARTY_FIELDS = {
@@ -142,6 +144,10 @@ angular.module('ut.directives', ['ut.helpers'])
                     var renderText = function (text, coords) {
                         context.fillText(text, coords.x, coords.y);
                     };
+                    
+                    var renderImage = function (img, start, end) {
+                        context.drawImage(img, 0, 0, img.width, img.height, start.x, start.y, end.x - start.x, end.y - start.y);
+                    };
 
                     renderText(party.name, PARTY_FIELDS.partyName);
                     renderText(party.nature, PARTY_FIELDS.nature);
@@ -158,6 +164,14 @@ angular.module('ut.directives', ['ut.helpers'])
 
                         var renderCharacterText = function (text, fieldCoords) {
                             renderText(text, adjustToCard(fieldCoords));
+                        };
+                        
+                        var renderCharacterPortrait = function () {
+                            var portraitSrc = css.getBackgroundImageUrl('.' + character.portrait);
+                        loadImage(portraitSrc)
+                            .then(function(img){
+                                renderImage(img, adjustToCard(CHARACTER_FIELDS.portraitStart), adjustToCard(CHARACTER_FIELDS.portraitEnd));
+                            });
                         };
 
                         renderCharacterText(character.name, CHARACTER_FIELDS.name);
@@ -202,15 +216,7 @@ angular.module('ut.directives', ['ut.helpers'])
                         renderCharacterText(armor, CHARACTER_FIELDS.armor);
                         renderCharacterText("?", CHARACTER_FIELDS.equipment);
                         renderCharacterText("?", CHARACTER_FIELDS.psychology);
-
-                        var portraitSrc = css.getBackgroundImageUrl('.' + character.portrait);
-                        loadImage(portraitSrc)
-                            .then(function(img){ //61,136 -> 259,371
-                                // 57, 10 -> 256, 246
-                                var c = adjustToCard(new FieldCoords(57, 10));
-                                var cend = adjustToCard(new FieldCoords(258, 248));
-                                context.drawImage(img, 0, 0, img.width, img.height, c.x, c.y, cend.x - c.x, cend.y - c.y);
-                            });
+                        renderCharacterPortrait();
                     };
 
                     _.each(party.members, function (e, i) {
