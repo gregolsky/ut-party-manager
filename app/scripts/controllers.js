@@ -221,7 +221,7 @@ function EditCharacterController($scope, usability, avatars) {
     }
 
     $scope.chooseAvatar = function (imgPath) {
-        $scope.character.img = imgPath;
+        $scope.character.portrait = imgPath;
         $scope.chooseAvatarMode = false;
     }
 

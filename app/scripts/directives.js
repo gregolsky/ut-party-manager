@@ -2,7 +2,7 @@
 
 /* Directives */
 
-angular.module('ut.directives', [])
+angular.module('ut.directives', ['ut.helpers'])
 
 .directive('staticInclude', function ($http, $templateCache, $compile) {
     return function (scope, element, attrs) {
@@ -49,8 +49,8 @@ angular.module('ut.directives', [])
             }
         };
     })
-    .directive('partyCardRender', ['$q', 'racesLookup', 'professionsLookup', 'itemsLookup',
-        function ($q, races, professions, items) {
+    .directive('partyCardRender', ['$q', 'racesLookup', 'professionsLookup', 'itemsLookup', 'cssHelper',
+        function ($q, races, professions, items, css) {
 
             var CARD_IMAGE_SRC = '/images/card.jpg'
 
@@ -135,7 +135,6 @@ angular.module('ut.directives', [])
                 var render = function (cardImg, party) {
                     canvas.width = cardImg.width;
                     canvas.height = cardImg.height;
-                    console.log(party);
                     var context = canvas.getContext('2d');
                     context.drawImage(cardImg, 0, 0);
                     context.font = "18px Georgia";
@@ -143,7 +142,7 @@ angular.module('ut.directives', [])
                     var renderText = function (text, coords) {
                         context.fillText(text, coords.x, coords.y);
                     };
-                    
+
                     renderText(party.name, PARTY_FIELDS.partyName);
                     renderText(party.nature, PARTY_FIELDS.nature);
                     renderText(party.guild, PARTY_FIELDS.guild);
@@ -152,17 +151,17 @@ angular.module('ut.directives', [])
 
                     var renderCharacter = function (character, cardCoords) {
                         var fields = CHARACTER_FIELDS;
-                        
+
                         var adjustToCard = function (fieldsCoords) {
                             return new FieldCoords(fieldsCoords.x + cardCoords.x, fieldsCoords.y + cardCoords.y);
                         };
-                        
-                        var renderCharacterText = function(text, fieldCoords) {
+
+                        var renderCharacterText = function (text, fieldCoords) {
                             renderText(text, adjustToCard(fieldCoords));
                         };
-                        
+
                         renderCharacterText(character.name, CHARACTER_FIELDS.name);
-                        
+
                         var race = races[character.race];
                         var profession = professions[character.profession];
                         var attrs = race.attributes;
@@ -178,25 +177,42 @@ angular.module('ut.directives', [])
                         renderCharacterText(attrs.rangeWeapons, CHARACTER_FIELDS.bs);
                         renderCharacterText(attrs.toughness, CHARACTER_FIELDS.t);
                         renderCharacterText(attrs.vitality, CHARACTER_FIELDS.w);
-                        
-                        var describeFilteredEq = function(filter){
+
+                        var describeFilteredEq = function (filter) {
                             return _(character.equipment)
-                            .map(function (id) { return items[id]; })
-                            .filter(filter)
-                            .map(function (x) { return x.name; })
-                            .value()
-                            .join(", ");
+                                .map(function (id) {
+                                    return items[id];
+                                })
+                                .filter(filter)
+                                .map(function (x) {
+                                    return x.name;
+                                })
+                                .value()
+                                .join(", ");
                         };
-                        
-                        var weapons = describeFilteredEq(function (x) { return x.isWeapon(); });
-                        var armor = describeFilteredEq(function (x) { return x.isArmor(); });                       
-                        
+
+                        var weapons = describeFilteredEq(function (x) {
+                            return x.isWeapon();
+                        });
+                        var armor = describeFilteredEq(function (x) {
+                            return x.isArmor();
+                        });
+
                         renderCharacterText(weapons, CHARACTER_FIELDS.weapon);
                         renderCharacterText(armor, CHARACTER_FIELDS.armor);
                         renderCharacterText("?", CHARACTER_FIELDS.equipment);
                         renderCharacterText("?", CHARACTER_FIELDS.psychology);
+
+                        var portraitSrc = css.getBackgroundImageUrl('.' + character.portrait);
+                        loadImage(portraitSrc)
+                            .then(function(img){ //61,136 -> 259,371
+                                // 57, 10 -> 256, 246
+                                var c = adjustToCard(new FieldCoords(57, 10));
+                                var cend = adjustToCard(new FieldCoords(258, 248));
+                                context.drawImage(img, 0, 0, img.width, img.height, c.x, c.y, cend.x - c.x, cend.y - c.y);
+                            });
                     };
-                    
+
                     _.each(party.members, function (e, i) {
                         renderCharacter(party.members[i], CHARACTER_CARDS[i]);
                     });
