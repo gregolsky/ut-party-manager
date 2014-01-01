@@ -181,8 +181,10 @@ angular.module('ut.directives', ['ut.helpers'])
                         var attrs = race.attributes;
                         renderCharacterText(race.name, CHARACTER_FIELDS.race);
                         renderCharacterText(profession.name, CHARACTER_FIELDS.profession);
+                        
                         renderCharacterText(race.talent, CHARACTER_FIELDS.raceSkill);
                         renderCharacterText(profession.talent, CHARACTER_FIELDS.professionSkill);
+                        
                         renderCharacterText(attrs.command, CHARACTER_FIELDS.ld);
                         renderCharacterText(attrs.mobility, CHARACTER_FIELDS.m);
                         renderCharacterText(attrs.normalCombat, CHARACTER_FIELDS.ws);
