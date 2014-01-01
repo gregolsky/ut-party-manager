@@ -85,7 +85,7 @@ function PartyListController($scope, $location, $routeParams) {
 PartyListController.$inject = ['$scope', '$location', '$routeParams'];
 
 
-function ManagePartyController($scope, $routeParams, $location, partyManager, costCalculator, model) {
+function ManagePartyController($scope, $routeParams, $window, $location, partyManager, costCalculator, model) {
 
     var partyId = $routeParams.partyId;
 
@@ -137,7 +137,7 @@ function ManagePartyController($scope, $routeParams, $location, partyManager, co
         if (i != -1) {
             members.splice(i, 1);
         }
-    }
+    };
     
     $scope.destroyParty = function () {
         if (!confirm("Czy jesteś pewien?")) {
@@ -151,15 +151,21 @@ function ManagePartyController($scope, $routeParams, $location, partyManager, co
             });
         
         return false;
-    }
+    };
+    
+    $scope.printParty = function () {
+        var canvas = $window.document.querySelector('[party-card-render] canvas');
+        var dataUrl = canvas.toDataURL('image/png');
+        window.open(dataUrl);
+
+        return false;
+    };
 }
 
-ManagePartyController.$inject = ['$scope', '$routeParams', '$location', 'party', 'costCalculator', 'model'];
+ManagePartyController.$inject = ['$scope', '$routeParams', '$window', '$location', 'party', 'costCalculator', 'model'];
 
 
-function HomeController($scope, $location, party) {
-
-}
+function HomeController($scope, $location, party) { }
 
 HomeController.$inject = ['$scope', '$location', 'party'];
 

@@ -52,7 +52,7 @@ angular.module('ut.directives', ['ut.helpers'])
     .directive('partyCardRender', ['$q', 'racesLookup', 'professionsLookup', 'itemsLookup', 'cssHelper',
         function ($q, races, professions, items, css) {
 
-            var CARD_IMAGE_SRC = '/images/card.jpg'
+            var CARD_SELECTOR = '.party-card';
 
             var FieldCoords = function (x, y, maxWidth) {
                 this.x = x;
@@ -115,7 +115,7 @@ angular.module('ut.directives', ['ut.helpers'])
                 return q.promise;
             };
 
-            var cardImageLoading = loadImage(CARD_IMAGE_SRC);
+            var cardImageLoading = loadImage(css.getBackgroundImageUrl(CARD_SELECTOR));
 
             var link = function (scope, element, attrs) {
 

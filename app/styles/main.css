@@ -192,3 +192,11 @@ hr.no-margin {
 .characters-list .portrait {
     height: 250px; 
 }
+
+.party-card {
+    background-image: url('../images/card.jpg');   
+}
+
+[party-card-render] { 
+    display: none;   
+}
