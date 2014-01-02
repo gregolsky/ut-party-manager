@@ -156,7 +156,7 @@ function ManagePartyController($scope, $routeParams, $window, $location, partyMa
     $scope.printParty = function () {
         var canvas = $window.document.querySelector('[party-card-render] canvas');
         var dataUrl = canvas.toDataURL('image/png');
-        window.open(dataUrl);
+        window.open(dataUrl, '', '');
 
         return false;
     };
