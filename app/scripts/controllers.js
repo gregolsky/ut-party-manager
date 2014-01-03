@@ -72,7 +72,7 @@ function MainController($scope, $location, $routeParams, lookups, lists, party, 
     loadParties();
 }
 
-MainController.$inject = ['$scope', '$location', '$routeParams', 'lookups', 'lists', 'party', 'cost'];
+MainController.$inject = ['$scope', '$location', '$routeParams', 'lookups', 'enumerations', 'party', 'costCalculator'];
 
 function PartyListController($scope, $location, $routeParams) {
 
@@ -85,7 +85,7 @@ function PartyListController($scope, $location, $routeParams) {
 PartyListController.$inject = ['$scope', '$location', '$routeParams'];
 
 
-function ManagePartyController($scope, $routeParams, $window, $location, partyManager, costCalculator, model) {
+function ManagePartyController($scope, $routeParams, $window, $location, partyManager, costCalculator, Character) {
 
     var partyId = $routeParams.partyId;
 
@@ -115,7 +115,7 @@ function ManagePartyController($scope, $routeParams, $window, $location, partyMa
     };
 
     $scope.addCharacter = function () {
-        var character = new model.Character();
+        var character = new Character();
         $scope.party.members.push(character);
         $scope.editCharacter(character);
     };
@@ -160,9 +160,13 @@ function ManagePartyController($scope, $routeParams, $window, $location, partyMa
 
         return false;
     };
+    
+    $scope.canAddMember = function () {
+          
+    };
 }
 
-ManagePartyController.$inject = ['$scope', '$routeParams', '$window', '$location', 'party', 'costCalculator', 'model'];
+ManagePartyController.$inject = ['$scope', '$routeParams', '$window', '$location', 'party', 'costCalculator', 'Character'];
 
 
 function HomeController($scope, $location, party) { }
@@ -233,6 +237,7 @@ function EditCharacterController($scope, usability, avatars) {
 
     function readdItemsToEquipmentIfEligible(character) {
         var oldEq = character.equipment;
+        character.equipment = [];
         character.equipment = _.filter(oldEq, function (eqItemId) {
             var item = $scope.lookups.items[eqItemId];
             return usability.itemCanBeUsedBy(item, character);
@@ -240,6 +245,10 @@ function EditCharacterController($scope, usability, avatars) {
     }
     
     $scope.$watch('character.profession', function (newValue, oldValue) {
+        if (newValue == oldValue) {
+            return;
+        }
+        
         readdItemsToEquipmentIfEligible($scope.character);
     });
 }

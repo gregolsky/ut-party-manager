@@ -2,4 +2,4 @@
 
 /* Filters */
 
-angular.module('ut.filters', []);
+

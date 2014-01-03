@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ut.services', ['ut.model', 'ut.constant.lists', 'ut.constant.lookups', 'ut.calc', 'ngResource'])
+angular.module('ut.services', ['ut.core', 'ut.core.constants', 'ut.core.services', 'ngResource'])
 
 .value('version', '0.1')
 
@@ -13,11 +13,6 @@ angular.module('ut.services', ['ut.model', 'ut.constant.lists', 'ut.constant.loo
         };
 }])
 
-.factory('costCalculator', ['cost',
-    function (costCalculator) {
-        return costCalculator;
-}])
-
 .factory(
     'usability', ['racesLookup', 'professionsLookup', 'itemsLookup',
         function (races, professions, items) {
@@ -25,7 +20,7 @@ angular.module('ut.services', ['ut.model', 'ut.constant.lists', 'ut.constant.loo
             var itemCanBeUsedBy = function (item, character) {
                 var characterInfo = {
                     profession: professions[character.profession],
-                    race: professions[character.race],
+                    race: races[character.race],
                     equipment: _.map(character.equipment, function (x) {
                         return items[x];
                     })

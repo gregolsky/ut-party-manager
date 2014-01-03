@@ -1,5 +1,5 @@
 
-angular.module('ut.backend', ['ut.backend.storage'])
+angular.module('ut.backend')
     .run(function($httpBackend, storageService){
 
 		$httpBackend

@@ -1,8 +1,5 @@
-angular.module('LocalStorageModule').value('prefix', 'ut');
 
-var storage = angular.module('ut.backend.storage', ['LocalStorageModule']);
-
-storage.factory(
+angular.module('ut.backend.storage').factory(
     'storageService', ['localStorageService',
                  function (localStorageService) {
 

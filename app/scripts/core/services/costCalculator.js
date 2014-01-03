@@ -1,18 +1,19 @@
-angular.module('ut.calc', ['ut.constant.lookups']).factory('cost', ['racesLookup', 'professionsLookup', 'itemsLookup',
+angular.module('ut.core.services', ['ut.core.constants'])
+.factory('costCalculator', [
+    'racesLookup', 
+    'professionsLookup', 
+    'itemsLookup',
 function(races, professions, items) {
 
-	function CostCalculator(races, professions, items) {
+	var CostCalculator = function (races, professions, items) {
 		this.races = races;
 		this.professions = professions;
 		this.items = items;
 	}
 
-
-	CostCalculator.prototype.calculatePartyMemberCost = function(member, party) {
+	CostCalculator.prototype.calculatePartyMemberCost = function (member, party) {
 		var self = this;
 		
-        //var isInParty = _.indexOf(party.members, member);
-        
 		var sameProfMembers = _(party.members)
             .filter(function(x) { return x.profession == member.profession; })
             .value();

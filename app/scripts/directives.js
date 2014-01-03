@@ -2,7 +2,7 @@
 
 /* Directives */
 
-angular.module('ut.directives', ['ut.helpers'])
+angular.module('ut.directives')
 
 .directive('staticInclude', function ($http, $templateCache, $compile) {
     return function (scope, element, attrs) {
@@ -144,7 +144,7 @@ angular.module('ut.directives', ['ut.helpers'])
                     var renderText = function (text, coords) {
                         context.fillText(text, coords.x, coords.y);
                     };
-                    
+
                     var renderImage = function (img, start, end) {
                         context.drawImage(img, 0, 0, img.width, img.height, start.x, start.y, end.x - start.x, end.y - start.y);
                     };
@@ -165,13 +165,13 @@ angular.module('ut.directives', ['ut.helpers'])
                         var renderCharacterText = function (text, fieldCoords) {
                             renderText(text, adjustToCard(fieldCoords));
                         };
-                        
+
                         var renderCharacterPortrait = function () {
                             var portraitSrc = css.getBackgroundImageUrl('.' + character.portrait);
-                        loadImage(portraitSrc)
-                            .then(function(img){
-                                renderImage(img, adjustToCard(CHARACTER_FIELDS.portraitStart), adjustToCard(CHARACTER_FIELDS.portraitEnd));
-                            });
+                            loadImage(portraitSrc)
+                                .then(function (img) {
+                                    renderImage(img, adjustToCard(CHARACTER_FIELDS.portraitStart), adjustToCard(CHARACTER_FIELDS.portraitEnd));
+                                });
                         };
 
                         renderCharacterText(character.name, CHARACTER_FIELDS.name);
@@ -181,10 +181,10 @@ angular.module('ut.directives', ['ut.helpers'])
                         var attrs = race.attributes;
                         renderCharacterText(race.name, CHARACTER_FIELDS.race);
                         renderCharacterText(profession.name, CHARACTER_FIELDS.profession);
-                        
+
                         renderCharacterText(race.talent, CHARACTER_FIELDS.raceSkill);
                         renderCharacterText(profession.talent, CHARACTER_FIELDS.professionSkill);
-                        
+
                         renderCharacterText(attrs.command, CHARACTER_FIELDS.ld);
                         renderCharacterText(attrs.mobility, CHARACTER_FIELDS.m);
                         renderCharacterText(attrs.normalCombat, CHARACTER_FIELDS.ws);

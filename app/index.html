@@ -2,8 +2,11 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-  <head>
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title></title>
@@ -11,19 +14,20 @@
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <!-- build:css styles/lib.css -->
-        <link rel="stylesheet" href="bower_components/bootstrap-sass/dist/css/bootstrap.css">
-        <link rel="stylesheet" href="bower_components/bootstrap-sass/dist/css/bootstrap-theme.css">
-        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
-        <!-- endbuild -->
-      
-        <!-- build:css(.tmp) styles/app.css -->
-        <link rel="stylesheet" href="styles/main.css">
-        <link rel="stylesheet" href="styles/animations.css">
-        <link rel="stylesheet" href="styles/portraits.css">
-        <!-- endbuild -->
+    <!-- build:css styles/lib.css -->
+    <link rel="stylesheet" href="bower_components/bootstrap-sass/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/bootstrap-sass/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
+    <!-- endbuild -->
+
+    <!-- build:css(.tmp) styles/app.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/animations.css">
+    <link rel="stylesheet" href="styles/portraits.css">
+    <!-- endbuild -->
 </head>
-  <body ng-app="utPartyManagerApp">
+
+<body ng-app="utPartyManagerApp">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -34,7 +38,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-	<div ng-controller="MainController">
+    <div ng-controller="MainController">
         <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6. chromium.org/developers/how-tos/chrome-frame-getting-started -->
         <!--[if lt IE 7]>
             <p class=chromeframe>Your browser is
@@ -59,7 +63,7 @@
                             <a ng-click="topMenuSelected='home'" href="#">
                                 <i class='fa fa-home fa-2x'></i>&nbsp;Strona Główna</a>
                         </li>
-                        <li ng-class="{ active: topMenuSelected == 'about' }" >
+                        <li ng-class="{ active: topMenuSelected == 'about' }">
                             <a ng-click="topMenuSelected='about'" href="#about">
                                 <i class='fa fa-question fa-2x'></i>&nbsp;O projekcie</a>
                         </li>
@@ -74,39 +78,58 @@
             </div>
         </div>
     </div>
-      
-        <!-- build:js scripts/lib.js -->
-        <script src="bower_components/lodash/dist/lodash.js"></script>
-        <script src="bower_components/angular/angular.js"></script>   
-        <!-- endbuild -->
-      
-        <!-- build:js scripts/modules.js -->
-        <script src="bower_components/angular-route/angular-route.js"></script>
-        <script src="bower_components/angular-resource/angular-resource.js"></script>
-        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-        <script src="bower_components/angular-animate/angular-animate.js"></script>
-        <script src="bower_components/angular-mocks/angular-mocks.js"></script>
-        <script src="bower_components/angular-local-storage/angular-local-storage.min.js"></script>
-        <script src="bower_components/jquery/jquery.js"></script>
-        <script src="bower_components/bootstrap-sass/dist/js/bootstrap.js"></script>
-        <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script type="text/javascript" src="scripts/core/model.js"></script>
-        <script type="text/javascript" src="scripts/core/constants.js"></script>
-        <script type="text/javascript" src="scripts/core/calc.js"></script>
-      
-        <script type="text/javascript" src="scripts/services.js"></script>
-        <script type="text/javascript" src="scripts/filters.js"></script>
-        <script type="text/javascript" src="scripts/helpers.js"></script>
-        <script type="text/javascript" src="scripts/directives.js"></script>
-        <script type="text/javascript" src="scripts/controllers.js"></script>
-      
-        <script type="text/javascript" src="scripts/backend/storage.js"></script>
-        <script type="text/javascript" src="scripts/backend/backend.js"></script>
-      
-        <script type="text/javascript" src="scripts/app.js"></script>
-        <!-- endbuild -->
+    <!-- build:js scripts/lib.js -->
+    <script src="bower_components/lodash/dist/lodash.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js scripts/modules.js -->
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-mocks/angular-mocks.js"></script>
+    <script src="bower_components/angular-local-storage/angular-local-storage.min.js"></script>
+    <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/bootstrap-sass/dist/js/bootstrap.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script type="text/javascript" src="scripts/deps.js"></script>
+    
+    <script type="text/javascript" src="scripts/core/domain/item/armorClass.js"></script>
+    <script type="text/javascript" src="scripts/core/domain/item/itemType.js"></script>
+    <script type="text/javascript" src="scripts/core/domain/item/armorProperties.js"></script>
+    <script type="text/javascript" src="scripts/core/domain/item/meleeWeaponProperties.js"></script>
+    <script type="text/javascript" src="scripts/core/domain/item/rangeWeaponProperties.js"></script>
+    <script type="text/javascript" src="scripts/core/domain/item/armorProperties.js"></script>
+    
+    <script type="text/javascript" src="scripts/core/domain/race/raceAttributes.js"></script>
+    
+    <script type="text/javascript" src="scripts/core/domain/character.js"></script>
+    <script type="text/javascript" src="scripts/core/domain/item.js"></script>
+    <script type="text/javascript" src="scripts/core/domain/party.js"></script>
+    <script type="text/javascript" src="scripts/core/domain/profession.js"></script>
+    <script type="text/javascript" src="scripts/core/domain/race.js"></script>
+
+    <script type="text/javascript" src="scripts/core/services/costCalculator.js"></script>
+    
+    <script type="text/javascript" src="scripts/core/constants/enumerations.js"></script>
+    <script type="text/javascript" src="scripts/core/constants/lookups.js"></script>
+    
+    <script type="text/javascript" src="scripts/services.js"></script>
+    <script type="text/javascript" src="scripts/filters.js"></script>
+    <script type="text/javascript" src="scripts/helpers.js"></script>
+    <script type="text/javascript" src="scripts/directives.js"></script>
+    <script type="text/javascript" src="scripts/controllers.js"></script>
+
+    <script type="text/javascript" src="scripts/backend/storage.js"></script>
+    <script type="text/javascript" src="scripts/backend/backend.js"></script>
+
+    <script type="text/javascript" src="scripts/app.js"></script>
+    <!-- endbuild -->
 </body>
+
 </html>
