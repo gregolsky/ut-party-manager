@@ -16,15 +16,15 @@
             <ul class="nav navbar-nav pull-right">
                 <li>
                     <div class='navbar-form btn-group'>
-                        <button ng-hide="managePartyState.deleteMode"  class='btn btn-primary' ng-click='saveChanges()' >
+                        <button ng-hide="state.deleteMode"  class='btn btn-primary' ng-click='saveChanges()' >
                             <i class='fa fa-save'></i>&nbsp;
                             Zapisz zmiany
                         </button>
-                        <button ng-hide="managePartyState.deleteMode"  class='btn btn-inverse' ng-click='addCharacter()' >
+                        <button ng-hide="state.deleteMode"  class='btn btn-inverse' ng-click='addCharacter()' >
                             <i class='fa fa-plus'></i>&nbsp;
                             Dodaj postać
                         </button>
-                        <button ng-show="managePartyState.deleteMode" style='border-top-left-radius: 4px; border-bottom-left-radius: 4px;' ng-click='managePartyState.deleteMode = false' href="#" class='btn btn-inverse' ng-click='toggleDeleteMode()' >
+                        <button ng-show="state.deleteMode" style='border-top-left-radius: 4px; border-bottom-left-radius: 4px;' ng-click='state.deleteMode = false' href="#" class='btn btn-inverse' ng-click='toggleDeleteMode()' >
                             <i class='fa fa-ok'></i>&nbsp;
                             Zakończ usuwanie
                         </button>                        
@@ -41,7 +41,7 @@
                                 </a>
                             </li>                            
                             <li>
-                                <a ng-click='managePartyState.deleteMode = true' >
+                                <a ng-click='state.deleteMode = true' >
                                     <i class='fa fa-minus'></i>&nbsp;
                                     Usuń członka
                                 </a>

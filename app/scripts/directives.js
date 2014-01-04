@@ -137,6 +137,7 @@ angular.module('ut.directives')
                 var render = function (cardImg, party) {
                     canvas.width = cardImg.width;
                     canvas.height = cardImg.height;
+
                     var context = canvas.getContext('2d');
                     context.drawImage(cardImg, 0, 0);
                     context.font = "18px Georgia";
@@ -178,21 +179,25 @@ angular.module('ut.directives')
 
                         var race = races[character.race];
                         var profession = professions[character.profession];
-                        var attrs = race.attributes;
-                        renderCharacterText(race.name, CHARACTER_FIELDS.race);
-                        renderCharacterText(profession.name, CHARACTER_FIELDS.profession);
+                        
+                        if (race) {
+                            var attrs = race.attributes;
+                            renderCharacterText(race.name, CHARACTER_FIELDS.race);
+                            renderCharacterText(race.talent, CHARACTER_FIELDS.raceSkill);
+                            renderCharacterText(attrs.command, CHARACTER_FIELDS.ld);
+                            renderCharacterText(attrs.mobility, CHARACTER_FIELDS.m);
+                            renderCharacterText(attrs.normalCombat, CHARACTER_FIELDS.ws);
+                            renderCharacterText(attrs.strength, CHARACTER_FIELDS.s);
+                            renderCharacterText(attrs.condition, CHARACTER_FIELDS.sp);
+                            renderCharacterText(attrs.rangeWeapons, CHARACTER_FIELDS.bs);
+                            renderCharacterText(attrs.toughness, CHARACTER_FIELDS.t);
+                            renderCharacterText(attrs.vitality, CHARACTER_FIELDS.w);
+                        }
 
-                        renderCharacterText(race.talent, CHARACTER_FIELDS.raceSkill);
-                        renderCharacterText(profession.talent, CHARACTER_FIELDS.professionSkill);
-
-                        renderCharacterText(attrs.command, CHARACTER_FIELDS.ld);
-                        renderCharacterText(attrs.mobility, CHARACTER_FIELDS.m);
-                        renderCharacterText(attrs.normalCombat, CHARACTER_FIELDS.ws);
-                        renderCharacterText(attrs.strength, CHARACTER_FIELDS.s);
-                        renderCharacterText(attrs.condition, CHARACTER_FIELDS.sp);
-                        renderCharacterText(attrs.rangeWeapons, CHARACTER_FIELDS.bs);
-                        renderCharacterText(attrs.toughness, CHARACTER_FIELDS.t);
-                        renderCharacterText(attrs.vitality, CHARACTER_FIELDS.w);
+                        if (profession) {
+                            renderCharacterText(profession.name, CHARACTER_FIELDS.profession);
+                            renderCharacterText(profession.talent, CHARACTER_FIELDS.professionSkill);
+                        }
 
                         var describeFilteredEq = function (filter) {
                             return _(character.equipment)

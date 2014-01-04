@@ -20,7 +20,7 @@
         <p class='col-md-12 lead' contenteditable ng-model="party.description">{{ party.description }}</p>
     </div>
 
-    <div ng-switch='action'>
+    <div ng-switch='state.action'>
         <div class='characters-list' ng-switch-when='list_characters'>
 
             <div ng-include="'views/party/manage-menu-list.html'"></div>

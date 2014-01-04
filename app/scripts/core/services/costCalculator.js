@@ -1,9 +1,7 @@
 angular.module('ut.core.services', ['ut.core.constants'])
 .factory('costCalculator', [
-    'racesLookup', 
-    'professionsLookup', 
-    'itemsLookup',
-function(races, professions, items) {
+    'lookups',
+function(lookups) {
 
 	var CostCalculator = function (races, professions, items) {
 		this.races = races;
@@ -47,6 +45,6 @@ function(races, professions, items) {
 		});
 	};
 
-	return new CostCalculator(races, professions, items);
+	return new CostCalculator(lookups.races, lookups.professions, lookups.items);
 
 }]); 

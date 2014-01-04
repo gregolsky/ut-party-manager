@@ -1,0 +1,40 @@
+angular.module('ut.core.constants')
+    .factory('professions', [
+        'Profession',
+        function (Profession) {
+            return [
+                new Profession(1, 'Herszt', 70, 'Wydawanie rozkazów'),
+                new Profession(2, 'Bard', 32, 'Poetyckie kroniki'),
+                new Profession(3, 'Szermierz', 40, 'Dwie bronie'),
+                new Profession(4, 'Barbarzyńca', 36, 'Krzepa'),
+                new Profession(5, 'Zbrojny', 38, 'Opancerzenie'),
+                new Profession(6, 'Strzelec', 26, 'Strzał w ruchu'),
+                new Profession(7, 'Zabójca', 44, 'Perfekcyjny atak'),
+                new Profession(8, 'Banita', 20, 'Ucieczka'),
+                new Profession(9, 'Łapserdak', 12, ''),
+                new Profession(10, 'Palladyn', 65, 'Aura inspiracji'),
+                new Profession(11, 'Rycerz zakonny', 65, 'Zakonna determinacja'),
+                new Profession(12, 'Czarny rycerz', 65, 'Aura śmierci'),
+                new Profession(13, 'Szampierz', 39, 'Zamaszyste cięcie'),
+                new Profession(14, 'Zwiadowca', 28, 'Skradanie'),
+                new Profession(15, 'Tropiciel', 32, 'Znawca tropów'),
+                new Profession(16, 'Berserker', 40, 'Furia'),
+                new Profession(17, 'Giermek', 18, 'Odwrócenie uwagi'),
+                new Profession(18, 'Złodziej', 16, 'Doliniarstwo'),
+                new Profession(19, 'Nożownik', 26, 'Zasztyletowanie'),
+                new Profession(20, 'Hiena cmentarna', 16, 'Znawca nekropolii'),
+                new Profession(21, 'Łowca nagród', 50, 'Wielka szansa'),
+                new Profession(22, 'Mnich', 16, 'Znawca świątyń'),
+                new Profession(23, 'Strażnik dróg', 16, 'Terenoznawstwo'),
+                new Profession(24, 'Rozbójnik', 25, 'Atak z zaskoczenia'),
+                new Profession(25, 'Gladiator', 36, 'Słaby punkt'),
+                new Profession(26, 'Mistrz miecza', 47, 'Perfekcja'),
+                new Profession(27, 'Zwadźca', 38, 'Zastawa'),
+                new Profession(28, 'Czarodziej', 66, 'Rzucanie czarów'),
+                new Profession(29, 'Kleryk', 60, 'Modlitwy'),
+                new Profession(30, 'Kapłan', 74, 'Święta walka'),
+                new Profession(31, 'Druid', 63, 'Magiczny menhir'),
+                new Profession(32, 'Szaman', 62, 'Rytuał'),
+                new Profession(33, 'Alchemik', 64, 'Eliksiry')
+                ];
+        }]);

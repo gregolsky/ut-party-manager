@@ -1,38 +1,42 @@
-
 angular.module('ut.core.constants')
-//.factory('_lookupBuilder'
-.factory('racesLookup', [
+    .factory('_buildLookupFromList', [
         'enumerations',
-    function (ut) {
-            var races = ut.races;
-            var raceLookup = {};
-            for (var i = 0; i < races.length; i++) {
-                raceLookup[races[i].id] = races[i];
-            }
+        function (ut) {
 
-            return raceLookup;
+            var builder = function (list) {
+                var lookup = {};
+                for (var i = 0; i < list.length; i++) {
+                    lookup[list[i].id] = list[i];
+                }
 
+                return lookup;
+            };
+
+            return builder;
     }])
-.factory('professionsLookup', [
-    'enumerations',
-    function (ut) {
-
-            var professions = ut.professions;
-            var professionLookup = {};
-            for (var i = 0; i < professions.length; i++) {
-                professionLookup[professions[i].id] = professions[i];
-            }
-
-            return professionLookup;
-
-    }]).factory('itemsLookup', [
-    'enumerations',
-    function (ut) {
-            var items = ut.items;
-            var itemsLookup = {};
-            for (var i = 0; i < items.length; i++) {
-                itemsLookup[items[i].id] = items[i];
-            }
-
-            return itemsLookup;
-    }]);
+    .factory('racesLookup', [
+        '_buildLookupFromList',
+        'enumerations',
+    function (builder, lists) {
+            return builder(lists.races);
+    }])
+    .factory('professionsLookup', [
+        '_buildLookupFromList',
+        'enumerations',
+    function (builder, lists) {
+            return builder(lists.professions);
+    }])
+    .factory('itemsLookup', [
+        '_buildLookupFromList',
+        'enumerations',
+    function (builder, lists) {
+            return builder(lists.items);
+    }])
+    .factory('lookups', ['racesLookup', 'professionsLookup', 'itemsLookup',
+    function (races, professions, items) {
+            return {
+                'races': races,
+                'professions': professions,
+                'items': items
+            };
+}]);

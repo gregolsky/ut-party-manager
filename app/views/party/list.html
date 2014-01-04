@@ -10,7 +10,7 @@
 		</ul>
 		<ul class='partiesList nav nav-pills nav-stacked' >
 			<li class="partyLi" class='eth' ng-class="{ active: party.id == context.activePartyId }" ng-repeat='party in parties' >
-				<a href="#/party/{{ party.id }}" ng-click="activateParty(party.id)" data-title='Members' >{{ party.name }}</a>
+				<a href="#/party/{{ party.id }}" ng-click="changeActiveParty(party.id)" data-title='Members' >{{ party.name }}</a>
 			</li>
 		</ul>
 	</div>

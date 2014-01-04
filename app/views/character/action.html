@@ -1,5 +1,5 @@
-<div class='col-md-4' ng-class='{ delete: managePartyState.deleteMode }' ng-click='editCharacter(member)'>
-    <i ng-click='removeCharacter($event, member)' ng-show='managePartyState.deleteMode' class='fa fa-times-circle fa-3x text-danger i-top-left'></i>
+<div class='col-md-4' ng-class='{ delete: state.deleteMode }' ng-click='editCharacter(member)'>
+    <i ng-click='removeCharacter($event, member)' ng-show='state.deleteMode' class='fa fa-times-circle fa-3x text-danger i-top-left'></i>
     <div class='card row'>
 
         <div class='col-md-12'>
@@ -10,7 +10,7 @@
         <div class="col-md-9">{{ member.name }}</div>
         
         <div class="col-md-2 pull-left">
-            <span class="label label-warning points">{{ calcMemberCostInParty(member) }}</span>
+            <span class="label label-warning points">{{ calcMemberCost(member) }}</span>
         </div>
 
         <div class='col-md-12'>
