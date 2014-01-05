@@ -227,6 +227,10 @@ angular.module('ut.directives')
                     };
 
                     _.each(party.members, function (e, i) {
+                        if (i > 5) {
+                            return;   
+                        }
+                        
                         renderCharacter(party.members[i], CHARACTER_CARDS[i]);
                     });
                 };

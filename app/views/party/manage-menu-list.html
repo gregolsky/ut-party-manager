@@ -20,7 +20,7 @@
                             <i class='fa fa-save'></i>&nbsp;
                             Zapisz zmiany
                         </button>
-                        <button ng-hide="state.deleteMode"  class='btn btn-inverse' ng-click='addCharacter()' >
+                        <button ng-hide="state.deleteMode || !party.canAddMember()"  class='btn btn-inverse' ng-click='addCharacter()' >
                             <i class='fa fa-plus'></i>&nbsp;
                             Dodaj postać
                         </button>

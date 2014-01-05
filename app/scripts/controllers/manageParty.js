@@ -1,11 +1,16 @@
 
 function ManagePartyController($scope, $routeParams, $window, $location, partyManager, costCalculator, Character) {
-
+    'use strict';
+    
     var partyId = $routeParams.partyId;
 
     if (partyId) {
         $scope.changeActiveParty($routeParams.partyId);
-        $scope.party = partyManager.get(partyId);
+        
+        partyManager.get(partyId)
+            .then(function (party) {
+                $scope.party = party;
+            });
     }
     
     $scope.state = {
@@ -33,7 +38,7 @@ function ManagePartyController($scope, $routeParams, $window, $location, partyMa
 
     $scope.addCharacter = function () {
         var character = new Character();
-        $scope.party.members.push(character);
+        $scope.party.addMember(character);
         $scope.editCharacter(character);
     };
 
