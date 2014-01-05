@@ -64,4 +64,4 @@ function MainController($scope, $location, $routeParams, lookups, lists, party, 
     loadParties();
 }
 
-MainController.$inject = ['$scope', '$location', '$routeParams', 'lookups', 'enumerations', 'party', 'costCalculator'];
+MainController.$inject = ['$scope', '$location', '$routeParams', 'lookups', 'enumerations', 'partyManager', 'costCalculator'];

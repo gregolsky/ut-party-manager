@@ -27,12 +27,10 @@
     <div class="form-group">
         <label for="points" class="col-md-4 control-label">Ilość punktów</label>
         <div class="col-md-8">
-            <select ng-model='party.points' name='points' class="form-control" required >
-                <option value="">Wybierz liczbę punktów</option>
-                <option>750</option>
-                <option>1000</option>
-                <option>1500</option>
-            </select>
+            <input type='number' ng-model='party.points' name='points' class="form-control"
+                   min="100" max="10000" step="100"
+                   value="1000"
+                   required />
         </div>
     </div>
     <div class="form-group">

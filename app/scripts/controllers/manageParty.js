@@ -75,4 +75,4 @@ function ManagePartyController($scope, $routeParams, $window, $location, partyMa
     };
 }
 
-ManagePartyController.$inject = ['$scope', '$routeParams', '$window', '$location', 'party', 'costCalculator', 'Character'];
+ManagePartyController.$inject = ['$scope', '$routeParams', '$window', '$location', 'partyManager', 'costCalculator', 'Character'];

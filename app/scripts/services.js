@@ -4,7 +4,7 @@ angular.module('ut.services', ['ut.core', 'ut.core.constants', 'ut.core.services
 
 .value('version', '0.1')
 
-.factory('party', ['$q', '$resource',
+.factory('partyManager', ['$q', '$resource',
     function ($q, $resource) {
         var PartyResource = $resource('/party/:partyId', {
             partyId: '@id'

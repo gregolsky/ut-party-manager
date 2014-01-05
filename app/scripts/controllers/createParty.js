@@ -1,6 +1,8 @@
 
-function CreatePartyController($scope, $location, partyManager) {
+function CreatePartyController($scope, $location, Party, partyManager) {
 
+    $scope.party = new Party("", null, 1000);
+    
     $scope.createParty = function () {
         try {
             $scope.party.members = [];
@@ -16,4 +18,4 @@ function CreatePartyController($scope, $location, partyManager) {
 
 };
 
-CreatePartyController.$inject = ['$scope', '$location', 'party'];
+CreatePartyController.$inject = ['$scope', '$location', 'Party', 'partyManager'];

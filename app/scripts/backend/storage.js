@@ -1,67 +1,91 @@
+/*jslint browser: true */
 
-angular.module('ut.backend.storage').factory(
-    'storageService', ['localStorageService',
-                 function (localStorageService) {
+var angular = window.angular,
+    _ = window._;
 
-            var IDS_POSTFIX = "_ids";
+angular.module('ut.backend.storage')
+    .factory('storageService', [
+        'localStorageService',
+        function (localStorageService) {
+            'use strict';
 
-            var digest = function (entity) {
+            var IDS_POSTFIX = "_ids",
+
+                digest,
+                getId,
+                idEquals,
+                entityDigestsKey,
+                getEntityDigests,
+                setEntityDigests,
+                newId,
+                entityKey,
+
+                save,
+                load,
+                remove,
+                list,
+
+                writeLock = false;
+
+            digest = function (entity) {
                 return {
                     id: entity.id,
                     name: entity.name
                 };
             };
-                     
-            var getId = function(x){
-              return x.id;  
-            };
-                     
-            var idEquals = function(id, comp){
-                return id == comp;   
-            }
 
-            var entityDigestsKey = function (entityName) {
+            getId = function (x) {
+                return x.id;
+            };
+
+            idEquals = function (id, comp) {
+                return id === comp;
+            };
+
+            entityDigestsKey = function (entityName) {
                 return entityName + IDS_POSTFIX;
             };
 
-            var getEntityDigests = function (entityName) {
+            getEntityDigests = function (entityName) {
                 return angular.fromJson(localStorageService.get(entityDigestsKey(entityName)));
             };
 
-            var setEntityDigests = function (entityName, ids) {
+            setEntityDigests = function (entityName, ids) {
                 localStorageService.set(entityDigestsKey(entityName), angular.toJson(ids));
-
             };
 
-            var newId = function (entityName) {
-                var ids = _(getEntityDigests(entityName) || [])
+            newId = function (entityName) {
+                var ids, result;
+
+                ids = _(getEntityDigests(entityName) || [])
                     .map(getId)
                     .value();
 
-                var result = ids.length ? _.max(ids) + 1 : 0;
+                result = ids.length ? _.max(ids) + 1 : 0;
+
                 return result + 1;
-            }
-
-            var entityKey = function (entityName, id) {
-                return entityName + "_" + (id || newId(entityName));
-            }
-
-            var load = function (entityName, id) {
-                return angular.fromJson(
-                    localStorageService.get(
-                        entityKey(entityName, id)));
             };
-                     
-            var remove = function (entityName, id) {
+
+            entityKey = function (entityName, id) {
+                return entityName + "_" + (id || newId(entityName));
+            };
+
+            load = function (entityName, id) {
+                return angular.fromJson(localStorageService.get(entityKey(entityName, id)));
+            };
+
+            remove = function (entityName, id) {
                 localStorageService.set(entityKey(entityName, id), null);
 
-                var digests = _.filter(getEntityDigests(entityName), function (x) { return x.id != id; });
+                var digests = _.filter(getEntityDigests(entityName), function (x) {
+                    return x.id !== id;
+                });
                 setEntityDigests(entityName, digests);
             };
 
-            var writeLock = false;
+            save = function (entityName, entity) {
 
-            var save = function (entityName, entity) {
+                var digests, entityDigest;
 
                 if (writeLock) {
                     throw "!";
@@ -69,17 +93,20 @@ angular.module('ut.backend.storage').factory(
 
                 writeLock = true;
 
-                var digests = getEntityDigests(entityName) || [];
+                digests = getEntityDigests(entityName) || [];
+
                 if (!entity.id) {
                     entity.id = newId(entityName);
                     digests.push(digest(entity));
                     setEntityDigests(entityName, digests);
+                } else {
+                    entityDigest = _.find(digests, function (x) {
+                        return x.id === entity.id;
+                    });
+
+                    entityDigest.name = entity.name;
                 }
-                else {
-                    var d = _.find(digests, function (x) { return x.id == entity.id });
-                    d.name = entity.name;
-                }
-                
+
                 setEntityDigests(entityName, digests);
 
                 localStorageService.set(entityKey(entityName, entity.id), entity);
@@ -89,7 +116,7 @@ angular.module('ut.backend.storage').factory(
                 return entity;
             };
 
-            var list = function (entityName) {
+            list = function (entityName) {
                 return getEntityDigests(entityName);
             };
 
@@ -99,4 +126,4 @@ angular.module('ut.backend.storage').factory(
                 list: list,
                 remove: remove
             };
-}]);
+        }]);
