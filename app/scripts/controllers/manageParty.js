@@ -50,7 +50,7 @@ function ManagePartyController($scope, $routeParams, $window, $location, partyMa
 
     $scope.removeCharacter = function ($event, character) {
         $event.stopImmediatePropagation();
-        $scope.party.removeCharacter();
+        $scope.party.removeCharacter(character);
     };
     
     $scope.destroyParty = function () {
