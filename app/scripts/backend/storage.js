@@ -75,7 +75,7 @@ angular.module('ut.backend.storage')
             };
 
             remove = function (entityName, id) {
-                localStorageService.set(entityKey(entityName, id), null);
+                localStorageService.remove(entityKey(entityName, id));
 
                 var digests = _.filter(getEntityDigests(entityName), function (x) {
                     return x.id !== id;

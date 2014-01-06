@@ -9,7 +9,7 @@ window.angular.module('ut.backend')
 		$httpBackend
             .whenGET(/^\/?party\/?\?id=[0-9]+/)
             .respond(function (method, url, data, headers) {
-                var partyId = url.match(/^\/?party\/?\?id=([0-9]+)/)[1],
+                var partyId = parseInt(url.match(/^\/?party\/?\?id=([0-9]+)/)[1], 10),
                     party = storageService.load('party', partyId);
                 return [ 200, angular.toJson(party) ];
             });
@@ -31,7 +31,7 @@ window.angular.module('ut.backend')
 		$httpBackend
             .whenDELETE(/^\/?party\/?\?id=[0-9]+/)
             .respond(function (method, url, data, headers) {
-                var partyId = url.match(/^\/?party\/?\?id=([0-9]+)/)[1],
+                var partyId = parseInt(url.match(/^\/?party\/?\?id=([0-9]+)/)[1], 10),
                     party = storageService.remove('party', partyId);
                 return [ 200, angular.toJson(party) ];
             });
