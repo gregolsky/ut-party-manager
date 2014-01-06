@@ -1,8 +1,5 @@
 /*jslint browser: true */
 
-var angular = window.angular,
-    _ = window._;
-
 angular.module('ut.core.services', ['ut.core.constants'])
     .factory('costCalculator', [
         'lookups',

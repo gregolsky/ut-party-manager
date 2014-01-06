@@ -50,12 +50,11 @@ function ManagePartyController($scope, $routeParams, $window, $location, partyMa
     $scope.removeCharacter = function ($event, character) {
         $event.stopImmediatePropagation();
         $scope.party.removeCharacter();
-
     };
     
     $scope.destroyParty = function () {
         if (!confirm("Czy jesteś pewien?")) {
-            return;   
+            return false;   
         }
         
         partyManager.remove($scope.party)
@@ -75,9 +74,19 @@ function ManagePartyController($scope, $routeParams, $window, $location, partyMa
         return false;
     };
     
-    $scope.canAddMember = function () {
-          
+    $scope.isPartyValid = function () {
+      if ($scope.party.isValid === undefined){
+          return true; 
+      }
+        
+      return $scope.party.isValid(costCalculator);  
     };
+    
+    $scope.$watch('isPartyValid()', function (newValue, oldValue) {
+       if (!newValue) {
+           $scope.notifyDanger('Przegiąłeś!', 'Zużyłeś zbyt wiele punktów. Napraw problem i zapisz drużynę.');
+       }
+    });
 }
 
 ManagePartyController.$inject = ['$scope', '$routeParams', '$window', '$location', 'partyManager', 'costCalculator', 'Character'];

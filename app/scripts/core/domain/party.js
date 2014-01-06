@@ -36,7 +36,7 @@ window.angular.module('ut.core')
             };
             
             Party.prototype.isValid = function (costCalculator) {
-                return costCalculator.calculatePartyCost(this);
+                return costCalculator.calculatePartyCost(this) < this.points;
             };
 
             return Party;

@@ -7,8 +7,15 @@
     <div class='row'>
         <div class='col-md-12'>
             <div class='progress progress-striped'>
-                <div class='progress-bar progress-bar-primary ' style='height: 20px;' ng-style="{ width: (calcPartyCost()*100 / party.points) + '%' }">
-                    <span class='label label-primary' style='bottom: 1px; position: relative;'>
+                <div class='progress-bar' 
+                     style='height: 20px;' 
+                     ng-style="{ width: (calcPartyCost()*100 / party.points) + '%' }"
+                     ng-class="{ 'progress-bar-primary': isPartyValid(), 'progress-bar-danger': !isPartyValid() }"
+                     >
+                    <span class='label label-primary' 
+                          ng-class="{ 'label-primary': isPartyValid(), 'label-danger': !isPartyValid() }"
+                          style='bottom: 1px; position: relative;'
+                    >
                         <strong>{{ calcPartyCost() }} / {{ party.points }}</strong>
                     </span>
                 </div>

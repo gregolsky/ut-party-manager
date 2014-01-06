@@ -1,6 +1,6 @@
 
 
-function MainController($scope, $location, $routeParams, lookups, lists, party, costCalculator) {
+function MainController($scope, $location, $routeParams, $timeout, lookups, lists, party, costCalculator) {
     var self = this;
 
     var ACTIVE_PARTY_CHANGED = 'activePartyChanged';
@@ -11,6 +11,8 @@ function MainController($scope, $location, $routeParams, lookups, lists, party, 
     $scope.lists = lists;
 
     $scope.lookups = lookups;
+    
+    $scope.notifications = [];
     
     $scope.context = {};
     
@@ -53,6 +55,21 @@ function MainController($scope, $location, $routeParams, lookups, lists, party, 
         $scope.$emit(PARTY_LIST_CHANGED);
     };
     
+    var notify = function (title, text, type) {
+        $scope.notifications.push({ title: title, text: text, type: type });
+        $timeout(function () {
+            $scope.notifications.pop();
+        }, 5000);
+    };
+    
+    $scope.notifyDanger = function (title, text) {
+        notify(title, text, 'danger');
+    };
+    
+    $scope.notifyInfo = function (title, text) {
+        notify(title, text, 'info');
+    };
+    
     $scope.$on(PARTY_LIST_CHANGED, function(e, args){
        loadParties();
     });
@@ -64,4 +81,4 @@ function MainController($scope, $location, $routeParams, lookups, lists, party, 
     loadParties();
 }
 
-MainController.$inject = ['$scope', '$location', '$routeParams', 'lookups', 'enumerations', 'partyManager', 'costCalculator'];
+MainController.$inject = ['$scope', '$location', '$routeParams', '$timeout', 'lookups', 'enumerations', 'partyManager', 'costCalculator'];

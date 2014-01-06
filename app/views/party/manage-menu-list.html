@@ -16,7 +16,7 @@
             <ul class="nav navbar-nav pull-right">
                 <li>
                     <div class='navbar-form btn-group'>
-                        <button ng-hide="state.deleteMode"  class='btn btn-primary' ng-click='saveChanges()' >
+                        <button ng-hide="state.deleteMode || !isPartyValid()"  class='btn btn-primary' ng-click='saveChanges()' >
                             <i class='fa fa-save'></i>&nbsp;
                             Zapisz zmiany
                         </button>
