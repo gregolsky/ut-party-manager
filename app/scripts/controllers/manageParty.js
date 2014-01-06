@@ -45,6 +45,7 @@ function ManagePartyController($scope, $routeParams, $window, $location, partyMa
     $scope.saveChanges = function () {
         partyManager.save($scope.party);
         $scope.updatePartyList();
+        $scope.notifyInfo('Drużyna zapisana pomyślnie!', 'Wszystkie wprowadzone zmiany zostały zapisane.');
     };
 
     $scope.removeCharacter = function ($event, character) {
