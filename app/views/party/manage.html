@@ -6,20 +6,13 @@
     </div>
     <div class='row'>
         <div class='col-md-12'>
-            <div class='progress progress-striped'>
-                <div class='progress-bar' 
-                     style='height: 20px;' 
-                     ng-style="{ width: (calcPartyCost()*100 / party.points) + '%' }"
-                     ng-class="{ 'progress-bar-primary': isPartyValid(), 'progress-bar-danger': !isPartyValid() }"
-                     >
-                    <span class='label label-primary' 
-                          ng-class="{ 'label-primary': isPartyValid(), 'label-danger': !isPartyValid() }"
-                          style='bottom: 1px; position: relative;'
-                    >
-                        <strong>{{ calcPartyCost() }} / {{ party.points }}</strong>
-                    </span>
-                </div>
-            </div>
+            <progressbar class="progress-striped" 
+                         value="calcPartyCost()*100 / party.points"
+                         type="{{ isPartyValid() ? 'primary' : 'danger' }}"
+                         ng-class="{ 'progress-bar-primary': isPartyValid(), 'progress-bar-danger': !isPartyValid() }"
+                         >
+                <strong>{{ calcPartyCost() }} / {{ party.points }}</strong>
+            </progressbar>
         </div>
     </div>
 
