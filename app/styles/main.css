@@ -200,3 +200,5 @@ hr.no-margin {
 [party-card-render] { 
     display: none;   
 }
+
+.nav, .pagination, .carousel a { cursor: pointer; }
