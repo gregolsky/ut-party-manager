@@ -40,7 +40,7 @@ angular.module('ut.core.services', ['ut.core.constants'])
                     }) || 0);
                 }
 
-                return cost;
+                return cost || 0;
             };
 
             CostCalculator.prototype.calculatePartyCost = function (party) {
@@ -50,6 +50,10 @@ angular.module('ut.core.services', ['ut.core.constants'])
                 costs = _.map(party.members, function (x) {
                     return self.calculatePartyMemberCost(x, party);
                 });
+                
+                if (costs.length === 0) {
+                    return 0;
+                }
                 
                 return _.reduce(costs, function (result, cost) {
                     return result + cost;
