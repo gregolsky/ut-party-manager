@@ -80,6 +80,7 @@ function ManagePartyController($scope, $routeParams, $window, $location, $modal,
                     .then(function () {
                         $scope.updatePartyList();
                         $location.path('/');
+                        $scope.notifyInfo("Drużyna zniszczona.", "Postacie nie żyją.");
                     });
         });
         
