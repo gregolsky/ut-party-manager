@@ -1,18 +1,17 @@
-
 function ManagePartyController($scope, $routeParams, $window, $location, partyManager, costCalculator, Character) {
     'use strict';
-    
+
     var partyId = $routeParams.partyId;
 
     if (partyId) {
         $scope.changeActiveParty($routeParams.partyId);
-        
+
         partyManager.get(partyId)
             .then(function (party) {
                 $scope.party = party;
             });
     }
-    
+
     $scope.state = {
         deleteMode: false,
         action: 'list_characters'
@@ -52,21 +51,21 @@ function ManagePartyController($scope, $routeParams, $window, $location, partyMa
         $event.stopImmediatePropagation();
         $scope.party.removeCharacter(character);
     };
-    
+
     $scope.destroyParty = function () {
-        if (!confirm("Czy jesteś pewien?")) {
-            return false;   
+        if (!$window.confirm('Czy jesteś pewien?')) {
+            return false;
         }
-        
+
         partyManager.remove($scope.party)
-            .then(function(){
-              $scope.updatePartyList();    
-              $location.path('/');  
+            .then(function () {
+                $scope.updatePartyList();
+                $location.path('/');
             });
-        
+
         return false;
     };
-    
+
     $scope.printParty = function () {
         var canvas = $window.document.querySelector('[party-card-render] canvas');
         var dataUrl = canvas.toDataURL('image/png');
@@ -74,19 +73,19 @@ function ManagePartyController($scope, $routeParams, $window, $location, partyMa
 
         return false;
     };
-    
+
     $scope.isPartyValid = function () {
-      if ($scope.party.isValid === undefined){
-          return true; 
-      }
-        
-      return $scope.party.isValid(costCalculator);  
+        if ($scope.party.isValid === undefined) {
+            return true;
+        }
+
+        return $scope.party.isValid(costCalculator);
     };
-    
+
     $scope.$watch('isPartyValid()', function (newValue, oldValue) {
-       if (!newValue) {
-           $scope.notifyDanger('Przegiąłeś!', 'Zużyłeś zbyt wiele punktów. Napraw problem i zapisz drużynę.');
-       }
+        if (!newValue) {
+            $scope.notifyDanger('Przegiąłeś!', 'Zużyłeś zbyt wiele punktów. Napraw problem i zapisz drużynę.');
+        }
     });
 }
 

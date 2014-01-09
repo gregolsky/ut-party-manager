@@ -8,9 +8,7 @@
         <div class='col-md-12'>
             <progressbar class="progress-striped" 
                          value="calcPartyCost()*100 / party.points"
-                         type="{{ isPartyValid() ? 'primary' : 'danger' }}"
-                         ng-class="{ 'progress-bar-primary': isPartyValid(), 'progress-bar-danger': !isPartyValid() }"
-                         >
+                         type="{{ isPartyValid() ? 'primary' : 'danger' }}" >
                 <strong>{{ calcPartyCost() }} / {{ party.points }}</strong>
             </progressbar>
         </div>
