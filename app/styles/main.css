@@ -203,3 +203,10 @@ hr.no-margin {
 }
 
 .nav, .pagination, .carousel a { cursor: pointer; }
+
+
+
+body {
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-size: 20px;
+}
