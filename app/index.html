@@ -55,7 +55,10 @@
                         <span class="fa-bar"></span>
                         <span class="fa-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Drużyny Umbra Turris</a>
+                    <a class="navbar-brand center" href="#">
+                        Umbra Turris <br/>
+                        <small>Menedżer drużyn</small>
+                    </a>
                 </div>
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav">
@@ -72,15 +75,7 @@
             </div>
         </nav>
         <div class="main container">
-            <div >
-                
-                <div class="alert eth col-md-12" 
-                     ng-repeat="n in notifications"
-                     ng-class="{ 'alert-danger': n.type == 'danger', 'alert-success': n.type != 'danger' }" >
-                    <strong>{{ n.title }}</strong>
-                    {{ n.text }}
-                </div>
-            </div>
+            <div ng-include="'views/notifications.html'"></div>
             <div class='row'>
                 <div class="col-md-9" ng-view></div>
                 <div class="col-md-3" ng-include="'views/party/list.html'"></div>

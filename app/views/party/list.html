@@ -1,17 +1,23 @@
-<div class=''>
-	<div class='row'>
-		<div class='col-md-12'></div>
-	</div>
-	<div class='col-md-12' ng-controller="PartyListController" >
-		<ul class="nav nav-pills nav-stacked">
-			<li>
-				<a href="#/party" ><i class="fa fa-plus"></i> Dodaj drużynę </a>
-			</li>
-		</ul>
-		<ul class='partiesList nav nav-pills nav-stacked' >
-			<li class="partyLi" class='eth' ng-class="{ active: party.id == context.activePartyId }" ng-repeat='party in parties' >
-				<a href="#/party/{{ party.id }}" ng-click="changeActiveParty(party.id)" data-title='Members' >{{ party.name }}</a>
-			</li>
-		</ul>
-	</div>
+<div ng-controller="PartyListController">
+    <div class='row'>
+        <div class='col-md-12'>
+            <ul class="nav nav-pills nav-stacked">
+                <li>
+                    <a href="#/party">
+                        <i class="fa fa-plus"></i> &nbsp;
+                        Dodaj drużynę</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <br/>
+    <div class='row'>
+        <div class='col-md-12'>
+            <ul class='partiesList nav nav-pills nav-stacked'>
+                <li class="partyLi" class='eth' ng-class="{ active: party.id == context.activePartyId }" ng-repeat='party in parties'>
+                    <a href="#/party/{{ party.id }}" ng-click="changeActiveParty(party.id)" data-title='Members'>{{ party.name }}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>

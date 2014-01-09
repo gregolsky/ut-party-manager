@@ -18,7 +18,9 @@
         <div class='col-md-8'>
             
             <div class="form-group">
-                <label class="control-label col-md-3">Imię</label>
+                <label class="control-label col-md-3">
+                    <i class="fa fa-user" ></i>&nbsp;Imię
+                </label>
                 <div class="col-md-9">
                     <input ng-class="{ 'has-error': editCharacterForm.name.$invalid && editCharacterForm.name.$dirty }" 
                            ng-model='character.name' 
@@ -29,7 +31,7 @@
             </div>
             <div class="form-group">
                 <label class="control-label col-md-3">
-                    <i class='fa fa-user'></i>&nbsp; Rasa</label>
+                    <i class='fa fa-bug'></i>&nbsp; Rasa</label>
                 <div class="col-md-9">
                     <select 
                             name='race' 
@@ -44,7 +46,7 @@
             </div>
             <div class="form-group">
                 <label class="control-label col-md-3">
-                    <i class='icon-suitcase'></i>&nbsp; Profesja</label>
+                    <i class='fa fa-magic'></i>&nbsp; Profesja</label>
                 <div class="col-md-9">
                     <select 
                             name='profession' 
@@ -59,7 +61,8 @@
 
             <div class='form-group'>
                 <div class='control-label col-md-3'>
-                    <i class='icon-star'></i>&nbsp;Zdolności
+                    <label><i class='fa fa-star'></i>&nbsp;Zdolności
+                        </label>
                 </div>
                 <div class='col-md-9'>
                     <p class="form-control-static">
@@ -73,9 +76,9 @@
             
             <div class='form-group'>
                 <div class='control-label col-md-3'>
-                    <i class='icon-legal'></i>&nbsp;Broń
+                    <label><i class='fa fa-legal'></i>&nbsp;Broń</label>
                 </div>
-                <div class='col-md-8'>
+                <div class='col-md-9'>
                     <div class="form-control-static items-bag">
                         <div class="label label-success" 
                              ng-repeat='itemId in character.equipment | filter: isItemAWeapon'
@@ -91,16 +94,13 @@
                         </div>
                     </div>
                 </div>
-                <div class='col-md-1' >
-                    <a class='btn btn-link'><i class='icon-edit'></i></a>
-                </div>
             </div>
             
             <div class='form-group'>
                 <div class='control-label col-md-3'>
-                    <i class='icon-shield'></i> &nbsp;Pancerz:
+                    <label><i class='fa fa-shield'></i>&nbsp;Pancerz</label>
                 </div>
-                <div class='col-md-8'>
+                <div class='col-md-9'>
                     <div class="form-control-static items-bag">
                         <div class="label label-primary" 
                              ng-repeat='itemId in character.equipment | filter: isItemAnArmor'
@@ -116,14 +116,11 @@
                         </div>
                     </div>                    
                 </div>
-                <div class='col-md-1' >
-                    <a class='btn btn-link' ><i class='icon-edit'></i></a>
-                </div>
             </div>
             
             <div class='form-group'>
                 <div class='control-label col-md-3'>
-                    <i class='icon-beaker'></i> &nbsp;Ekwipunek:
+                     <label><i class='fa fa-flask'></i>&nbsp;Ekwipunek</label>
                 </div>
                 <div class='col-md-9'></div>
             </div>            
