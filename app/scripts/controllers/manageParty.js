@@ -1,4 +1,4 @@
-function ManagePartyController($scope, $routeParams, $window, $location, partyManager, costCalculator, Character) {
+function ManagePartyController($scope, $routeParams, $window, $location, $modal, partyManager, costCalculator, Character) {
     'use strict';
 
     var partyId = $routeParams.partyId;
@@ -53,16 +53,36 @@ function ManagePartyController($scope, $routeParams, $window, $location, partyMa
     };
 
     $scope.destroyParty = function () {
-        if (!$window.confirm('Czy jesteś pewien?')) {
-            return false;
-        }
 
-        partyManager.remove($scope.party)
-            .then(function () {
-                $scope.updatePartyList();
-                $location.path('/');
-            });
+        var DestroyPartyConfirmController = function ($scope, $modalInstance) {
+            
+            $scope.ok = function () {
+                $modalInstance.close(true);
+            };
+            
+            $scope.cancel = function () {
+                $modalInstance.close(false);
+            };
+            
+        };
+        
+        var confirm = $modal.open({
+            templateUrl: 'views/modals/destroyPartyConfirm.html',
+            controller: DestroyPartyConfirmController
+        });
 
+        confirm.result.then(function(result) {
+            if (!result) {
+                return false;
+            }
+            
+            partyManager.remove($scope.party)
+                    .then(function () {
+                        $scope.updatePartyList();
+                        $location.path('/');
+                    });
+        });
+        
         return false;
     };
 
@@ -89,4 +109,4 @@ function ManagePartyController($scope, $routeParams, $window, $location, partyMa
     });
 }
 
-ManagePartyController.$inject = ['$scope', '$routeParams', '$window', '$location', 'partyManager', 'costCalculator', 'Character'];
+ManagePartyController.$inject = ['$scope', '$routeParams', '$window', '$location', '$modal', 'partyManager', 'costCalculator', 'Character'];

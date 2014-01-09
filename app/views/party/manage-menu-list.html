@@ -12,17 +12,17 @@
                 <button ng-hide="state.deleteMode || !party.canAddMember()" class='btn btn-default' ng-click='addCharacter()'>
                     <i class='fa fa-plus'></i>&nbsp; Dodaj postać
                 </button>
-                <button ng-show="state.deleteMode" style='border-top-left-radius: 4px; border-bottom-left-radius: 4px;' ng-click='state.deleteMode = false' href="#" class='btn btn-default' ng-click='toggleDeleteMode()'>
+                <button ng-show="state.deleteMode" style='border-top-left-radius: 4px; border-bottom-left-radius: 4px;' ng-click='state.deleteMode = false' class='btn btn-default' ng-click='toggleDeleteMode()'>
                     <i class='fa fa-check'></i>&nbsp; Zakończ usuwanie
                 </button>
-                <button href="#" class='btn btn-default dropdown-toggle' data-toggle="dropdown">
+                <button class='btn btn-default dropdown-toggle' data-toggle="dropdown">
                     &nbsp;
                     <i class='fa fa-ellipsis-v'></i>
                     &nbsp;
                 </button>
                 <ul class="dropdown-menu">
                     <li>
-                        <a href='#' ng-click="printParty()">
+                        <a ng-click="printParty()">
                             <i class='fa fa-print'></i>&nbsp; Drukuj kartę
                         </a>
                     </li>
@@ -33,7 +33,7 @@
                     </li>
                     <li class="divider"></li>
                     <li>
-                        <a href='#' ng-click="destroyParty()">
+                        <a ng-click="destroyParty()">
                             <i class='fa fa-trash-o'></i>&nbsp; Zniszcz drużynę
                         </a>
                     </li>
