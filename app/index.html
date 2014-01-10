@@ -66,11 +66,11 @@
                     <ul class="nav navbar-nav">
                         <li ng-class="{ active: topMenuSelected == 'home' }">
                             <a ng-click="topMenuSelected='home'" href="#">
-                                <i class='fa fa-bookmark-o fa-2x'></i>&nbsp;Strona Główna</a>
+                                <i class='fa fa-bookmark-o fa-2x'></i>&nbsp;&nbsp;Strona Główna</a>
                         </li>
                         <li ng-class="{ active: topMenuSelected == 'about' }">
                             <a ng-click="topMenuSelected='about'" href="#about">
-                                <i class='fa fa-lightbulb-o fa-2x'></i>&nbsp;O projekcie</a>
+                                <i class='fa fa-lightbulb-o fa-2x'></i>&nbsp;&nbsp;O projekcie</a>
                         </li>
                     </ul>
                 </div>
@@ -79,10 +79,24 @@
         <div class="main container">
             <div ng-include="'views/notifications.html'"></div>
             <div class='row'>
-                <div class="col-md-9" ng-view></div>
-                <div class="col-md-3" ng-include="'views/party/list.html'"></div>
+                <div ng-class="{ 'col-md-12': parties.length == 0, 'col-md-9': parties.length > 0 }" >
+                    <div class='view' ng-view></div>
+                </div>
+                <div ng-hide="parties.length == 0" class="col-md-3 view" >
+                    <div ng-include="'views/party/list.html'"></div>
+                </div>
             </div>
         </div>
+
+        <!--<div class="footer container">
+            <div class="row">
+                <div class="col-offset-8 col-md-3">
+                    <p class='' >
+                        Zaimplementowane przez Grzegorza Lachowskiego. 2014</p>
+                </div>
+            </div>
+        </div>-->
+        
     </div>
 
     <!-- build:js scripts/lib.js -->

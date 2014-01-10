@@ -1,16 +1,19 @@
 body {
 	background-image: url('../images/natural_paper.png');
 	background-repeat: repeat;
-	
 }
 
-.main, .sidebar {
-	background-color: white;
+.main, .sidebar, .footer {
 	background-color: rgba(255, 255, 255, 0.75);
-	height: 100%;
-	min-height: 1000px;
-    padding-top: 15px;
     border-radius: 5px;
+    margin-bottom: 20px;
+    padding-top: 15px;
+    padding-bottom: 20px;
+}
+
+.footer {
+    margin-top: 10px;
+    font-size: smaller;
 }
 
 .unstyled li {

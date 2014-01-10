@@ -1,11 +1,10 @@
 
 .eth.ng-enter {
-	-webkit-transition: .4s; /* Chrome */
-	transition: .4s;
+	-webkit-transition-duration: .4s; /* Chrome */
+	transition-duration: .4s;
 	opacity: 0;
     position:relative;
-    right: 20px;
-    
+    right: 10px;
 }
  
 .eth.ng-enter.ng-enter-active {
@@ -15,18 +14,65 @@
 }
 
 .eth.ng-leave {
-	-webkit-transition: .4s; /* Chrome */
-	transition: .4s;
+	-webkit-transition-duration: .4s; /* Chrome */
+	transition-duration: .4s;
 	opacity: 1;
     position:relative;
     right: 0px;
 }
  
 .eth.ng-leave.ng-leave-active {
--webkit-transition: .4s; /* Chrome */
+    -webkit-transition: .4s; /* Chrome */
 	transition: .4s;    
 	opacity: 0;
     position:relative;
-    right: 20px;
-    height: 0px;
+    right: 10px;
 }
+
+
+.view.ng-enter {
+	-webkit-transition-duration: .4s; /* Chrome */
+	transition-duration: .4s;
+	opacity: 0;
+    position:relative;
+    right: 10px;
+}
+ 
+.view.ng-enter.ng-enter-active {
+	opacity: 1;
+    position:relative;
+    right: 0px;
+}
+
+
+.small-li.ng-enter {
+    -webkit-transition: .3s; /* Chrome */
+	transition: .3s;    
+	opacity: 0;
+    position:relative;
+    bottom: 10px;
+}
+ 
+.small-li.ng-enter.ng-enter-active {
+	opacity: 1;
+    position:relative;
+    right: 0px;
+}
+
+.small-li.ng-leave {
+    -webkit-transition: .2s; /* Chrome */
+	transition: .2s;    
+	opacity: 1;
+    position:relative;
+    bottom: 0px;
+}
+ 
+.small-li.ng-leave.ng-leave-active {
+    -webkit-transition: .2s; /* Chrome */
+	transition: .2s;    
+	opacity: 0;
+    position:relative;
+    bottom: 10px;
+}
+
+
