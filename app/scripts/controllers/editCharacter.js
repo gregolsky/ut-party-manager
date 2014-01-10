@@ -1,5 +1,6 @@
 
-function EditCharacterController($scope, usabilityDeterminator, avatars) {
+function EditCharacterController($scope, $q, usabilityDeterminator, avatars, cssHelper) {
+    
     $scope.character = $scope.context.character;
 
     $scope.itemCanBeUsedByCharacter = function (item) {
@@ -19,14 +20,33 @@ function EditCharacterController($scope, usabilityDeterminator, avatars) {
     $scope.chooseAvatarMode = false;
 
     $scope.showAvailableAvatars = function () {
-        $scope.avatars = avatars;
+        
+        var buildAv = function (a) {
+            var q = $q.defer();
+            
+            var img = new Image();
+            
+            img.onload = function () {
+                q.resolve();
+            };
+            
+            img.src = cssHelper.getBackgroundImageUrl(a);
+            
+            return {
+              promise: q.promise,
+              clazz: a
+            };
+        };
+        
+        $scope.avatars = _.map(avatars, buildAv);
+        
         $scope.chooseAvatarMode = true;
-    }
+    };
 
     $scope.chooseAvatar = function (imgPath) {
         $scope.character.portrait = imgPath;
         $scope.chooseAvatarMode = false;
-    }
+    };
 
     function readdItemsToEquipmentIfEligible(character) {
         var oldEq = character.equipment;
@@ -35,7 +55,7 @@ function EditCharacterController($scope, usabilityDeterminator, avatars) {
             var item = $scope.lookups.items[eqItemId];
             return usabilityDeterminator.itemCanBeUsedBy(item, character);
         });
-    }
+    };
     
     $scope.$watch('character.profession', function (newValue, oldValue) {
         if (newValue == oldValue) {
@@ -46,4 +66,4 @@ function EditCharacterController($scope, usabilityDeterminator, avatars) {
     });
 }
 
-EditCharacterController.$inject = ['$scope', 'usabilityDeterminator', 'avatars'];
+EditCharacterController.$inject = ['$scope', '$q', 'usabilityDeterminator', 'avatars', 'cssHelper'];

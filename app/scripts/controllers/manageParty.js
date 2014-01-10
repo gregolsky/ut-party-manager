@@ -66,6 +66,8 @@ function ManagePartyController($scope, $routeParams, $window, $location, $modal,
             
         };
         
+        DestroyPartyConfirmController.$inject = [ '$scope', '$modalInstance' ];
+        
         var confirm = $modal.open({
             templateUrl: 'views/modals/destroyPartyConfirm.html',
             controller: DestroyPartyConfirmController
