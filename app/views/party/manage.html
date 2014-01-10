@@ -16,8 +16,8 @@
         <p class='col-md-12 lead' contenteditable ng-model="party.description">{{ party.description }}</p>
     </div>
 
-    <div ng-switch='state.action'>
-        <div class='characters-list' ng-switch-when='list_characters'>
+    <div  ng-switch='state.action'>
+        <div class='characters-list view' ng-switch-when='list_characters'>
 
             <div ng-include="'views/party/manage-menu-list.html'"></div>
 
@@ -26,7 +26,7 @@
             </div>
 
         </div>
-        <div ng-switch-when='edit_character' ng-controller='EditCharacterController'>
+        <div class='view' ng-switch-when='edit_character' ng-controller='EditCharacterController'>
             <div ng-include="'views/character/edit.html'"></div>
         </div>
     </div>
