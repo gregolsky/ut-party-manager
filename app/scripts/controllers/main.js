@@ -67,7 +67,7 @@ function MainController($scope, $location, $routeParams, $timeout, lookups, list
     };
     
     $scope.notifyInfo = function (title, text) {
-        notify(title, text, 'info');
+        notify(title, text, 'success');
     };
     
     $scope.$on(PARTY_LIST_CHANGED, function(e, args){

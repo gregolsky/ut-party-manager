@@ -1,7 +1,9 @@
 <div>
-    <div class="alert eth col-md-12" ng-repeat="n in notifications" ng-class="{ 'alert-danger': n.type == 'danger', 'alert-success': n.type != 'danger' }">
+    <alert class="eth col-md-12"
+           ng-repeat="n in notifications" type="n.type" >
         <i class="fa fa-2x" ng-class="{ 'fa-warning': n.type == 'danger', 'fa-check-circle': n.type != 'danger' }"></i>&nbsp;
-        <strong>{{ n.title }}</strong>
+        <strong>{{ n.title }}</strong> &nbsp;
         {{ n.text }}
-    </div>
+    </alert>
+    
 </div>
