@@ -1,0 +1,98 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Umbra Turris - Menedżer Drużyn</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <link rel="stylesheet" href="styles/57029859.lib.css">
+
+    <link rel="stylesheet" href="styles/c26e6dbb.app.css">
+</head>
+
+<body ng-app="utPartyManagerApp">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+      <script src="bower_components/es5-shim/es5-shim.js"></script>
+      <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div ng-controller="MainController">
+        <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6. chromium.org/developers/how-tos/chrome-frame-getting-started -->
+        <!--[if lt IE 7]>
+            <p class=chromeframe>Your browser is
+                <em>ancient!</em>
+                <a href="http://browsehappy.com/">Upgrade to a different browser</a>or
+                <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a>to experience this site.</p>
+        <![endif]-->
+        <nav class="top-bar navbar navbar-inverse" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Przełącz nawigację</span>
+                        <span class="fa fa-bar"></span>
+                        <span class="fa-bar"></span>
+                        <span class="fa-bar"></span>
+                    </button>
+                    <a class="navbar-brand center" href="#">
+                        <div class="logo"></div>
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav">
+                        <li ng-class="{ active: topMenuSelected == 'home' }">
+                            <a ng-click="topMenuSelected='home'" href="#">
+                                <i class="fa fa-bookmark-o fa-2x"></i>&nbsp;&nbsp;Strona Główna</a>
+                        </li>
+                        <li ng-class="{ active: topMenuSelected == 'about' }">
+                            <a ng-click="topMenuSelected='about'" href="#about">
+                                <i class="fa fa-lightbulb-o fa-2x"></i>&nbsp;&nbsp;O projekcie</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="main container">
+            <div ng-include="'views/notifications.html'"></div>
+            <div class="row">
+                <div ng-class="{ 'col-md-12': parties.length == 0, 'col-md-9': parties.length > 0 }">
+                    <div class="view" ng-view=""></div>
+                </div>
+                <div ng-hide="parties.length == 0" class="col-md-3 view">
+                    <div ng-include="'views/party/list.html'"></div>
+                </div>
+            </div>
+        </div>
+
+        <!--<div class="footer container">
+            <div class="row">
+                <div class="col-offset-8 col-md-3">
+                    <p class='' >
+                        Zaimplementowane przez Grzegorza Lachowskiego. 2014</p>
+                </div>
+            </div>
+        </div>-->
+        
+    </div>
+
+    <script src="scripts/c41112b8.lib.js"></script>
+
+    <script src="scripts/622e9bdf.modules.js"></script>
+
+    <script src="scripts/d36a3a5b.scripts.js"></script>
+</body>
+
+</html>

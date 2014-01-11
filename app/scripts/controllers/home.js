@@ -1,4 +1,0 @@
-
-function HomeController() { }
-
-HomeController.$inject = [];

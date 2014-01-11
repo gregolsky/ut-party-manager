@@ -1,0 +1,104 @@
+<div class="attr-bars">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-2 text-right">
+                    LD
+                </div>
+                <div class="col-md-2">
+                    <span class="label label-default">{{ lookups.races[character.race].attributes.command }}</span>
+                </div>
+                <div class="col-md-8">
+                    <progressbar value="lookups.races[character.race].attributes.command / 8 * 100"></progressbar>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2 text-right">
+                    M
+                </div>
+                <div class="col-md-2">
+                    <span class="label label-default">{{ lookups.races[character.race].attributes.mobility }}</span>
+                </div>
+                <div class="col-md-8">
+                    <progressbar value="lookups.races[character.race].attributes.mobility / 20 * 100"></progressbar>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2 text-right">
+                    WS
+                </div>
+                <div class="col-md-2">
+                    <span class="label label-default">{{ lookups.races[character.race].attributes.normalCombat }}</span>
+                </div>
+                <div class="col-md-8">
+                    <progressbar value="lookups.races[character.race].attributes.normalCombat / 7 * 100"></progressbar>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2 text-right">
+                    S
+                </div>
+                <div class="col-md-2">
+                    <span class="label label-default">{{ lookups.races[character.race].attributes.strength }}</span>
+                </div>
+                <div class="col-md-8">
+                    <progressbar value="lookups.races[character.race].attributes.strength / 9 * 100"></progressbar>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2 text-right">
+                    SP
+                </div>
+                <div class="col-md-2">
+                    <span class="label label-default">{{ lookups.races[character.race].attributes.condition }}</span>
+                </div>
+                <div class="col-md-8">
+                    <progressbar value="lookups.races[character.race].attributes.condition / 8 * 100"></progressbar>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2 text-right">
+                    BS
+                </div>
+                <div class="col-md-2">
+                    <span class="label label-default">{{ lookups.races[character.race].attributes.rangeWeapons }}</span>
+                </div>
+                <div class="col-md-8">
+                    <progressbar value="lookups.races[character.race].attributes.rangeWeapons / 9 * 100"></progressbar>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2 text-right">
+                    T
+                </div>
+                <div class="col-md-2">
+                    <span class="label label-default">{{ lookups.races[character.race].attributes.toughness }}</span>
+                </div>
+                <div class="col-md-8">
+                    <div class="progress">
+                        <progressbar value="lookups.races[character.race].attributes.toughness / 9 * 100"></progressbar>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2 text-right">
+                    W
+                </div>
+                <div class="col-md-2">
+                    <span class="label label-default">{{ lookups.races[character.race].attributes.vitality }}</span>
+                </div>
+                <div class="col-md-8">
+                    <progressbar value="lookups.races[character.race].attributes.vitality / 9 * 100"></progressbar>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

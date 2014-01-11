@@ -1,0 +1,44 @@
+<div class="col-md-4 col-sm-6 col-xs-12" ng-show="canApplyCurrentAction(member)" ng-class="{ delete: state.deleteMode }" ng-click="editCharacter(member)">
+
+    <div class="card row" ng-class="{ overlayed: isInSpecialMode() }">
+
+        <div ng-click="applyCurrentAction($event, member)" ng-show="isInSpecialMode()" class="overlay">
+            <div class="outer">
+                <div class="mid-v">
+                    <div class="inner">
+                        <i ng-show="state.deleteMode" class="fa fa-times-circle fa-3x text-danger"></i>
+                        <i ng-show="state.chiefSelection" class="fa fa-star fa-4x text-warning"></i>
+                        <i ng-show="state.mageSelection" class="fa fa-bolt fa-4x text-info"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="portrait col-md-12" ng-class="member.portrait || 'default'">
+        </div>
+		
+        <div class="col-md-9 name-line">
+            <i ng-show="member.id == party.chief" class="fa fa-star fa-fw text-warning"></i>
+            <i ng-show="member.id == party.mage" class="fa fa-flash fa-fw text-info"></i>
+            <strong>
+                {{ member.name }}
+            </strong>
+        </div>
+		
+        <div class="col-md-3 name-line">
+            <span class="pull-left label label-warning points">
+                {{ calcMemberCost(member) }}
+            </span>
+        </div>
+
+		<div class="action-margin">
+			<div class="col-md-12 col-sm-12 profrace">
+				<i class="fa fa-magic fa-fw"></i>{{ lookups.professions[member.profession].name }}
+			</div>
+			<div class="col-md-12 col-sm-12 profrace">
+				<i class="fa fa-male fa-fw"></i>{{ lookups.races[member.race].name }}
+			</div>
+		</div>
+
+    </div>
+</div>
