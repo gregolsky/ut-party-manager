@@ -1,6 +1,16 @@
+@font-face {
+  font-family: 'Alegreya Sans SC';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Alegreya Sans SC'), local('AlegreyaSansSC-Regular'), url(http://themes.googleusercontent.com/static/fonts/alegreyasanssc/v1/6kgb6ZvOagoVIRZyl8XV-OyTWyTN45YLZCS5ouXqHa8.woff) format('woff');
+}
+
+
 body {
 	background-image: url('../images/natural_paper.png');
 	background-repeat: repeat;
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-size: 16px;
 }
 
 .main, .sidebar, .footer {
@@ -206,10 +216,3 @@ hr.no-margin {
 }
 
 .nav, .pagination, .carousel a { cursor: pointer; }
-
-
-
-body {
-    font-family: 'Alegreya Sans SC', sans-serif;
-    font-size: 18px;
-}
