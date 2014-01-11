@@ -47,7 +47,8 @@ angular.module('ut.backend.storage')
             };
 
             getEntityDigests = function (entityName) {
-                return angular.fromJson(localStorageService.get(entityDigestsKey(entityName)));
+                var data = localStorageService.get(entityDigestsKey(entityName));
+                return angular.fromJson(data) || [];
             };
 
             setEntityDigests = function (entityName, ids) {

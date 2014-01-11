@@ -6,7 +6,6 @@ angular.module('utPartyManagerApp', [
   'ngResource',
   'ngSanitize',
   'ngAnimate',
-  'ngMockE2E',
   'ui.bootstrap',
   'ut.core',
   'ut.core.constants',
