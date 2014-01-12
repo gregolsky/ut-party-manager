@@ -1,11 +1,12 @@
 angular.module('ut.core.constants')
     .factory('enumerations', [
-        'races', 'professions', 'items',
-        function (races, professions, items) {
+        'natures', 'races', 'professions', 'items',
+        function (natures, races, professions, items) {
+            'use strict';
             return {
-                "races": races,
-                "professions": professions,
-                "items": items
+                'natures': natures,
+                'races': races,
+                'professions': professions,
+                'items': items
             };
 }]);
-

@@ -18,9 +18,7 @@
         <div class="col-md-8">
             <select ng-model='party.nature' name='nature' class='form-control' id='nature' required>
                 <option value="">Wybierz charakter</option>
-                <option value='D'>Dobry</option>
-                <option value='N'>Neutralny</option>
-                <option value='Z'>Zły</option>
+                <option value="{{ n.id }}" ng-repeat="n in lists.natures" >{{ n.name }}</option>
             </select>
         </div>
     </div>

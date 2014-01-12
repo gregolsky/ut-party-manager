@@ -1,8 +1,8 @@
 angular.module('ut.core.constants')
     .factory('_buildLookupFromList', [
-        'enumerations',
-        function (ut) {
 
+    function () {
+            'use strict';
             var builder = function (list) {
                 var lookup = {};
                 for (var i = 0; i < list.length; i++) {
@@ -15,25 +15,36 @@ angular.module('ut.core.constants')
             return builder;
     }])
     .factory('racesLookup', [
-        '_buildLookupFromList',
-        'enumerations',
+    '_buildLookupFromList',
+    'enumerations',
     function (builder, lists) {
+            'use strict';
             return builder(lists.races);
     }])
     .factory('professionsLookup', [
-        '_buildLookupFromList',
-        'enumerations',
+    '_buildLookupFromList',
+    'enumerations',
     function (builder, lists) {
+            'use strict';
             return builder(lists.professions);
     }])
     .factory('itemsLookup', [
-        '_buildLookupFromList',
-        'enumerations',
+    '_buildLookupFromList',
+    'enumerations',
     function (builder, lists) {
+            'use strict';
             return builder(lists.items);
     }])
+    .factory('naturesLookup', [
+    '_buildLookupFromList',
+    'enumerations',
+    function (builder, lists) {
+            'use strict';
+            return builder(lists.natures);
+    }])
     .factory('lookups', ['racesLookup', 'professionsLookup', 'itemsLookup',
-    function (races, professions, items) {
+                     function (races, professions, items) {
+            'use strict';
             return {
                 'races': races,
                 'professions': professions,

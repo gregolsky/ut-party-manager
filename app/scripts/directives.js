@@ -49,8 +49,8 @@ angular.module('ut.directives')
             }
         };
     })
-    .directive('partyCardRender', ['$q', 'racesLookup', 'professionsLookup', 'itemsLookup', 'cssHelper',
-        function ($q, races, professions, items, css) {
+    .directive('partyCardRender', ['$q', 'naturesLookup', 'racesLookup', 'professionsLookup', 'itemsLookup', 'cssHelper',
+        function ($q, natures, races, professions, items, css) {
 
             var CARD_SELECTOR = '.party-card';
 
@@ -151,10 +151,9 @@ angular.module('ut.directives')
                     };
 
                     renderText(party.name, PARTY_FIELDS.partyName);
-                    renderText(party.nature, PARTY_FIELDS.nature);
+                    renderText(natures[party.nature].name, PARTY_FIELDS.nature);
                     renderText(party.guild, PARTY_FIELDS.guild);
                     renderText(party.points, PARTY_FIELDS.points);
-                    //renderText(party.name, PARTY_FIELDS.point1);
 
                     var renderCharacter = function (character, cardCoords) {
                         var fields = CHARACTER_FIELDS;

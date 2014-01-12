@@ -1,7 +1,8 @@
 
 function CreatePartyController($scope, $location, Party, partyManager) {
-
-    $scope.party = new Party("", null, 1000);
+    'use strict';
+    
+    $scope.party = new Party('', null, 1000);
     
     $scope.createParty = function () {
         try {
@@ -9,10 +10,10 @@ function CreatePartyController($scope, $location, Party, partyManager) {
             partyManager.save($scope.party)
                 .then(function (party) {
                     $scope.updatePartyList();
-                    $location.path("/party/" + party.id);
+                    $location.path('/party/' + party.id);
                 });
         } catch (error) {
-            $location.path("/error");
+            $location.path('/error');
         }
     };
 
