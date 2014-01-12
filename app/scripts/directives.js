@@ -151,7 +151,7 @@ angular.module('ut.directives')
                     };
 
                     renderText(party.name, PARTY_FIELDS.partyName);
-                    renderText(natures[party.nature].name, PARTY_FIELDS.nature);
+                    renderText(party.nature ? natures[party.nature].name : '', PARTY_FIELDS.nature);
                     renderText(party.guild, PARTY_FIELDS.guild);
                     renderText(party.points, PARTY_FIELDS.points);
 
