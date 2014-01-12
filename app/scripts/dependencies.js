@@ -12,3 +12,5 @@ angular.module('ut.helpers', []);
 angular.module('ut.directives', ['ut.helpers']);
 
 angular.module('ut.filters', []);
+
+angular.module('ut.services', ['ut.core', 'ut.core.constants', 'ut.core.services', 'ngResource']);

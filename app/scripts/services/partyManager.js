@@ -3,7 +3,7 @@
 var angular = window.angular,
     _ = window._;
 
-angular.module('ut.services', ['ut.core', 'ut.core.constants', 'ut.core.services', 'ngResource'])
+angular.module('ut.services')
     .factory('partyManager', [
         '$q',
         '$resource',
