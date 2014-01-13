@@ -204,7 +204,7 @@ hr.no-margin {
 }
 
 .characters-list .portrait {
-    height: 250px; 
+    height: 250px;
 }
 
 .party-card {
@@ -216,3 +216,13 @@ hr.no-margin {
 }
 
 .nav, .pagination, .carousel a { cursor: pointer; }
+
+.action-margin {
+	margin-left: -3px;
+	margin-right: -3px;
+}
+.action-line {
+	line-height: 14px;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+}
