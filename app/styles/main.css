@@ -163,8 +163,8 @@ hr.no-margin {
 .i-top-left {
     position: absolute; 
     z-index: 100; 
-    top: -0.5em; 
-    left: 87%;
+    top: -0.3em; 
+    left: 83%;
 }
 
 .card.delete:hover {

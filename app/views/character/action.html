@@ -1,5 +1,7 @@
 <div class='col-md-4 col-sm-6' ng-class='{ delete: state.deleteMode }' ng-click='editCharacter(member)'>
     <i ng-click='removeCharacter($event, member)' ng-show='state.deleteMode' class='fa fa-times-circle fa-3x text-danger i-top-left'></i>
+    <i ng-click='setChief($event, member)' ng-show='state.chiefSelection' class='fa fa-star fa-4x text-warning i-top-left'></i>
+    <i ng-click='setMage($event, member)' ng-show='state.mageSelection' class='fa fa-bolt fa-4x text-info i-top-left'></i>
     <div class='card row'>
 
         <div class='portrait col-md-12' ng-class="member.portrait || 'default'" >

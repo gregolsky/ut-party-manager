@@ -14,6 +14,8 @@ function ManagePartyController($scope, $routeParams, $window, $location, $modal,
 
     $scope.state = {
         deleteMode: false,
+        chiefSelection: false,
+        mageSelection: false,
         action: 'list_characters'
     };
 
@@ -51,6 +53,22 @@ function ManagePartyController($scope, $routeParams, $window, $location, $modal,
         $event.stopImmediatePropagation();
         $scope.party.removeCharacter(character);
     };
+    
+    $scope.isInSpecialMode = function () {
+      var state = $scope.state;
+      return state.deleteMode ||
+          state.chiefSelection ||
+          state.mageSelection;
+    };
+    
+    $scope.toggleDeleteMode = function (arg) {
+        $scope.state.deleteMode = arg;
+    };
+    
+    $scope.toggleSelectionModeOff = function () {
+        $scope.state.chiefSelection = false;
+        $scope.state.mageSelection = false;
+    };
 
     $scope.destroyParty = function () {
 
@@ -85,16 +103,12 @@ function ManagePartyController($scope, $routeParams, $window, $location, $modal,
                         $scope.notifyInfo("Drużyna zniszczona.", "Postacie nie żyją.");
                     });
         });
-        
-        return false;
     };
 
     $scope.printParty = function () {
         var canvas = $window.document.querySelector('[party-card-render] canvas');
         var dataUrl = canvas.toDataURL('image/png');
         $window.open(dataUrl, '', '');
-
-        return false;
     };
 
     $scope.isPartyValid = function () {

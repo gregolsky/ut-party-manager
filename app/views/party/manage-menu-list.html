@@ -1,36 +1,61 @@
 <div class="navbar navbar-inverse">
-    <a class="navbar-brand" style="max-width: 100%;" href="#">
+    <a class="navbar-brand" style="max-width: 100%;" >
         <i class='fa fa-users'></i>&nbsp;
         Członkowie drużyny
     </a>
     <ul class="nav navbar-nav pull-right">
         <li>
             <div class='navbar-form btn-group'>
-                <button ng-hide="state.deleteMode || !isPartyValid()" class='btn btn-primary' ng-click='saveChanges()'>
+                <button ng-hide="isInSpecialMode() || !isPartyValid()" class='btn btn-primary' ng-click='saveChanges()'>
                     <i class='fa fa-save'></i>&nbsp; Zapisz zmiany
                 </button>
-                <button ng-hide="state.deleteMode || !party.canAddMember()" class='btn btn-default' ng-click='addCharacter()'>
+                <button ng-hide="isInSpecialMode() || !party.canAddMember()" class='btn btn-default' ng-click='addCharacter()'>
                     <i class='fa fa-plus'></i>&nbsp; Dodaj postać
                 </button>
-                <button ng-show="state.deleteMode" style='border-top-left-radius: 4px; border-bottom-left-radius: 4px;' ng-click='state.deleteMode = false' class='btn btn-default' ng-click='toggleDeleteMode()'>
+                <button ng-show="state.deleteMode" class='btn btn-default' ng-click='toggleDeleteMode(false)'>
                     <i class='fa fa-check'></i>&nbsp; Zakończ usuwanie
                 </button>
-                <button class='btn btn-default dropdown-toggle' data-toggle="dropdown">
+                <button 
+                        ng-show="state.chiefSelection || state.mageSelection" 
+                        style='border-top-left-radius: 4px; border-bottom-left-radius: 4px;' 
+                        class='btn btn-default' 
+                        ng-click='toggleSelectionModeOff()' >
+                    <i class='fa fa-chevron-left'></i>&nbsp; Anuluj
+                </button>                
+                <button 
+                        class='btn btn-default dropdown-toggle' 
+                        data-toggle="dropdown" >
                     &nbsp;
                     <i class='fa fa-ellipsis-v'></i>
                     &nbsp;
                 </button>
                 <ul class="dropdown-menu">
+                    <li ng-hide='isInSpecialMode()' >
+                        <a ng-click='state.chiefSelection = true'>
+                            <i class='fa fa-star'></i>&nbsp; Wybierz herszta
+                        </a>
+                    </li>
+                    <li ng-hide='isInSpecialMode()' >
+                        <a ng-click='state.mageSelection = true'>
+                            <i class='fa fa-magic'></i>&nbsp; Wybierz maga
+                        </a>
+                    </li>  
+                    <li ng-hide='isInSpecialMode()'>
+                        <a ng-click='toggleDeleteMode(true)'>
+                            <i class='fa fa-minus'></i>&nbsp; Usuń postać
+                        </a>
+                    </li>                    
+                    <li ng-hide='isInSpecialMode()' class="divider"></li>
                     <li>
                         <a ng-click="printParty()">
                             <i class='fa fa-print'></i>&nbsp; Drukuj kartę
                         </a>
                     </li>
                     <li>
-                        <a ng-click='state.deleteMode = true'>
-                            <i class='fa fa-minus'></i>&nbsp; Usuń członka
+                        <a ng-click="exportParty()">
+                            <i class='fa fa-puzzle-piece'></i>&nbsp; Wyeksportuj drużynę do pliku
                         </a>
-                    </li>
+                    </li>                    
                     <li class="divider"></li>
                     <li>
                         <a ng-click="destroyParty()">
