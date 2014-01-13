@@ -184,7 +184,7 @@ hr.no-margin {
 }
 
 .portrait {
-     background-position: center bottom;
+     background-position: center center;
      -webkit-background-size: contain;           /* Safari 3.0 */
          -moz-background-size: contain;           /* Gecko 1.9.2 (Firefox 3.6) */
            -o-background-size: contain;           /* Opera 9.5 */
