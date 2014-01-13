@@ -185,10 +185,11 @@ hr.no-margin {
 
 .portrait {
      background-position: center bottom;
-     -webkit-background-size: 100% 100%;           /* Safari 3.0 */
-         -moz-background-size: 100% 100%;           /* Gecko 1.9.2 (Firefox 3.6) */
-           -o-background-size: 100% 100%;           /* Opera 9.5 */
-              background-size: 100% 100%;    
+     -webkit-background-size: contain;           /* Safari 3.0 */
+         -moz-background-size: contain;           /* Gecko 1.9.2 (Firefox 3.6) */
+           -o-background-size: contain;           /* Opera 9.5 */
+              background-size: contain;    
+    background-repeat: no-repeat;
 }
 
 .portrait.default {
@@ -208,7 +209,8 @@ hr.no-margin {
 }
 
 .party-card {
-    background-image: url('../images/card.jpg');   
+    background-image: url('../images/card.jpg');
+    background-repeat: no-repeat;
 }
 
 [party-card-render] { 
