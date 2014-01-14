@@ -1,12 +1,23 @@
 <div class='col-md-4 col-sm-6' ng-class='{ delete: state.deleteMode }' ng-click='editCharacter(member)'>
-    <i ng-click='removeCharacter($event, member)' ng-show='state.deleteMode' class='fa fa-times-circle fa-3x text-danger i-top-left'></i>
-    <i ng-click='setChief($event, member)' ng-show='state.chiefSelection' class='fa fa-star fa-4x text-warning i-top-left'></i>
-    <i ng-click='setMage($event, member)' ng-show='state.mageSelection' class='fa fa-bolt fa-4x text-info i-top-left'></i>
-    <div class='card row'>
+
+    <div class='card row' ng-class="{ overlayed: isInSpecialMode() }">
+
+        <div ng-click='applyCurrentAction($event, member)' 
+             ng-show="isInSpecialMode()"
+             class="overlay" >
+            <div class='outer'>
+                <div class='mid-v'>
+                    <div class='inner'>
+                        <i ng-show='state.deleteMode' class='fa fa-times-circle fa-3x text-danger'></i>
+                        <i ng-show='state.chiefSelection' class='fa fa-star fa-4x text-warning'></i>
+                        <i ng-show='state.mageSelection' class='fa fa-bolt fa-4x text-info'></i>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class='portrait col-md-12' ng-class="member.portrait || 'default'">
         </div>
-
 
         <div class="col-md-9 name-line">
             <strong>
@@ -14,11 +25,10 @@
             </strong>
         </div>
 
-        <div class="col-md-3 name-line"><strong>
+        <div class="col-md-3 name-line">
             <span class="pull-left label label-warning points">
                 {{ calcMemberCost(member) }}
-                
-            </span></strong>
+            </span>
         </div>
 
         <div class='col-md-12 col-sm-12'>
@@ -27,7 +37,6 @@
         <div class='col-md-12 col-sm-12'>
             <i class="fa fa-male fa-fw"></i>{{ lookups.races[member.race].name }}
         </div>
-
 
     </div>
 </div>

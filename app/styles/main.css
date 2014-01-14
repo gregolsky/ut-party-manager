@@ -1,231 +1,182 @@
 @font-face {
-  font-family: 'Alegreya Sans SC';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Alegreya Sans SC'), local('AlegreyaSansSC-Regular'), url(http://themes.googleusercontent.com/static/fonts/alegreyasanssc/v1/6kgb6ZvOagoVIRZyl8XV-OyTWyTN45YLZCS5ouXqHa8.woff) format('woff');
+    font-family: 'Alegreya Sans SC';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Alegreya Sans SC'), local('AlegreyaSansSC-Regular'), url(http://themes.googleusercontent.com/static/fonts/alegreyasanssc/v1/6kgb6ZvOagoVIRZyl8XV-OyTWyTN45YLZCS5ouXqHa8.woff) format('woff');
 }
-
 body {
-	background-image: url('../images/natural_paper.png');
-	background-repeat: repeat;
+    background-image: url('../images/natural_paper.png');
+    background-repeat: repeat;
     font-family: 'Alegreya Sans SC', sans-serif;
     font-size: 16px;
-	cursor: url(../cursor.cur);
+    cursor: url(../cursor.cur);
 }
-
-.main, .sidebar, .footer {
-	background-color: rgba(255, 255, 255, 0.75);
+.main,
+.sidebar,
+.footer {
+    background-color: rgba(255, 255, 255, 0.75);
     border-radius: 5px;
     margin-bottom: 20px;
     margin-top: 25px;
     padding-top: 15px;
     padding-bottom: 20px;
 }
-
 .footer {
     margin-top: 10px;
     font-size: smaller;
 }
-
 .unstyled li {
-	list-style: none;
+    list-style: none;
 }
-
-input.ng-dirty.ng-invalid, select.ng-dirty.ng-invalid {
-	border: 1px solid Red;
+input.ng-dirty.ng-invalid,
+select.ng-dirty.ng-invalid {
+    border: 1px solid Red;
 }
-
 .center {
-	text-align: center;
+    text-align: center;
 }
-
 .partyLi a {
-	padding: 0.5em;
+    padding: 0.5em;
 }
-
-.character{
-	border: 1px lightgray solid; 
-	border-radius: 5px; 
-	padding: 0.4em;
-	margin: 0.5em;
+.character {
+    border: 1px lightgray solid;
+    border-radius: 5px;
+    padding: 0.4em;
+    margin: 0.5em;
 }
-
 .b {
-	font-weight: bold;
+    font-weight: bold;
 }
-
 .marg-no-left {
-	margin-left: 0;
+    margin-left: 0;
 }
-
 .items-bag .label {
-	display: inline-block;
-	margin: 0.1em;
+    display: inline-block;
+    margin: 0.1em;
     cursor: pointer;
 }
-
 .label {
-   font-size: 90%;   
+    font-size: 90%;
 }
-
 .item {
-	-webkit-transition: 0.1s;
-	-moz-transition: 0.1s;
-	-ms-transition: 0.1s;
+    -webkit-transition: 0.1s;
+    -moz-transition: 0.1s;
+    -ms-transition: 0.1s;
     -webkit-animation-duration: 10s;
     -webkit-animation-delay: 0s;
     -webkit-animation-iteration-count: infinite;
-	
 }
-
-table.center tr td, table.center tr th{
-	text-align: center;
+table.center tr td,
+table.center tr th {
+    text-align: center;
 }
-
 hr.no-margin {
-	margin: 0.5em;
+    margin: 0.5em;
 }
-
 .character-digest {
-	margin: 0.5em;
-	padding: 0.5em;
-	border-radius: 5px;
-	border: solid 1px #ccc;
-}
-
-.card {
-    position: relative;
-	margin: 0.7em;
-	padding: 0.5em;
-    box-shadow:0 1px 2px #aaa;
-    border: solid 1px #fff;
-    background: white;
-    margin:0 1rem 1rem;
-    border-radius:3px;
-    transition: 0.3s;
-}
-
-.card:hover {
-	transition: 0.3s;
+    margin: 0.5em;
+    padding: 0.5em;
+    border-radius: 5px;
     border: solid 1px #ccc;
-	-webkit-transform: translate(0px, -10px) scale(1.05);
-    -moz-transform: translate(0px, -10px) scale(1.05);
 }
 
-.card.character{
- 	width: auto;
-	min-height: 100px;   
-}
 
 .max {
     width: 100%;
 }
-
 .label.points {
     font-weight: bold;
 }
-
 .attr-bars {
     margin-top: 10px;
 }
-
 .av-thmb {
     max-width: 150px;
     width: 150px;
 }
 
-.i-top-left {
+.mid-v {
+    display: table-cell;
+    vertical-align: middle;
+}   
+
+.outer {
+    display: table; 
     position: absolute; 
-    z-index: 100; 
-    top: -0.3em; 
-    left: 83%;
+    height: 100%; 
+    width: 100%;
 }
 
-.card.delete:hover {
-    transition: 0.3s;
-    border: solid 1px #ccc;
-	-webkit-transform: none;
-    -moz-transform: none;
-}
-
-.card.delete .icon-remove-sign, .card.delete .icon-remove-sign:hover {
-    transition: 0.5s;
-}
-
-.card.delete .icon-remove-sign:hover {
-	-webkit-transform: scale(1.05) rotate(180deg);
-    -moz-transform: scale(1.05) rotate(180deg);    
+.inner {
+    margin-left: auto; 
+    margin-right: auto; 
+    text-align: center;
 }
 
 .portrait {
-     background-position: center center;
-     -webkit-background-size: contain;           /* Safari 3.0 */
-         -moz-background-size: contain;           /* Gecko 1.9.2 (Firefox 3.6) */
-           -o-background-size: contain;           /* Opera 9.5 */
-              background-size: contain;    
+    background-position: center center;
+    -webkit-background-size: contain;
+    /* Safari 3.0 */
+    -moz-background-size: contain;
+    /* Gecko 1.9.2 (Firefox 3.6) */
+    -o-background-size: contain;
+    /* Opera 9.5 */
+    background-size: contain;
     background-repeat: no-repeat;
 }
-
 .portrait.default {
-    background-image: url('../images/portraits/default.jpg')   
+    background-image: url('../images/portraits/default.jpg')
 }
-
 .characterForm .portrait {
     height: 300px;
 }
-
 .characterForm .avatar-chooser .portrait {
     height: 150px;
 }
-
 .characters-list .portrait {
     height: 250px;
 }
-
 .party-card {
     background-image: url('../images/card.jpg');
     background-repeat: no-repeat;
 }
-
-[party-card-render] { 
-    display: none;   
+[party-card-render] {
+    display: none;
 }
-
-.nav, .pagination, .carousel a { cursor: pointer; }
-
+.nav,
+.pagination,
+.carousel a {
+    cursor: pointer;
+}
 .action-margin {
-	margin-left: -3px;
-	margin-right: -3px;
+    margin-left: -3px;
+    margin-right: -3px;
 }
 .name-line {
-	max-height: 2.5em;
+    max-height: 2.5em;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-	padding-top: 0.5em;
-	padding-bottom: 0.5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
 }
-
 .top-bar a.navbar-brand {
-    width: 360px;   
+    width: 300px;
+    padding: 0;
 }
-
 .top-bar .logo {
- 	width: 350px;
-    height: 100px;
-    position: absolute;
-    top: -10px;   
+    height: 70px;
 }
-
 .logo {
-	background-image: url(../images/logopm.png);
-	background-position: center center;
-      -webkit-background-size: contain;           /* Safari 3.0 */
-         -moz-background-size: contain;           /* Gecko 1.9.2 (Firefox 3.6) */
-           -o-background-size: contain;           /* Opera 9.5 */
-              background-size: contain;    
+    background-image: url(../images/logopm.png);
+    background-position: center center;
+    -webkit-background-size: contain;
+    /* Safari 3.0 */
+    -moz-background-size: contain;
+    /* Gecko 1.9.2 (Firefox 3.6) */
+    -o-background-size: contain;
+    /* Opera 9.5 */
+    background-size: contain;
     background-repeat: no-repeat;
     display: block;
-
 }
-

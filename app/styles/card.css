@@ -1,0 +1,57 @@
+.card {
+    position: relative;
+    margin: 0.7em;
+    padding: 0.5em;
+    box-shadow: 0 1px 2px #aaa;
+    border: solid 1px #fff;
+    background: white;
+    margin: 0 1em 1em;
+    border-radius: 3px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transition: 0.3s;
+    border: solid 1px #ccc;
+    -webkit-transform: translate(0px, -10px) scale(1.05);
+    -moz-transform: translate(0px, -10px) scale(1.05);
+}
+
+.card .overlay {
+    display: block;
+    background-color: white;
+    z-index: 100;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+    top: 0;
+    left: 0;
+    margin: 0;
+    border-radius: 3px;
+    transition: 0.5s;
+}
+
+.card.overlayed:hover {
+    -webkit-transform: none;
+    -moz-transform: none;
+}
+
+.card .overlay:hover {
+    opacity: 0.9;
+    transition: 0.5s;
+}
+
+.i-top-left {
+    position: absolute;
+    z-index: 100;
+    top: -0.3em;
+    left: 83%;
+}
+
+.card.delete:hover {
+    transition: 0.3s;
+    border: solid 1px #ccc;
+    -webkit-transform: none;
+    -moz-transform: none;
+}
