@@ -11,13 +11,15 @@ body {
 	background-repeat: repeat;
     font-family: 'Alegreya Sans SC', sans-serif;
     font-size: 16px;
+	cursor: url(../cursor.cur);
 }
 
 .main, .sidebar, .footer {
 	background-color: rgba(255, 255, 255, 0.75);
     border-radius: 5px;
     margin-bottom: 20px;
-    padding-top: 15px;
+    margin-top: 25px;
+    padding-top: 0px;
     padding-bottom: 20px;
 }
 
@@ -228,3 +230,27 @@ hr.no-margin {
 	padding-top: 0.5em;
 	padding-bottom: 0.5em;
 }
+
+.top-bar a.navbar-brand {
+    width: 360px;   
+}
+
+.top-bar .logo {
+ 	width: 350px;
+    height: 100px;
+    position: absolute;
+    top: -10px;   
+}
+
+.logo {
+	background-image: url(../images/logopm.png);
+	background-position: center center;
+      -webkit-background-size: contain;           /* Safari 3.0 */
+         -moz-background-size: contain;           /* Gecko 1.9.2 (Firefox 3.6) */
+           -o-background-size: contain;           /* Opera 9.5 */
+              background-size: contain;    
+    background-repeat: no-repeat;
+    display: block;
+
+}
+

@@ -1,13 +1,19 @@
-<div class='row'>
-    <div class='col-md-12'>
-        <h1>
-            <i class='fa fa-users'></i>&nbsp; Dodaj drużynę</h1>
-    </div>
-    <p></p>
+<div class='page-header'>
+    <h1>
+        <i class='fa fa-users'></i>&nbsp; Dodaj drużynę</h1>
 </div>
 
-<form class="form-horizontal col-md-8" role="form" name='createPartyForm' novalidate ng-submit='createParty()' >
-    <div class="form-group" ng-class="{ 'has-error': createPartyForm.name.$invalid && createPartyForm.name.$dirty }" >
+<div class="row">
+    <div class='col-md-12'>
+        <blockquote>
+            <p>Więc mówisz, że szukasz śmiałków, do kolejnej morderczej wyprawy? Wybieraj rozważnie, albowiem wśród całej tej hałastry nie brak wariatów, złodziei i takich co tylko czekają, aż się odwrócisz, aby dobrać ci się do dupy.</p>
+            <small class='pull-right'>Erik Magnussen, Łowca Nagród</small>
+        </blockquote>
+    </div>
+</div>
+
+<form class="form-horizontal col-md-8" role="form" name='createPartyForm' novalidate ng-submit='createParty()'>
+    <div class="form-group" ng-class="{ 'has-error': createPartyForm.name.$invalid && createPartyForm.name.$dirty }">
         <label for="name" class="col-md-4 control-label">Nazwa drużyny</label>
         <div class="col-md-8">
             <input ng-model='party.name' type="text" name='name' class="form-control" id="name" placeholder="Nazwa drużyny" required />
@@ -18,28 +24,24 @@
         <div class="col-md-8">
             <select ng-model='party.nature' name='nature' class='form-control' id='nature' required>
                 <option value="">Wybierz charakter</option>
-                <option value="{{ n.id }}" ng-repeat="n in lists.natures" >{{ n.name }}</option>
+                <option value="{{ n.id }}" ng-repeat="n in lists.natures">{{ n.name }}</option>
             </select>
         </div>
     </div>
     <div class="form-group">
         <label for="points" class="col-md-4 control-label">Ilość punktów</label>
         <div class="col-md-8">
-            <input type='number' ng-model='party.points' name='points' class="form-control"
-                   min="100" max="10000" step="100"
-                   value="1000"
-                   required />
+            <input type='number' ng-model='party.points' name='points' class="form-control" min="100" max="10000" step="100" value="1000" required />
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <button type="submit" class="btn btn-primary" ng-disabled="createPartyForm.$invalid"  >
-                <i class='fa fa-magic'></i> &nbsp;
-                Utwórz
+            <button type="submit" class="btn btn-primary" ng-disabled="createPartyForm.$invalid">
+                <i class='fa fa-magic'></i>&nbsp; Utwórz
             </button>
             <button onclick='history.back()' type="button" class="btn btn-default">
-                 <i class='fa fa-level-up'></i> &nbsp;
-                Anuluj</button>
+                <i class='fa fa-level-up'></i>&nbsp; Anuluj
+            </button>
         </div>
     </div>
 </form>
