@@ -5,7 +5,6 @@
   src: local('Alegreya Sans SC'), local('AlegreyaSansSC-Regular'), url(http://themes.googleusercontent.com/static/fonts/alegreyasanssc/v1/6kgb6ZvOagoVIRZyl8XV-OyTWyTN45YLZCS5ouXqHa8.woff) format('woff');
 }
 
-
 body {
 	background-image: url('../images/natural_paper.png');
 	background-repeat: repeat;
@@ -40,25 +39,6 @@ input.ng-dirty.ng-invalid, select.ng-dirty.ng-invalid {
 	text-align: center;
 }
 
-.idx-cell {
-	width: 5%;
-}
-
-.badge-label {
-	max-width: 7em;
-	position: relative;
-	left: -2em;
-	bottom: -0.2em;
-	display: inline-block;
-	-webkit-transform: rotate(-30deg);
-	-moz-transform: rotate(-30deg);
-	-o-transform: rotate(-30deg);
-}
-
-.partyLi {
-	/*font-size: 200%;*/
-}
-
 .partyLi a {
 	padding: 0.5em;
 }
@@ -74,22 +54,18 @@ input.ng-dirty.ng-invalid, select.ng-dirty.ng-invalid {
 	font-weight: bold;
 }
 
-.apart{
-	margin: 0.1em;
-}
-
-.marg-no-left{
+.marg-no-left {
 	margin-left: 0;
-}
-
-.inl-block{
-	display: inline-block;
 }
 
 .items-bag .label {
 	display: inline-block;
 	margin: 0.1em;
     cursor: pointer;
+}
+
+.label {
+   font-size: 90%;   
 }
 
 .item {
@@ -104,10 +80,6 @@ input.ng-dirty.ng-invalid, select.ng-dirty.ng-invalid {
 
 table.center tr td, table.center tr th{
 	text-align: center;
-}
-
-.flarge{
-	font-size: 140%;
 }
 
 hr.no-margin {
@@ -225,8 +197,11 @@ hr.no-margin {
 	margin-left: -3px;
 	margin-right: -3px;
 }
-.action-line {
-	line-height: 14px;
+.name-line {
+	max-height: 2.5em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 	padding-top: 0.5em;
 	padding-bottom: 0.5em;
 }

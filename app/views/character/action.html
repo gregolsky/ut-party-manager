@@ -4,24 +4,31 @@
     <i ng-click='setMage($event, member)' ng-show='state.mageSelection' class='fa fa-bolt fa-4x text-info i-top-left'></i>
     <div class='card row'>
 
-        <div class='portrait col-md-12' ng-class="member.portrait || 'default'" >
-            </div>
-		<div class='action-margin'>
-		
-        <div class="col-md-9 action-line">{{ member.name }}</div>
-        
-        <div class="col-md-2 action-line pull-left">
-            <span class="label label-warning points">{{ calcMemberCost(member) }}</span>
+        <div class='portrait col-md-12' ng-class="member.portrait || 'default'">
         </div>
-        
+
+
+        <div class="col-md-9 name-line">
+            <strong>
+                {{ member.name }}
+            </strong>
+        </div>
+
+        <div class="col-md-3 name-line"><strong>
+            <span class="pull-left label label-warning points">
+                {{ calcMemberCost(member) }}
+                
+            </span></strong>
+        </div>
+
         <div class='col-md-12 col-sm-12'>
-            <i class="fa fa-magic fa-fw"></i> {{ lookups.professions[member.profession].name }}
+            <i class="fa fa-magic fa-fw"></i>{{ lookups.professions[member.profession].name }}
         </div>
         <div class='col-md-12 col-sm-12'>
-            <i class="fa fa-male fa-fw"></i> {{ lookups.races[member.race].name }}
+            <i class="fa fa-male fa-fw"></i>{{ lookups.races[member.race].name }}
         </div>
-		</div>
-		
+
+
     </div>
 </div>
 
