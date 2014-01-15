@@ -1,4 +1,4 @@
-angular.module('ut.core.constants')
+angular.module('ut.core')
     .factory('items', [
         'Item',
         'ItemType',

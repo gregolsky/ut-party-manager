@@ -8,7 +8,8 @@ angular.module('ut.services')
         '$q',
         '$resource',
         'Party',
-        function ($q, $resource, Party) {
+        'Character',
+        function ($q, $resource, Party, Character) {
             'use strict';
 
             var PartyResource, service;
@@ -37,6 +38,10 @@ angular.module('ut.services')
                         'id': id
                     }, function (party) {
                         party = angular.extend(new Party(), party);
+                        party.members = _.map(party.members, function (m) {
+                           return angular.extend(new Character(), m); 
+                        });
+                        
                         q.resolve(party);
                     });
 

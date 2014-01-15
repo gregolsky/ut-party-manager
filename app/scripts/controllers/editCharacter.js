@@ -1,5 +1,6 @@
 
 function EditCharacterController($scope, $q, usabilityDeterminator, avatars, cssHelper) {
+    'use strict';
     
     $scope.character = $scope.context.character;
 

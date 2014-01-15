@@ -1,4 +1,7 @@
-<div class='col-md-4 col-sm-6' ng-class='{ delete: state.deleteMode }' ng-click='editCharacter(member)'>
+<div class='col-md-4 col-sm-6'
+     ng-show="canApplyCurrentAction(member)"
+     ng-class='{ delete: state.deleteMode }' 
+     ng-click='editCharacter(member)'>
 
     <div class='card row' ng-class="{ overlayed: isInSpecialMode() }">
 

@@ -66,6 +66,24 @@ function ManagePartyController($scope, $routeParams, $window, $location, $modal,
             $scope.party.setMage(character);
             $scope.state.mageSelection = false;
         }
+        
+        return;
+    };
+    
+    $scope.canApplyCurrentAction = function (character) {
+        if ($scope.state.deleteMode) {
+            return true;
+        }
+
+        if ($scope.state.chiefSelection) {
+            return $scope.party.canBeChief(character);
+        }
+
+        if ($scope.state.mageSelection) {
+            return $scope.party.canBeMage(character);
+        }
+        
+        return true;
     };
 
     $scope.isInSpecialMode = function () {

@@ -31,6 +31,17 @@ window.angular.module('ut.core')
             return this.members.length <= 16;
         };
         
+        Party.prototype.canBeMage = function (character) {
+            var canBeMageProfessions = [ 2, 8, 44 ];
+            return _.some(canBeMageProfessions, function (x) {
+                    return x == character.profession;
+                });
+        };
+        
+        Party.prototype.canBeChief = function (character) {
+            return true;
+        };
+        
         Party.prototype.addMember = function (member) {
             if (!this.canAddMember()) {
                 throw "Cannot add another member.";
@@ -40,12 +51,18 @@ window.angular.module('ut.core')
         };
         
         Party.prototype.setChief = function (member) {
-            //validate if member can be chief
+            if (!this.canBeChief()) {
+                throw "This member cannot be a chief.";
+            }
+            
             this.chief = member.id;
         };
         
         Party.prototype.setMage = function (member) {
-            //validate if member can be mage
+            if (!this.canBeMage()) {
+                throw "This member cannot be a mage.";
+            }
+            
             this.mage = member.id;
         };
         
