@@ -10,7 +10,13 @@ body {
     font-family: 'Alegreya Sans SC', sans-serif;
     font-size: 16px;
     cursor: url(../cursor.cur);
+    overflow: scroll;
 }
+
+.modal-content {
+    background-image: url('../images/card.png');
+}
+
 .main,
 .sidebar,
 .footer {
@@ -123,6 +129,8 @@ hr.no-margin {
     /* Opera 9.5 */
     background-size: contain;
     background-repeat: no-repeat;
+    border-radius: 4px;
+    border: 1px solid #ccc;
 }
 .portrait.default {
     background-image: url('../images/portraits/default.jpg')
@@ -137,7 +145,7 @@ hr.no-margin {
     height: 250px;
 }
 .party-card {
-    background-image: url('../images/card.jpg');
+    background-image: url('../images/party-card.jpg');
     background-repeat: no-repeat;
 }
 [party-card-render] {
