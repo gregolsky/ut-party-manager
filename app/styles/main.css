@@ -131,6 +131,7 @@ hr.no-margin {
     background-repeat: no-repeat;
     border-radius: 4px;
     border: 1px solid #ccc;
+    background-color: white;
 }
 .portrait.default {
     background-image: url('../images/portraits/default.jpg')
