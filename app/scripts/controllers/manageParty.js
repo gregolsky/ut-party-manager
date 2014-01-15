@@ -54,14 +54,17 @@ function ManagePartyController($scope, $routeParams, $window, $location, $modal,
 
         if ($scope.state.deleteMode) {
             $scope.party.removeCharacter(character);
+            $scope.state.deleteMode = false;
         }
 
         if ($scope.state.chiefSelection) {
             $scope.party.setChief(character);
+            $scope.state.chiefSelection = false;
         }
 
         if ($scope.state.mageSelection) {
             $scope.party.setMage(character);
+            $scope.state.mageSelection = false;
         }
     };
 

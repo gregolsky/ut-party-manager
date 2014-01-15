@@ -20,6 +20,8 @@
         </div>
 
         <div class="col-md-9 name-line">
+            <i ng-show="member.id == party.chief" class="fa fa-star fa-fw text-warning"></i>
+            <i ng-show="member.id == party.mage"  class="fa fa-flash fa-fw text-info"></i>
             <strong>
                 {{ member.name }}
             </strong>
