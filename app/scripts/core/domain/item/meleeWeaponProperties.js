@@ -22,7 +22,7 @@ angular.module('ut.core')
                     }
 
                     if (_.some(eq, function (x) {
-                            return x.isA(ItemType.MeleeWeapon) && x.isTwoHanded;
+                            return x.isA(ItemType.MeleeWeapon) && x.properties.isTwoHanded;
                         }) ||
                         _.filter(eq, function (x) {
                             return x.isOneOf(ItemType.RangedWeapon, ItemType.MeleeWeapon, ItemType.Shield);
