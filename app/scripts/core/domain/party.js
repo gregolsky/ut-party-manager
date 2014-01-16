@@ -32,14 +32,16 @@ window.angular.module('ut.core')
         };
         
         Party.prototype.canBeMage = function (character) {
-            var canBeMageProfessions = [ 2, 8, 44 ];
-            return _.some(canBeMageProfessions, function (x) {
+            var canBeMageProfessions = [ 2, 8, 10, 16, 17, 38 ];
+            return
+                this.chief != character.id &&
+                _.some(canBeMageProfessions, function (x) {
                     return x == character.profession;
                 });
         };
         
         Party.prototype.canBeChief = function (character) {
-            return true;
+            return this.mage != character.id;
         };
         
         Party.prototype.addMember = function (member) {
