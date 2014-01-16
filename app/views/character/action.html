@@ -21,7 +21,7 @@
 
         <div class='portrait col-md-12' ng-class="member.portrait || 'default'">
         </div>
-
+		
         <div class="col-md-9 name-line">
             <i ng-show="member.id == party.chief" class="fa fa-star fa-fw text-warning"></i>
             <i ng-show="member.id == party.mage"  class="fa fa-flash fa-fw text-info"></i>
@@ -29,19 +29,21 @@
                 {{ member.name }}
             </strong>
         </div>
-
+		
         <div class="col-md-3 name-line">
             <span class="pull-left label label-warning points">
                 {{ calcMemberCost(member) }}
             </span>
         </div>
 
-        <div class='col-md-12 col-sm-12'>
-            <i class="fa fa-magic fa-fw"></i>{{ lookups.professions[member.profession].name }}
-        </div>
-        <div class='col-md-12 col-sm-12'>
-            <i class="fa fa-male fa-fw"></i>{{ lookups.races[member.race].name }}
-        </div>
+		<div class="action-margin">
+			<div class='col-md-12 col-sm-12 profrace'>
+				<i class="fa fa-magic fa-fw"></i>{{ lookups.professions[member.profession].name }}
+			</div>
+			<div class='col-md-12 col-sm-12 profrace'>
+				<i class="fa fa-male fa-fw"></i>{{ lookups.races[member.race].name }}
+			</div>
+		</div>
 
     </div>
 </div>

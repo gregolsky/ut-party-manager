@@ -27,43 +27,54 @@ body {
     padding-top: 15px;
     padding-bottom: 20px;
 }
+
 .footer {
     margin-top: 10px;
     font-size: smaller;
 }
+
 .unstyled li {
     list-style: none;
 }
+
 input.ng-dirty.ng-invalid,
 select.ng-dirty.ng-invalid {
     border: 1px solid Red;
 }
+
 .center {
     text-align: center;
 }
+
 .partyLi a {
     padding: 0.5em;
 }
+
 .character {
     border: 1px lightgray solid;
     border-radius: 5px;
     padding: 0.4em;
     margin: 0.5em;
 }
+
 .b {
     font-weight: bold;
 }
+
 .marg-no-left {
     margin-left: 0;
 }
+
 .items-bag .label {
     display: inline-block;
     margin: 0.1em;
     cursor: pointer;
 }
+
 .label {
     font-size: 90%;
 }
+
 .item {
     -webkit-transition: 0.1s;
     -moz-transition: 0.1s;
@@ -72,13 +83,16 @@ select.ng-dirty.ng-invalid {
     -webkit-animation-delay: 0s;
     -webkit-animation-iteration-count: infinite;
 }
+
 table.center tr td,
 table.center tr th {
     text-align: center;
 }
+
 hr.no-margin {
     margin: 0.5em;
 }
+
 .character-digest {
     margin: 0.5em;
     padding: 0.5em;
@@ -133,42 +147,55 @@ hr.no-margin {
     border: 1px solid #ccc;
     background-color: white;
 }
+
 .portrait.default {
     background-image: url('../images/portraits/default.jpg')
 }
+
 .characterForm .portrait {
     height: 300px;
 }
+
 .characterForm .avatar-chooser .portrait {
     height: 150px;
 }
+
 .characters-list .portrait {
     height: 250px;
 }
+
 .party-card {
     background-image: url('../images/party-card.jpg');
     background-repeat: no-repeat;
 }
+
 [party-card-render] {
     display: none;
 }
+
 .nav,
 .pagination,
 .carousel a {
     cursor: pointer;
 }
+
 .action-margin {
-    margin-left: -3px;
-    margin-right: -3px;
+	margin-left: -0.5em;
+	margin-right: -0.5em;
 }
+
 .name-line {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+.name-line, .profrace {
     max-height: 2.5em;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
 }
+
 .top-bar a.navbar-brand {
     width: 300px;
     padding: 0;
