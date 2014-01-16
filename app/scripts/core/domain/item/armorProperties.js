@@ -3,6 +3,7 @@ angular.module('ut.core')
         'ArmorClass',
         'ItemType',
         function (ArmorClass, ItemType) {
+            'use strict';
             
             var ArmorProperties = function (armorClass) {
                 var self = this;

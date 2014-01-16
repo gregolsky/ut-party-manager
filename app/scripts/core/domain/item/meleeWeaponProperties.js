@@ -3,14 +3,11 @@ angular.module('ut.core')
         'ItemType',
         function (ItemType) {
 
-            var MeleeWeaponProperties = function (normalAttackMod, strengthAttackMod, precisionAttackMod, counterAttack, isTwoHanded, isLight) {
+            var MeleeWeaponProperties = function (isTwoHanded, isLightweight) {
                 var self = this;
-                self.normalAttackMod = normalAttackMod;
-                self.strengthAttackMod = strengthAttackMod;
-                self.precisionAttackMod = precisionAttackMod;
-                self.counterAttack = counterAttack;
+
                 self.isTwoHanded = isTwoHanded;
-                self.isLight = isLight;
+                self.isLight = isLightweight;
 
                 self.canBeUsedBy = function (character, item) {
                     var eq = character.equipment;
@@ -40,10 +37,8 @@ angular.module('ut.core')
                         }
                     }
 
-                    if (self.isLight) {
-                        if (_.some(eq, function(x) { return x.isA(ItemType.Shield); })) {
-                            return false;
-                        }
+                    if (self.isLightweight && _.some(eq, function(x) { return x.isA(ItemType.Shield); })) {
+                        return false;
                     }
 
                     return true;
