@@ -150,6 +150,10 @@ function ManagePartyController($scope, $routeParams, $window, $location, $modal,
 
         return $scope.party.isValid(costCalculator);
     };
+    
+    $scope.getActiveParty = function () {
+        return $scope.party;  
+    };
 
     $scope.$watch('isPartyValid()', function (newValue, oldValue) {
         if (!newValue) {

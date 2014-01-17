@@ -51,8 +51,8 @@
                             <i class='fa fa-print'></i>&nbsp; Drukuj kartę
                         </a>
                     </li>
-                    <li>
-                        <a ng-click="exportParty()">
+                    <li ng-controller="ExportController" >
+                        <a href="{{ exportUrl }}" download="{{ fileName  }}" ng-click='refreshExportUrl()' >
                             <i class='fa fa-puzzle-piece'></i>&nbsp; Wyeksportuj drużynę do pliku
                         </a>
                     </li>                    

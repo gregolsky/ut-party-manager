@@ -14,7 +14,10 @@ angular.module('utPartyManagerApp', [
   'ut.services',
   'ut.directives',
   'ut.backend'
-]).config(function ($routeProvider) {
+]).config(function ($compileProvider, $routeProvider) {
+    
+    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|blob):/);
+    
     $routeProvider
         .when('/', {
             templateUrl: 'views/home.html',
