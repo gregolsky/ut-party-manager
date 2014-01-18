@@ -80,20 +80,7 @@
                     <label><i class='fa fa-legal'></i>&nbsp;Broń</label>
                 </div>
                 <div class='col-md-9'>
-                    <div class="form-control-static items-bag">
-                        <div class="label label-success small-li" 
-                             ng-repeat='itemId in character.equipment | filter: isItemAWeapon'
-                             ng-click='removeItemFromEquipment(itemId)' >
-                           {{ lookups.items[itemId].name }}
-                        </div>
-                    </div>
-                    <div class="form-control-static items-bag">
-                        <div class="label label-default" 
-                             ng-repeat='item in lists.items | filter: isItemAWeapon | filter: itemCanBeUsedByCharacter'
-                             ng-click='addItemToEquipment(item)'>
-                           {{ item.name }}
-                        </div>
-                    </div>
+                    <items-chooser character="character" item-filter='isWeapon' display-type="'success'" ></items-chooser>
                 </div>
             </div>
             
@@ -102,20 +89,7 @@
                     <label><i class='fa fa-shield'></i>&nbsp;Pancerz</label>
                 </div>
                 <div class='col-md-9'>
-                    <div class="form-control-static items-bag">
-                        <div class="label label-primary small-li" 
-                             ng-repeat='itemId in character.equipment | filter: isItemAnArmor'
-                             ng-click='removeItemFromEquipment(itemId)' >
-                            {{ lookups.items[itemId].name }}
-                        </div>
-                    </div>
-                    <div class="form-control-static items-bag">
-                        <div class="label label-default" 
-                             ng-repeat='item in lists.items | filter: isItemAnArmor | filter: itemCanBeUsedByCharacter'
-                             ng-click='addItemToEquipment(item)'>
-                           {{ item.name }}
-                        </div>
-                    </div>                    
+                    <items-chooser character="character" item-filter='isArmor' ></items-chooser>                  
                 </div>
             </div>
             
@@ -123,7 +97,9 @@
                 <div class='control-label col-md-3'>
                      <label><i class='fa fa-flask'></i>&nbsp;Ekwipunek</label>
                 </div>
-                <div class='col-md-9'></div>
+                <div class='col-md-9'>
+                    <items-chooser character="character" item-filter='ItemType.Equipment' display-type="'info'" ></items-chooser>
+                </div>
             </div>            
             
         </div>

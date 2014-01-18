@@ -25,30 +25,6 @@ function MainController($scope, $location, $routeParams, lookups, lists, party, 
             });
     };
 
-    $scope.isItemAWeapon = function (item) {
-        if (item.id) {
-            return $scope.isItemAWeapon(item.id);
-        }
-
-        return $scope.lookups.items[item].isWeapon();
-    };
-
-    $scope.isItemAnArmor = function (item) {
-        if (item.id) {
-            return $scope.isItemAnArmor(item.id);
-        }
-
-        return $scope.lookups.items[item].isArmor();
-    };
-
-    $scope.isItemARangedWeapon = function (item) {
-        if (item.id) {
-            return $scope.isItemARangedWeapon(item.id);
-        }
-
-        return $scope.lookups.items[item].isRangedWeapon();
-    };
-
     $scope.changeActiveParty = function (partyId) {
         $scope.$emit(ACTIVE_PARTY_CHANGED, partyId);
     };

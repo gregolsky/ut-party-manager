@@ -44,6 +44,10 @@ angular.module('ut.core')
                     return false;
                 }
 
+                if (!self.properties) {
+                    return true;
+                }
+                
                 return self.properties.canBeUsedBy(character, self);
             };
 

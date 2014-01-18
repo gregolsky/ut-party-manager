@@ -1,25 +1,27 @@
 
-function EditCharacterController($scope, $q, usabilityDeterminator, avatars, cssHelper) {
+function EditCharacterController($scope, $q, ItemType, usabilityDeterminator, avatars, cssHelper) {
     'use strict';
-    
+
     $scope.character = $scope.context.character;
-
-    $scope.itemCanBeUsedByCharacter = function (item) {
-        return usabilityDeterminator.itemCanBeUsedBy(item, $scope.character);
-    };
-
-    $scope.addItemToEquipment = function (item) {
-        $scope.character.equipment.push(item.id);
-    };
-
-    $scope.removeItemFromEquipment = function (itemId) {
-        var eq = $scope.character.equipment;
-        var i = eq.indexOf(itemId);
-        eq.splice(i, 1);
-    };
-
     $scope.chooseAvatarMode = false;
+    $scope.ItemType = ItemType;
 
+    $scope.getCharacter = function () {
+        return $scope.character;
+    };
+    
+    $scope.isWeapon = function (item) {
+        return item.isWeapon();
+    };
+
+    $scope.isArmor = function (item) {
+        return item.isArmor();
+    };
+
+    $scope.isRangedWeapon = function (item) {
+        return item.isRangedWeapon();
+    };
+    
     $scope.showAvailableAvatars = function () {
         
         var buildAv = function (a) {
@@ -49,7 +51,7 @@ function EditCharacterController($scope, $q, usabilityDeterminator, avatars, css
         $scope.chooseAvatarMode = false;
     };
 
-    function readdItemsToEquipmentIfEligible(character) {
+    var readdItemsToEquipmentIfEligible = function (character) {
         var oldEq = character.equipment;
         character.equipment = [];
         character.equipment = _.filter(oldEq, function (eqItemId) {
@@ -67,4 +69,4 @@ function EditCharacterController($scope, $q, usabilityDeterminator, avatars, css
     });
 }
 
-EditCharacterController.$inject = ['$scope', '$q', 'usabilityDeterminator', 'avatars', 'cssHelper'];
+EditCharacterController.$inject = ['$scope', '$q', 'ItemType', 'usabilityDeterminator', 'avatars', 'cssHelper'];
