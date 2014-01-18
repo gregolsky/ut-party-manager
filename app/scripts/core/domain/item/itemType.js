@@ -10,6 +10,7 @@ angular.module('ut.core')
                 Shield: 3,
                 Greaves: 4,
                 MeleeWeapon: 5,
-                RangedWeapon: 6
+                RangedWeapon: 6,
+                Equipment: 7
             };
 }]);
