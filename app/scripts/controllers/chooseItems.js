@@ -34,7 +34,6 @@ function ChooseItemsController($scope, itemsLookup, items, usabilityDeterminator
     };
 
     $scope.getCharactersItems = function () {
-        //var filter = getPredicate($scope.itemFilter);
         return _($scope.character.equipment)
             .map(function (itemId) {
                 return itemsLookup[itemId];
@@ -44,7 +43,6 @@ function ChooseItemsController($scope, itemsLookup, items, usabilityDeterminator
     };
 
     $scope.getUsableItems = function () {
-        //var filter = getPredicate($scope.itemFilter);
         return _.filter(items, function (item) {
             return filter(item) && usabilityDeterminator.itemCanBeUsedBy(item, $scope.character);
         });
