@@ -36,8 +36,15 @@ angular.module('ut.core.services', ['ut.core.constants'])
                                 return lookups.items[itemId];
                             });
                     
+                    var weaponCount = 0;
+                    
                     cost += _.reduce(items, function (sum, item) {
-                        return sum += item.cost;
+                        
+                        if (item.isWeapon()){
+                            weaponCount += 1;
+                        }
+                        
+                        return sum += item.cost * (weaponCount > 1 ? 3 : 1);
                     }, 0);
                 }
 
