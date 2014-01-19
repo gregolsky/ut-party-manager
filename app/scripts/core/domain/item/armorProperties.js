@@ -50,7 +50,7 @@ angular.module('ut.core')
 
                     if (self.armorClass == ArmorClass.Heavy) {
                         if (character.profession) {
-                            return character.profession.cost > 35;
+                            return character.profession.cost > 30;
                         }
                     }
 
