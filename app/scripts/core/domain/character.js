@@ -14,16 +14,11 @@ angular.module('ut.core')
                 this.portrait = null;
             };
 
-            Character.prototype.hasWeapon = function () {
-                return _.some(this.equipment, function (itemId) {
-                    var item = items[itemId];
-                    return item.isWeapon() || item.isRangedWeapon();
-                });
-            };
+
 
             Character.prototype.validate = function () {
                 var result = [];
-                
+
                 if (!this.name) {
                     result.push("Imię jest wymagane.");
                 }
@@ -39,12 +34,24 @@ angular.module('ut.core')
                 if (!this.hasWeapon()) {
                     result.push("Postać musi mieć przynajmniej jedną broń.");
                 }
-                
+
                 return result;
             };
 
             Character.prototype.isValid = function () {
                 return this.validate().length == 0;
+            };
+
+            Character.prototype.getItems = function () {
+                return _.map(this.equipment, function (itemId) {
+                    return items[itemId];
+                });
+            };
+
+            Character.prototype.hasWeapon = function () {
+                return _.some(this.getItems(), function (item) {
+                    return item.isWeapon() || item.isRangedWeapon();
+                });
             };
 
             return Character;

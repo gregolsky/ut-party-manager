@@ -5,6 +5,7 @@ angular.module('ut.core')
         'MeleeWeaponProperties',
         'ArmorProperties',
         'RangedWeaponProperties',
+        'EquipmentProperties',
         'ArmorClass',
         function (
             Item,
@@ -12,6 +13,7 @@ angular.module('ut.core')
             MeleeWeaponProperties,
             ArmorProperties,
             RangedWeaponProperties,
+             EquipmentProperties,
             ArmorClass) {
             'use strict';
             return [
@@ -75,23 +77,23 @@ angular.module('ut.core')
                 new Item(48, 'Tarcza stalowa', ItemType.Shield, 10, new ArmorProperties(ArmorClass.Heavy)),
 
 
-                new Item(49, 'Lina', ItemType.Equipment, 1),
-                new Item(50, 'Latarnia/pochodnia', ItemType.Equipment, 3),
-                new Item(51, 'Hubka i krzesiwo', ItemType.Equipment, 2),
-                new Item(52, 'Leczący eliksir', ItemType.Equipment, 5),
-                new Item(53, 'Trucizna', ItemType.Equipment, 3),
-                new Item(54, 'Zioła', ItemType.Equipment, 1),
-                new Item(55, 'Talizman przeznaczenia', ItemType.Equipment, 7),
-                new Item(56, 'Bitewny relikt', ItemType.Equipment, 3),
-                new Item(57, 'Peleryna tropiciela', ItemType.Equipment, 8),
-                new Item(58, 'Szkiełko', ItemType.Equipment, 1),
-                new Item(59, 'Amulet Odwagi', ItemType.Equipment, 4),
-                new Item(60, 'Trofeum/totem', ItemType.Equipment, 8),
-                new Item(61, 'Róg', ItemType.Equipment, 5),
-                new Item(62, 'Maska zabójcy', ItemType.Equipment, 6),
-                new Item(63, 'Groty przeciwpancerne', ItemType.Equipment, 4),
-                new Item(64, 'Groty zapalające', ItemType.Equipment, 5),
-                new Item(65, 'Groty łowieckie', ItemType.Equipment, 6),
+                new Item(49, 'Lina', ItemType.Equipment, 1, new EquipmentProperties()),
+                new Item(50, 'Latarnia/pochodnia', ItemType.Equipment, 3, new EquipmentProperties()),
+                new Item(51, 'Hubka i krzesiwo', ItemType.Equipment, 2, new EquipmentProperties()),
+                new Item(52, 'Leczący eliksir', ItemType.Equipment, 5, new EquipmentProperties()),
+                new Item(53, 'Trucizna', ItemType.Equipment, 3, new EquipmentProperties()),
+                new Item(54, 'Zioła', ItemType.Equipment, 1, new EquipmentProperties()),
+                new Item(55, 'Talizman przeznaczenia', ItemType.Equipment, 7, new EquipmentProperties()),
+                new Item(56, 'Bitewny relikt', ItemType.Equipment, 3, new EquipmentProperties()),
+                new Item(57, 'Peleryna tropiciela', ItemType.Equipment, 8, new EquipmentProperties()),
+                new Item(58, 'Szkiełko', ItemType.Equipment, 1, new EquipmentProperties()),
+                new Item(59, 'Amulet Odwagi', ItemType.Equipment, 4, new EquipmentProperties()),
+                new Item(60, 'Trofeum/totem', ItemType.Equipment, 8, new EquipmentProperties()),
+                new Item(61, 'Róg', ItemType.Equipment, 5, new EquipmentProperties()),
+                new Item(62, 'Maska zabójcy', ItemType.Equipment, 6, new EquipmentProperties()),
+                new Item(63, 'Groty przeciwpancerne', ItemType.Equipment, 4, new EquipmentProperties()),
+                new Item(64, 'Groty zapalające', ItemType.Equipment, 5, new EquipmentProperties()),
+                new Item(65, 'Groty łowieckie', ItemType.Equipment, 6, new EquipmentProperties()),
                 ];
 
         }]);

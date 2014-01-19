@@ -32,9 +32,7 @@ angular.module('ut.core.services', ['ut.core.constants'])
 
                 if (member.equipment.length) {
                     
-                    var items = _.map(member.equipment, function (itemId) {
-                                return lookups.items[itemId];
-                            });
+                    var items = member.getItems();
                     
                     var weaponCount = 0;
                     

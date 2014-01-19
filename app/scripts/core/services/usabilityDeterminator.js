@@ -7,9 +7,7 @@ angular.module('ut.core.services')
                 var characterInfo = {
                     profession: professions[character.profession],
                     race: races[character.race],
-                    equipment: _.map(character.equipment, function (x) {
-                        return items[x];
-                    })
+                    equipment: character.getItems()
                 };
 
                 return item.canBeUsedBy(characterInfo);
