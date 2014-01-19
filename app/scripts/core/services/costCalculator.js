@@ -6,11 +6,7 @@ angular.module('ut.core.services', ['ut.core.constants'])
         function (lookups) {
             "use strict";
             
-            var CostCalculator = function (races, professions, items) {
-                this.races = races;
-                this.professions = professions;
-                this.items = items;
-            };
+            var CostCalculator = function () { };
 
             CostCalculator.prototype.calculatePartyMemberCost = function (member, party) {
                 var self = this,
@@ -27,17 +23,22 @@ angular.module('ut.core.services', ['ut.core.constants'])
                 professionRank = _.indexOf(sameProfMembers, member);
 
                 if (member.race) {
-                    cost += self.races[member.race].cost;
+                    cost += lookups.races[member.race].cost;
                 }
 
                 if (member.profession) {
-                    cost += self.professions[member.profession].cost + (professionRank === -1 ? 0 : professionRank) * 10;
+                    cost += lookups.professions[member.profession].cost + (professionRank === -1 ? 0 : professionRank) * 10;
                 }
 
-                if (member.equipment) {
-                    cost += (_.reduce(member.equipment, function (sum, itemId) {
-                        return sum + self.items[itemId].cost;
-                    }) || 0);
+                if (member.equipment.length) {
+                    
+                    var items = _.map(member.equipment, function (itemId) {
+                                return lookups.items[itemId];
+                            });
+                    
+                    cost += _.reduce(items, function (sum, item) {
+                        return sum += item.cost;
+                    }, 0);
                 }
 
                 return cost || 0;
