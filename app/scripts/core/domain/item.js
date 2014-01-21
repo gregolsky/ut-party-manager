@@ -5,13 +5,14 @@ angular.module('ut.core')
         function (ItemType, usabilityRules) {
                 'use strict';
 
-                var Item = function (id, name, type, cost, properties) {
+                var Item = function (id, name, type, cost, properties, races) {
                     var self = this;
                     self.id = id;
                     self.name = name;
                     self.type = type;
                     self.cost = cost;
                     self.properties = properties;
+                    self.races = races;
                 }
 
                 Item.prototype.isWeapon = function () {
@@ -59,6 +60,12 @@ angular.module('ut.core')
                         return x.id == self.id;
                     })) {
                         return false;
+                    }
+                    
+                    if (self.races && 
+                        self.races.length && 
+                        !_.some(self.races, function (raceId) { return raceId == characterInfo.race.id; })) {
+                        return false;   
                     }
 
                     if (!self.properties) {
