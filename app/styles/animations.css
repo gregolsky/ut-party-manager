@@ -2,7 +2,7 @@
 .eth.ng-enter {
 	-webkit-transition-duration: .4s; /* Chrome */
 	transition-duration: .4s;
-	opacity: 0;
+	opacity: 0.4;
     position:relative;
     right: 10px;
 }
@@ -33,7 +33,7 @@
 .view.ng-enter {
 	-webkit-transition-duration: .4s; /* Chrome */
 	transition-duration: .4s;
-	opacity: 0;
+	opacity: 0.4;
     position:relative;
     right: 10px;
 }
@@ -48,7 +48,7 @@
 .small-li.ng-enter {
     -webkit-transition: .3s; /* Chrome */
 	transition: .3s;    
-	opacity: 0;
+	opacity: 0.4;
     position:relative;
     bottom: 10px;
 }

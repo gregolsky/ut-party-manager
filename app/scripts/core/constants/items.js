@@ -48,7 +48,7 @@ angular.module('ut.core')
                 new Item(26, 'Ussarous', ItemType.MeleeWeapon, 25, new MeleeWeaponProperties(false, false)),
 
 
-                new Item(27, 'Łuk', ItemType.RangedWeapon, 14, new RangedWeaponProperties()),
+                new Item(27, 'Łuk', ItemType.RangedWeapon, 14, new RangedWeaponProperties(), [ 1 ]),
                 new Item(28, 'Długi łuk', ItemType.RangedWeapon, 19, new RangedWeaponProperties()),
                 new Item(29, 'Kusza', ItemType.RangedWeapon, 17, new RangedWeaponProperties()),
                 new Item(30, 'Kusza powtarzalna', ItemType.RangedWeapon, 21, new RangedWeaponProperties()),
