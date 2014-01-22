@@ -1,8 +1,9 @@
 angular.module('ut.core')
     .factory('Item', [
         'ItemType',
-        'usabilityRules',
-        function (ItemType, usabilityRules) {
+        'itemToItemUsabilityRules',
+        'characterToItemUsabilityRules',
+        function (ItemType, itemToItemUsabilityRules, characterToItemUsabilityRules) {
                 'use strict';
 
                 var Item = function (id, name, type, cost, properties, races) {
@@ -48,7 +49,7 @@ angular.module('ut.core')
 
                 Item.prototype.canBeUsedWith = function (anotherItem) {
                     var self = this;
-                    return _.every(usabilityRules, function (rule) {
+                    return _.every(itemToItemUsabilityRules, function (rule) {
                         return checkTwoWay(rule, self, anotherItem);
                     });
                 };
@@ -56,26 +57,18 @@ angular.module('ut.core')
                 Item.prototype.canBeUsedBy = function (characterInfo) {
                     var self = this;
 
-                    if (_.some(characterInfo.equipment, function (x) {
-                        return x.id == self.id;
-                    })) {
-                        return false;
-                    }
+                    var canBeUsedByCharacter = _.every(characterToItemUsabilityRules, function (rule) {
+                       return rule.check(characterInfo, self); 
+                    });
                     
-                    if (self.races && 
-                        self.races.length && 
-                        !_.some(self.races, function (raceId) { return raceId == characterInfo.race.id; })) {
-                        return false;   
-                    }
-
-                    if (!self.properties) {
-                        return true;
-                    }
-
-                    return _.every(characterInfo.equipment, function (item) {
+                    var canBeUsedWithCurrentInventory = _.every(characterInfo.equipment, function (item) {
                        return item.canBeUsedWith(self); 
                     });
+                    
+                    return canBeUsedByCharacter && canBeUsedWithCurrentInventory;
                 };
+                    
+                    
 
             return Item;
         }]);

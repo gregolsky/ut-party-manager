@@ -13,7 +13,7 @@ angular.module('ut.core')
             MeleeWeaponProperties,
             ArmorProperties,
             RangedWeaponProperties,
-             EquipmentProperties,
+            EquipmentProperties,
             ArmorClass) {
             'use strict';
             return [
@@ -42,13 +42,13 @@ angular.module('ut.core')
                 new Item(21, 'Sztylet', ItemType.MeleeWeapon, 5, new MeleeWeaponProperties(false, true)),
                 new Item(22, 'Nóż', ItemType.MeleeWeapon, 2, new MeleeWeaponProperties(false, true)),
 
-                new Item(23, 'Asari Tiheri', ItemType.MeleeWeapon, 32, new MeleeWeaponProperties(true, false)),
-                new Item(24, 'Topór Groma', ItemType.MeleeWeapon, 38, new MeleeWeaponProperties(true, false)),
-                new Item(25, 'Młot Asmunda', ItemType.MeleeWeapon, 43, new MeleeWeaponProperties(false, false)),
-                new Item(26, 'Ussarous', ItemType.MeleeWeapon, 25, new MeleeWeaponProperties(false, false)),
+                new Item(23, 'Asari Tiheri', ItemType.MeleeWeapon, 32, new MeleeWeaponProperties(true, false), [22]),
+                new Item(24, 'Topór Groma', ItemType.MeleeWeapon, 38, new MeleeWeaponProperties(true, false), [6]),
+                new Item(25, 'Młot Asmunda', ItemType.MeleeWeapon, 43, new MeleeWeaponProperties(false, false), [5]),
+                new Item(26, 'Ussarous', ItemType.MeleeWeapon, 25, new MeleeWeaponProperties(false, false), [23]),
 
 
-                new Item(27, 'Łuk', ItemType.RangedWeapon, 14, new RangedWeaponProperties(), [ 1 ]),
+                new Item(27, 'Łuk', ItemType.RangedWeapon, 14, new RangedWeaponProperties()),
                 new Item(28, 'Długi łuk', ItemType.RangedWeapon, 19, new RangedWeaponProperties()),
                 new Item(29, 'Kusza', ItemType.RangedWeapon, 17, new RangedWeaponProperties()),
                 new Item(30, 'Kusza powtarzalna', ItemType.RangedWeapon, 21, new RangedWeaponProperties()),
@@ -56,15 +56,15 @@ angular.module('ut.core')
 
                 new Item(32, 'Strzelba', ItemType.RangedWeapon, 26, new RangedWeaponProperties()),
                 new Item(33, 'Garłacz', ItemType.RangedWeapon, 22, new RangedWeaponProperties()),
-                new Item(34, 'Armatka', ItemType.RangedWeapon, 16, new RangedWeaponProperties()),
+                new Item(34, 'Armatka', ItemType.RangedWeapon, 16, new RangedWeaponProperties(), [15, 16, 17, 18]),
 
                 new Item(35, 'Noże do rzucania', ItemType.RangedWeapon, 12, new RangedWeaponProperties()),
                 new Item(36, 'Bomba', ItemType.RangedWeapon, 13, new RangedWeaponProperties()),
 
-                new Item(37, 'Łuk Morrenviel', ItemType.RangedWeapon, 26, new RangedWeaponProperties()),
-                new Item(38, 'Kusza Zagłady', ItemType.RangedWeapon, 21, new RangedWeaponProperties()),
-                new Item(39, 'Proca Króla Oprychów', ItemType.RangedWeapon, 9, new RangedWeaponProperties()),
-                new Item(40, 'Plugawy Garłacz', ItemType.RangedWeapon, 28, new RangedWeaponProperties()),
+                new Item(37, 'Łuk Morrenviel', ItemType.RangedWeapon, 26, new RangedWeaponProperties(), [1, 2, 3, 4]),
+                new Item(38, 'Kusza Zagłady', ItemType.RangedWeapon, 21, new RangedWeaponProperties(), [19]),
+                new Item(39, 'Proca Króla Oprychów', ItemType.RangedWeapon, 9, new RangedWeaponProperties(), [15, 16]),
+                new Item(40, 'Plugawy Garłacz', ItemType.RangedWeapon, 28, new RangedWeaponProperties(), [12, 13, 14]),
 
 
                 new Item(41, 'Hełm lekki', ItemType.Helmet, 4, new ArmorProperties(ArmorClass.Light)),
