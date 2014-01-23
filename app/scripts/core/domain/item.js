@@ -2,7 +2,7 @@ angular.module('ut.core')
     .factory('Item', [
         'ItemType',
         'itemToItemUsabilityRules',
-        'characterToItemUsabilityRules',
+        'characterRelatedUsabilityRules',
         function (ItemType, itemToItemUsabilityRules, characterToItemUsabilityRules) {
                 'use strict';
 

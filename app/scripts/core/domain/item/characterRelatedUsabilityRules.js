@@ -1,5 +1,5 @@
 angular.module('ut.core')
-    .factory('characterToItemUsabilityRules', [
+    .factory('characterRelatedUsabilityRules', [
         'ArmorClass',
         'ItemType',
         function (ArmorClass, ItemType) {
