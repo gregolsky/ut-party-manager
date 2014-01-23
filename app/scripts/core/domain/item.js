@@ -3,7 +3,8 @@ angular.module('ut.core')
         'ItemType',
         'itemToItemUsabilityRules',
         'characterRelatedUsabilityRules',
-        function (ItemType, itemToItemUsabilityRules, characterToItemUsabilityRules) {
+        'partyRelatedUsabilityRules',
+        function (ItemType, itemToItemUsabilityRules, characterToItemUsabilityRules, partyRelatedUsabilityRules) {
                 'use strict';
 
                 var Item = function (id, name, type, cost, properties, races) {
@@ -54,18 +55,30 @@ angular.module('ut.core')
                     });
                 };
         
-                Item.prototype.canBeUsedBy = function (characterInfo) {
+                Item.prototype.canBeUsedBy = function (usabilityDeterminationContext) {
                     var self = this;
 
-                    var canBeUsedByCharacter = _.every(characterToItemUsabilityRules, function (rule) {
-                       return rule.check(characterInfo, self); 
+                    var canBeUsedByParty = _.every(partyRelatedUsabilityRules, function (rule) {
+                        return rule.check(usabilityDeterminationContext.party, self); 
                     });
                     
-                    var canBeUsedWithCurrentInventory = _.every(characterInfo.equipment, function (item) {
+                    if (!canBeUsedByParty) {
+                        return false;
+                    }
+                    
+                    var canBeUsedByCharacter = _.every(characterToItemUsabilityRules, function (rule) {
+                       return rule.check(usabilityDeterminationContext.character, self); 
+                    });
+                    
+                    if (!canBeUsedByCharacter){
+                        return false;
+                    }
+                    
+                    var canBeUsedWithCurrentInventory = _.every(usabilityDeterminationContext.character.equipment, function (item) {
                        return item.canBeUsedWith(self); 
                     });
                     
-                    return canBeUsedByCharacter && canBeUsedWithCurrentInventory;
+                    return canBeUsedWithCurrentInventory;
                 };
                     
                     

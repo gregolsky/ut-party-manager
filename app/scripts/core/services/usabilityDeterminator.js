@@ -3,14 +3,19 @@ angular.module('ut.core.services')
     'usabilityDeterminator', ['racesLookup', 'professionsLookup', 'itemsLookup',
         function (races, professions, items) {
 
-            var itemCanBeUsedBy = function (item, character) {
+            var itemCanBeUsedBy = function (item, character, party) {
                 var characterInfo = {
                     profession: professions[character.profession],
                     race: races[character.race],
                     equipment: character.getItems()
                 };
+                
+                var usabilityDeterminationContext = {
+                    character: characterInfo,
+                    party: party
+                };
 
-                return item.canBeUsedBy(characterInfo);
+                return item.canBeUsedBy(usabilityDeterminationContext);
             }
 
             return {

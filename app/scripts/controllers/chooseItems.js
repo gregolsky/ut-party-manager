@@ -44,7 +44,7 @@ function ChooseItemsController($scope, itemsLookup, items, usabilityDeterminator
 
     $scope.getUsableItems = function () {
         return _.filter(items, function (item) {
-            return filter(item) && usabilityDeterminator.itemCanBeUsedBy(item, $scope.character);
+            return filter(item) && usabilityDeterminator.itemCanBeUsedBy(item, $scope.character, $scope.party);
         });
     };
 

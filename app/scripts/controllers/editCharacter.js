@@ -56,7 +56,7 @@ function EditCharacterController($scope, $q, ItemType, usabilityDeterminator, av
         character.equipment = [];
         character.equipment = _.filter(oldEq, function (eqItemId) {
             var item = $scope.lookups.items[eqItemId];
-            return usabilityDeterminator.itemCanBeUsedBy(item, character);
+            return usabilityDeterminator.itemCanBeUsedBy(item, character, $scope.getActiveParty());
         });
     };
     

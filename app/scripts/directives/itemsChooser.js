@@ -10,7 +10,8 @@ angular.module('ut.directives')
                 scope: {
                     itemFilter: '=itemFilter',
                     character: '=character',
-                    displayType: '=displayType'
+                    displayType: '=displayType',
+                    party: '=party'
                 },
                 transclude: true,
                 templateUrl: 'views/templates/items-chooser.html'
