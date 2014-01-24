@@ -41,7 +41,13 @@ window.angular.module('ut.core')
         };
         
         Party.prototype.canBeChief = function (character) {
-            return this.mage != character.id;
+            
+            var isNotBard = function (character) {
+                return character.profession != 5;  
+            };
+            
+            return this.mage != character.id &&
+                isNotBard(character);
         };
         
         Party.prototype.addMember = function (member) {
@@ -53,7 +59,7 @@ window.angular.module('ut.core')
         };
         
         Party.prototype.setChief = function (member) {
-            if (!this.canBeChief()) {
+            if (!this.canBeChief(member)) {
                 throw "This member cannot be a chief.";
             }
             
@@ -61,7 +67,7 @@ window.angular.module('ut.core')
         };
         
         Party.prototype.setMage = function (member) {
-            if (!this.canBeMage()) {
+            if (!this.canBeMage(member)) {
                 throw "This member cannot be a mage.";
             }
             
