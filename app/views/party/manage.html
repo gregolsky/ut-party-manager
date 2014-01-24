@@ -1,7 +1,6 @@
 <div>
     <div class='row'>
-        <h1 class='col-md-11' contenteditable ng-model="party.name">
-            {{ party.name }}
+        <h1 class='col-md-12' contenteditable strip-br="true" ng-model="party.name">
         </h1>
     </div>
     <div class='row'>
@@ -13,7 +12,7 @@
     </div>
 
     <div class='row'>
-        <p class='col-md-12 lead' contenteditable ng-model="party.description">{{ party.description }}</p>
+        <p class='col-md-12 lead' contenteditable ng-model="party.description"></p>
     </div>
 
     <div ng-switch='state.action'>

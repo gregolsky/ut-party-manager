@@ -7,6 +7,7 @@ angular.module('utPartyManagerApp', [
   'ngSanitize',
   'ngAnimate',
   'ui.bootstrap',
+  'contenteditable',
   'ut.core',
   'ut.core.constants',
   'ut.core.services',
