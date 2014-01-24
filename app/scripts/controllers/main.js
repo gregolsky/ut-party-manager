@@ -1,4 +1,4 @@
-function MainController($scope, $location, $routeParams, lookups, lists, party, costCalculator, notificationService) {
+function MainController($scope, $location, $routeParams, lookups, lists, partyRepository, costCalculator, notificationService) {
     'use strict';
     
     var self = this;
@@ -19,7 +19,7 @@ function MainController($scope, $location, $routeParams, lookups, lists, party, 
     notificationService.setCollection($scope.notifications);
 
     var loadParties = function () {
-        party.list()
+        partyRepository.list()
             .then(function (data) {
                 $scope.parties = data;
             });
@@ -58,6 +58,6 @@ MainController.$inject = [
     '$routeParams',
     'lookups',
     'enumerations',
-    'partyManager',
+    'partyRepository',
     'costCalculator',
     'notificationService'];

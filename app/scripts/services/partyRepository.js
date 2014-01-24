@@ -4,7 +4,7 @@ var angular = window.angular,
     _ = window._;
 
 angular.module('ut.services')
-    .factory('partyManager', [
+    .factory('partyRepository', [
         '$q',
         '$resource',
         'Party',

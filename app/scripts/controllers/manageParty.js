@@ -1,4 +1,4 @@
-function ManagePartyController($scope, $routeParams, $window, $location, $modal, partyManager, costCalculator, Character) {
+function ManagePartyController($scope, $routeParams, $window, $location, $modal, partyRepository, costCalculator, Character) {
     'use strict';
 
     var partyId = $routeParams.partyId;
@@ -6,7 +6,7 @@ function ManagePartyController($scope, $routeParams, $window, $location, $modal,
     if (partyId) {
         $scope.changeActiveParty($routeParams.partyId);
 
-        partyManager.get(partyId)
+        partyRepository.get(partyId)
             .then(function (party) {
                 $scope.party = party;
             });
@@ -44,7 +44,7 @@ function ManagePartyController($scope, $routeParams, $window, $location, $modal,
     };
 
     $scope.saveChanges = function () {
-        partyManager.save($scope.party);
+        partyRepository.save($scope.party);
         $scope.updatePartyList();
         $scope.notifyInfo('Drużyna zapisana pomyślnie!', 'Wszystkie wprowadzone zmiany zostały zapisane.');
     };
@@ -128,7 +128,7 @@ function ManagePartyController($scope, $routeParams, $window, $location, $modal,
                 return false;
             }
 
-            partyManager.remove($scope.party)
+            partyRepository.remove($scope.party)
                 .then(function () {
                     $scope.updatePartyList();
                     $location.path('/');
@@ -162,4 +162,4 @@ function ManagePartyController($scope, $routeParams, $window, $location, $modal,
     });
 }
 
-ManagePartyController.$inject = ['$scope', '$routeParams', '$window', '$location', '$modal', 'partyManager', 'costCalculator', 'Character'];
+ManagePartyController.$inject = ['$scope', '$routeParams', '$window', '$location', '$modal', 'partyRepository', 'costCalculator', 'Character'];

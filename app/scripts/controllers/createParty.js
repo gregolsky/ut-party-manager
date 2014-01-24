@@ -1,5 +1,5 @@
 
-function CreatePartyController($scope, $location, Party, partyManager) {
+function CreatePartyController($scope, $location, Party, partyRepository) {
     'use strict';
     
     $scope.party = new Party('', null, 1000);
@@ -7,7 +7,7 @@ function CreatePartyController($scope, $location, Party, partyManager) {
     $scope.createParty = function () {
         try {
             $scope.party.members = [];
-            partyManager.save($scope.party)
+            partyRepository.save($scope.party)
                 .then(function (party) {
                     $scope.updatePartyList();
                     $location.path('/party/' + party.id);
@@ -19,4 +19,4 @@ function CreatePartyController($scope, $location, Party, partyManager) {
 
 };
 
-CreatePartyController.$inject = ['$scope', '$location', 'Party', 'partyManager'];
+CreatePartyController.$inject = ['$scope', '$location', 'Party', 'partyRepository'];
