@@ -29,6 +29,10 @@ angular.module('ut.core.services', ['ut.core.constants'])
                 if (member.profession) {
                     cost += lookups.professions[member.profession].cost + (professionRank === -1 ? 0 : professionRank) * 10;
                 }
+                
+                if (party.chief == member.id) {
+                    cost += Math.ceil(lookups.professions[member.profession].cost / 2)
+                }
 
                 if (member.equipment.length) {
                     
