@@ -10,6 +10,23 @@ function EditCharacterController($scope, $q, ItemType, usabilityDeterminator, av
         return $scope.character;
     };
     
+    $scope.getAvailableRaces = function () {
+        var party = $scope.getActiveParty();
+        var nature = _.find($scope.lists.natures, function (nature) {
+            return party.nature == nature.id; 
+        });
+        
+        var availableNatures = nature.getAvailableNatures();
+        
+        return _.filter($scope.lists.races, function (race) {
+            return _.some(race.natures, function (raceNature) {
+               return _.some(availableNatures, function (n) {
+                    return n == raceNature; 
+               });
+            });
+        });
+    };
+    
     $scope.isWeapon = function (item) {
         return item.isWeapon();
     };

@@ -6,6 +6,10 @@ angular.module('ut.core')
                 this.id = id;
                 this.name = name;
             };
+            
+            Nature.prototype.getAvailableNatures = function () {
+                return [ this.id ];  
+            };
 
             return Nature;
 }]);

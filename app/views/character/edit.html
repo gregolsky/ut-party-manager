@@ -37,7 +37,7 @@
                     <select 
                             name='race' 
                             ng-model='character.race' 
-                            ng-options="r.id as r.name for r in lists.races" 
+                            ng-options="r.id as r.name for r in getAvailableRaces()" 
                             ng-class="{ 'has-error': editCharacterForm.race.$invalid && editCharacterForm.race.$dirty }"
                             class='form-control' required >
                         <option value="">Wybierz rasę</option>
