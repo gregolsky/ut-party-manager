@@ -1,14 +1,14 @@
 angular.module('ut.core')
     .factory('MixedNature', [
    function () {
-            var MixedNature = function (id, name, availableNatures) {
+            var MixedNature = function (id, name, compositeNatures) {
                 this.id = id;
                 this.name = name;
-                this.availableNatures = availableNatures;
+                this.compositeNatures = compositeNatures;
             };
 
-            MixedNature.prototype.getAvailableNatures = function () {
-                return this.availableNatures;
+            MixedNature.prototype.getCompositeNatures = function () {
+                return this.compositeNatures;
             };
 
             return MixedNature;

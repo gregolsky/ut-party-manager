@@ -7,7 +7,7 @@ angular.module('ut.core')
                 this.name = name;
             };
             
-            Nature.prototype.getAvailableNatures = function () {
+            Nature.prototype.getCompositeNatures = function () {
                 return [ this.id ];  
             };
 

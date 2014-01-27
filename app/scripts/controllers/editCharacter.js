@@ -1,5 +1,5 @@
 
-function EditCharacterController($scope, $q, ItemType, usabilityDeterminator, avatars, cssHelper) {
+function EditCharacterController($scope, $q, ItemType, usabilityDeterminator, racesProvider, professionsProvider, avatars, cssHelper) {
     'use strict';
 
     $scope.character = $scope.context.character;
@@ -12,19 +12,12 @@ function EditCharacterController($scope, $q, ItemType, usabilityDeterminator, av
     
     $scope.getAvailableRaces = function () {
         var party = $scope.getActiveParty();
-        var nature = _.find($scope.lists.natures, function (nature) {
-            return party.nature == nature.id; 
-        });
-        
-        var availableNatures = nature.getAvailableNatures();
-        
-        return _.filter($scope.lists.races, function (race) {
-            return _.some(race.natures, function (raceNature) {
-               return _.some(availableNatures, function (n) {
-                    return n == raceNature; 
-               });
-            });
-        });
+        return racesProvider.getAvailableRaces(party);
+    };
+    
+    $scope.getAvailableProfessions = function () {
+        var party = $scope.getActiveParty();
+        return professionsProvider.getAvailableProfessions(party);
     };
     
     $scope.isWeapon = function (item) {
@@ -86,4 +79,4 @@ function EditCharacterController($scope, $q, ItemType, usabilityDeterminator, av
     });
 }
 
-EditCharacterController.$inject = ['$scope', '$q', 'ItemType', 'usabilityDeterminator', 'avatars', 'cssHelper'];
+EditCharacterController.$inject = ['$scope', '$q', 'ItemType', 'usabilityDeterminator', 'racesProvider', 'professionsProvider', 'avatars', 'cssHelper'];
