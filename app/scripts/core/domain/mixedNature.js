@@ -1,6 +1,5 @@
 angular.module('ut.core')
     .factory('MixedNature', [
-
    function () {
             var MixedNature = function (id, name, availableNatures) {
                 this.id = id;
