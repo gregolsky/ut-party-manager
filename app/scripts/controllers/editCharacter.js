@@ -1,25 +1,25 @@
-
 function EditCharacterController($scope, $q, ItemType, usabilityDeterminator, racesProvider, professionsProvider, avatars, cssHelper) {
     'use strict';
 
     $scope.character = $scope.context.character;
     $scope.chooseAvatarMode = false;
     $scope.ItemType = ItemType;
+    $scope.avatars = [];
 
     $scope.getCharacter = function () {
         return $scope.character;
     };
-    
+
     $scope.getAvailableRaces = function () {
         var party = $scope.getActiveParty();
         return racesProvider.getAvailableRaces(party);
     };
-    
+
     $scope.getAvailableProfessions = function () {
         var party = $scope.getActiveParty();
         return professionsProvider.getAvailableProfessions(party);
     };
-    
+
     $scope.isWeapon = function (item) {
         return item.isWeapon();
     };
@@ -31,28 +31,36 @@ function EditCharacterController($scope, $q, ItemType, usabilityDeterminator, ra
     $scope.isRangedWeapon = function (item) {
         return item.isRangedWeapon();
     };
-    
-    $scope.showAvailableAvatars = function () {
-        
-        var buildAv = function (a) {
+
+    var loadAvatars = function (onAvLoaded) {
+
+        var loadAv = function (a) {
             var q = $q.defer();
-            
+
             var img = new Image();
-            
+
             img.onload = function () {
-                q.resolve();
+                q.resolve(a);
             };
-            
-            img.src = cssHelper.getBackgroundImageUrl(a);
-            
-            return {
-              promise: q.promise,
-              clazz: a
-            };
+
+            img.src = cssHelper.getBackgroundImageUrl('.' + a);
+
+            return q.promise;
         };
         
-        $scope.avatars = _.map(avatars, buildAv);
-        
+        _.each(avatars, function (av) {
+            loadAv(av).then(onAvLoaded);
+        });
+    };
+
+    
+    
+    $scope.showAvailableAvatars = function () {
+
+        loadAvatars(function(av) {
+           $scope.avatars.push(av); 
+        });
+
         $scope.chooseAvatarMode = true;
     };
 
@@ -69,12 +77,12 @@ function EditCharacterController($scope, $q, ItemType, usabilityDeterminator, ra
             return usabilityDeterminator.itemCanBeUsedBy(item, character, $scope.getActiveParty());
         });
     };
-    
+
     $scope.$watch('character.profession', function (newValue, oldValue) {
         if (newValue == oldValue) {
             return;
         }
-        
+
         readdItemsToEquipmentIfEligible($scope.character);
     });
 }

@@ -1,7 +1,7 @@
 <div class='col-md-12 avatar-chooser'>
     <div class='row'>
-            <div class='col-md-2 card' ng-click="chooseAvatar(a.clazz)" ng-repeat='a in avatars | filter:a.promise.resolved:true'>
-                <div class='portrait' ng-class="a.clazz" />
+            <div class='col-md-2 card' ng-click="chooseAvatar(a)" ng-repeat='a in avatars | orderBy:a'>
+                <div class='portrait' ng-class="a" />
             </div>
     </div>
 </div>
