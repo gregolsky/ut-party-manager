@@ -7,9 +7,11 @@ angular.module('ut.directives')
             return {
                 restrict: 'A',
                 link: function (scope, element, attrs) {
-                    var target = document.querySelector(attrs.forwardClick);
-                    angular.element(target)
-                        .triggerHandler('click');
+                    var targetElementSelector = attrs.forwardClick;
+                    var target = document.querySelector(targetElementSelector);
+                    element.bind('click', function (){
+                        target.click();
+                    });
                 }
             };
    }

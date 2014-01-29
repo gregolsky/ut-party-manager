@@ -7,6 +7,7 @@ angular.module('utPartyManagerApp', [
   'ngSanitize',
   'ngAnimate',
   'ui.bootstrap',
+  'angularFileUpload',
   'ut.core',
   'ut.core.constants',
   'ut.core.services',
