@@ -35,10 +35,19 @@ angular.module('ut.core')
                 return true;
 
             });
+            
+            var canHaveNoMoreThan2Weapons = new UsabilityRule(function (characterInfo, item) {
+                var weaponsCount = _.filter(characterInfo.equipment, function (eqItem) {
+                    return eqItem.isWeapon();
+                }).length;
+                
+                return item.isWeapon() && weaponsCount < 2;
+            });
 
             return [
                 heavyArmorCanBeUsedByProfessionsWithCertainCost,
                 canBeUsedByCertainRaces,
+                canHaveNoMoreThan2Weapons
                 ];
 
         }]);
