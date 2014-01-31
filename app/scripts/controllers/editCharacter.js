@@ -53,8 +53,6 @@ function EditCharacterController($scope, $q, ItemType, usabilityDeterminator, ra
         });
     };
 
-    
-    
     $scope.showAvailableAvatars = function () {
 
         loadAvatars(function(av) {
@@ -74,7 +72,7 @@ function EditCharacterController($scope, $q, ItemType, usabilityDeterminator, ra
             return;
         }
 
-        character.dropUnusableItems(usabilityDeterminator, $scope.getActiveParty());
+        $scope.character.dropUnusableItems(usabilityDeterminator, $scope.getActiveParty());
     };
 
     $scope.$watch('character.profession', dropUnusableItemsIfValueChanged);
