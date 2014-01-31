@@ -30,8 +30,28 @@ angular.module('ut.core')
                     return itemsAlike.length < 2;
                 });
             
+            var partyCanHaveOnlyOneInstanceOf = function (specialItemId) {
+                return new UsabilityRule(function (party, item) {
+                    if (item.id != specialItemId) {
+                        return true;
+                    }
+                    
+                    return _(party.members)
+                            .map(function(character) { 
+                                return character.equipment;  
+                            })
+                            .flatten()
+                            .filter(function (itemId) {
+                                return specialItemId == itemId;
+                            })
+                            .value().length == 0;
+                });
+            }
+            
             return [
-                partyCanHaveOnlyTwoInstancesOfSameEquipmentItem   
+                partyCanHaveOnlyTwoInstancesOfSameEquipmentItem,
+                partyCanHaveOnlyOneInstanceOf(60),
+                partyCanHaveOnlyOneInstanceOf(61)
             ];
 
         }]);
