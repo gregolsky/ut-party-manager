@@ -37,11 +37,16 @@ angular.module('ut.core')
             });
             
             var canHaveNoMoreThan2Weapons = new UsabilityRule(function (characterInfo, item) {
+
+                if (!item.isWeapon()) {
+                    return true;
+                }
+                
                 var weaponsCount = _.filter(characterInfo.equipment, function (eqItem) {
                     return eqItem.isWeapon();
                 }).length;
                 
-                return item.isWeapon() && weaponsCount < 2;
+                return weaponsCount < 2;
             });
 
             return [
