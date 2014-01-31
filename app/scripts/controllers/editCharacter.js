@@ -68,23 +68,17 @@ function EditCharacterController($scope, $q, ItemType, usabilityDeterminator, ra
         $scope.character.portrait = imgPath;
         $scope.chooseAvatarMode = false;
     };
-
-    var readdItemsToEquipmentIfEligible = function (character) {
-        var oldEq = character.equipment;
-        character.equipment = [];
-        character.equipment = _.filter(oldEq, function (eqItemId) {
-            var item = $scope.lookups.items[eqItemId];
-            return usabilityDeterminator.itemCanBeUsedBy(item, character, $scope.getActiveParty());
-        });
-    };
-
-    $scope.$watch('character.profession', function (newValue, oldValue) {
+    
+    var dropUnusableItemsIfValueChanged = function (newValue, oldValue) {
         if (newValue == oldValue) {
             return;
         }
 
-        readdItemsToEquipmentIfEligible($scope.character);
-    });
+        character.dropUnusableItems(usabilityDeterminator, $scope.getActiveParty());
+    };
+
+    $scope.$watch('character.profession', dropUnusableItemsIfValueChanged);
+    $scope.$watch('character.race', dropUnusableItemsIfValueChanged);
 }
 
 EditCharacterController.$inject = ['$scope', '$q', 'ItemType', 'usabilityDeterminator', 'racesProvider', 'professionsProvider', 'avatars', 'cssHelper'];

@@ -1,4 +1,4 @@
-function ManagePartyController($scope, $routeParams, $window, $location, $modal, partyRepository, costCalculator, Character) {
+function ManagePartyController($scope, $routeParams, $window, $location, $modal, partyRepository, costCalculator, usabilityDeterminator, Character) {
     'use strict';
 
     var partyId = $routeParams.partyId;
@@ -59,11 +59,13 @@ function ManagePartyController($scope, $routeParams, $window, $location, $modal,
 
         if ($scope.state.chiefSelection) {
             $scope.party.setChief(character);
+            character.dropUnusableItems(usabilityDeterminator, $scope.party);
             $scope.state.chiefSelection = false;
         }
 
         if ($scope.state.mageSelection) {
             $scope.party.setMage(character);
+            character.dropUnusableItems(usabilityDeterminator, $scope.party);
             $scope.state.mageSelection = false;
         }
         
@@ -162,4 +164,4 @@ function ManagePartyController($scope, $routeParams, $window, $location, $modal,
     });
 }
 
-ManagePartyController.$inject = ['$scope', '$routeParams', '$window', '$location', '$modal', 'partyRepository', 'costCalculator', 'Character'];
+ManagePartyController.$inject = ['$scope', '$routeParams', '$window', '$location', '$modal', 'partyRepository', 'costCalculator', 'usabilityDeterminator', 'Character'];

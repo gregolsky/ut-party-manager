@@ -14,8 +14,6 @@ angular.module('ut.core')
                 this.portrait = null;
             };
 
-
-
             Character.prototype.validate = function () {
                 var result = [];
 
@@ -52,6 +50,20 @@ angular.module('ut.core')
                 return _.some(this.getItems(), function (item) {
                     return item.isWeapon() || item.isRangedWeapon();
                 });
+            };
+
+            Character.prototype.dropUnusableItems = function (usabilityDeterminator, party) {
+                var self = this;
+                var oldEq = self.getItems();
+                self.equipment = [];
+                self.equipment = _(oldEq)
+                    .filter(function (eqItem) {
+                        return usabilityDeterminator.itemCanBeUsedBy(eqItem, self, party);
+                    })
+                    .map(function (item) {
+                        return item.id; 
+                    })
+                    .value();
             };
 
             return Character;

@@ -7,7 +7,9 @@ angular.module('ut.core.services')
                 var characterInfo = {
                     profession: professions[character.profession],
                     race: races[character.race],
-                    equipment: character.getItems()
+                    equipment: character.getItems(),
+                    isChief: party.chief == character.id,
+                    isMage: party.mage == character.id
                 };
                 
                 var usabilityDeterminationContext = {
