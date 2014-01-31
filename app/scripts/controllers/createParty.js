@@ -4,7 +4,7 @@ function CreatePartyController($scope, $location, Party, partyRepository) {
     $scope.party = new Party('', null, 1000);
 
     $scope.createParty = function () {
-        $scope.saveParty(party);
+        $scope.saveParty($scope.party);
     };
 
     $scope.saveParty = function (party) {
