@@ -1,4 +1,14 @@
-function ManagePartyController($scope, $routeParams, $window, $location, $modal, partyRepository, costCalculator, usabilityDeterminator, Character) {
+function ManagePartyController(
+$scope, 
+ $routeParams, 
+ $window, 
+ $location, 
+ $modal, 
+ partyRepository, 
+ costCalculator, 
+ usabilityDeterminator, 
+ partyValidator,
+ Character) {
     'use strict';
 
     var partyId = $routeParams.partyId;
@@ -150,7 +160,7 @@ function ManagePartyController($scope, $routeParams, $window, $location, $modal,
             return true;
         }
 
-        return $scope.party.isValid(costCalculator);
+        return $scope.party.isValid(partyValidator);
     };
     
     $scope.getActiveParty = function () {
@@ -164,4 +174,15 @@ function ManagePartyController($scope, $routeParams, $window, $location, $modal,
     });
 }
 
-ManagePartyController.$inject = ['$scope', '$routeParams', '$window', '$location', '$modal', 'partyRepository', 'costCalculator', 'usabilityDeterminator', 'Character'];
+ManagePartyController.$inject = [
+    '$scope', 
+    '$routeParams', 
+    '$window', 
+    '$location', 
+    '$modal', 
+    'partyRepository', 
+    'costCalculator', 
+    'usabilityDeterminator', 
+    'partyValidator',
+    'Character'
+];

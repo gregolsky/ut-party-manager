@@ -74,12 +74,20 @@ window.angular.module('ut.core')
             this.mage = member.id;
         };
         
-        Party.prototype.isChief = function (member) { return this.chief == member.id; };
+        Party.prototype.isChief = function (member) { 
+            return this.chief == member.id; 
+        };
         
-        Party.prototype.isMage = function (member) { return this.mage == member.id; };
+        Party.prototype.isMage = function (member) { 
+            return this.mage == member.id; 
+        };
         
-        Party.prototype.isValid = function (costCalculator) {
-            return costCalculator.calculatePartyCost(this) < this.points;
+        Party.prototype.validate = function (partyValidator) {
+              return partyValidator.validate(this);
+        };
+        
+        Party.prototype.isValid = function (partyValidator) {
+            return this.validate(partyValidator).length == 0;
         };
         
         return Party;
