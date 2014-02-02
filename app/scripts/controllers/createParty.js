@@ -15,7 +15,7 @@ function CreatePartyController($scope, $location, Party, partyRepository) {
                     $location.path('/party/' + party.id);
                 });
         } catch (error) {
-            $location.path('/error');
+            $scope.error();
         }
     }
 

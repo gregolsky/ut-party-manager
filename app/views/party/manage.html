@@ -17,9 +17,9 @@
     </div>
 
     <div ng-switch='state.action'>
-        <div class='characters-list view' ng-switch-when='list_characters'>
+        <div class='characters-list view' ng-switch-when='list_characters' ng-controller="ListCharactersController">
 
-            <div ng-include="'views/party/manage-menu-list.html'"></div>
+            <div ng-include="'views/party/manage-menu-list.html'" ></div>
 
             <div class='row'>
                 <div class='eth' ng-include="'views/character/action.html'" ng-repeat="member in party.members"></div>

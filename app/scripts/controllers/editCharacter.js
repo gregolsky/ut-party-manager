@@ -11,13 +11,11 @@ function EditCharacterController($scope, $q, ItemType, usabilityDeterminator, ra
     };
 
     $scope.getAvailableRaces = function () {
-        var party = $scope.getActiveParty();
-        return racesProvider.getAvailableRaces(party);
+        return racesProvider.getAvailableRaces($scope.party);
     };
 
     $scope.getAvailableProfessions = function () {
-        var party = $scope.getActiveParty();
-        return professionsProvider.getAvailableProfessions(party);
+        return professionsProvider.getAvailableProfessions($scope.party);
     };
 
     $scope.isWeapon = function (item) {
@@ -72,7 +70,7 @@ function EditCharacterController($scope, $q, ItemType, usabilityDeterminator, ra
             return;
         }
 
-        $scope.character.dropUnusableItems(usabilityDeterminator, $scope.getActiveParty());
+        $scope.character.dropUnusableItems(usabilityDeterminator, $scope.party);
     };
 
     $scope.$watch('character.profession', dropUnusableItemsIfValueChanged);

@@ -9,7 +9,11 @@
                 <button ng-hide="isInSpecialMode() || !isPartyValid()" class='btn btn-primary' ng-click='saveChanges()'>
                     <i class='fa fa-save'></i>&nbsp; Zapisz zmiany
                 </button>
-                <button ng-hide="isInSpecialMode() || !party.canAddMember()" class='btn btn-default' ng-click='addCharacter()'>
+                <button 
+                        ng-hide="isInSpecialMode() || !party.canAddMember()" 
+                        class='btn btn-default' 
+                        ng-controller="AddCharacterController" 
+                        ng-click='addCharacter()' >
                     <i class='fa fa-plus'></i>&nbsp; Dodaj postać
                 </button>
                 <button ng-show="state.deleteMode" class='btn btn-default' ng-click='toggleDeleteMode(false)'>
@@ -46,7 +50,7 @@
                         </a>
                     </li>                    
                     <li ng-hide='isInSpecialMode()' class="divider"></li>
-                    <li>
+                    <li ng-controller="PrintPartyController" >
                         <a ng-click="printParty()">
                             <i class='fa fa-print'></i>&nbsp; Drukuj kartę
                         </a>
@@ -57,7 +61,7 @@
                         </a>
                     </li>                    
                     <li class="divider"></li>
-                    <li>
+                    <li ng-controller="DestroyPartyController" >
                         <a ng-click="destroyParty()">
                             <i class='fa fa-trash-o'></i>&nbsp; Zniszcz drużynę
                         </a>

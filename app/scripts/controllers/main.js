@@ -40,6 +40,10 @@ function MainController($scope, $location, $routeParams, lookups, lists, partyRe
     $scope.notifyInfo = function (title, text) {
         notificationService.notifySuccess(title, text);
     };
+    
+    $scope.error = function () {
+        $location.path('/error');
+    };
 
     $scope.$on(PARTY_LIST_CHANGED, function (e, args) {
         loadParties();
