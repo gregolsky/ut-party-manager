@@ -1,5 +1,5 @@
 
-angular.module('ut.services')
+angular.module('ut.core.services')
     .factory('professionsProvider', [
         'professions',
         function (professions) {

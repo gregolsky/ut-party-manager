@@ -1,4 +1,4 @@
-angular.module('ut.services')
+angular.module('ut.core.services')
     .factory('racesProvider', [
         'races',
         'natures',

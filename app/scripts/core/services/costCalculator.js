@@ -1,9 +1,10 @@
 /*jslint browser: true */
 
-angular.module('ut.core.services', ['ut.core.constants'])
+angular.module('ut.core.services')
     .factory('costCalculator', [
         'lookups',
-        function (lookups) {
+        'professionCostProvider',
+        function (lookups, professionCostProvider) {
             "use strict";
             
             var CostCalculator = function () { };
@@ -12,7 +13,8 @@ angular.module('ut.core.services', ['ut.core.constants'])
                 var self = this,
                     sameProfMembers,
                     professionRank,
-                    cost = 0;
+                    cost = 0,
+                    professionCost = 0;
 
                 sameProfMembers = _(party.members)
                     .filter(function (x) {
@@ -25,13 +27,14 @@ angular.module('ut.core.services', ['ut.core.constants'])
                 if (member.race) {
                     cost += lookups.races[member.race].cost;
                 }
-
-                if (member.profession) {
-                    cost += lookups.professions[member.profession].cost + (professionRank === -1 ? 0 : professionRank) * 10;
+                
+                if (member.profession && member.race) {
+                    professionCost = professionCostProvider.getProfessionCostByRace(member.profession, member.race);
+                    cost += professionCost + (professionRank === -1 ? 0 : professionRank) * 10;
                 }
                 
                 if (party.chief == member.id) {
-                    cost += Math.ceil(lookups.professions[member.profession].cost / 2)
+                    cost += Math.ceil(professionCost / 2)
                 }
 
                 if (member.equipment.length) {
