@@ -6,7 +6,7 @@ angular.module('ut.core.services')
             var getProfessionCostByRace = function (professionId, raceId) {
                 var cost = professionCosts[professionId];  
                 if (cost instanceof Object) {
-                    return costs[raceId];   
+                    return cost[raceId] || cost.default;   
                 }
                 
                 return cost;

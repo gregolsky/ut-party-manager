@@ -2,10 +2,9 @@ angular.module('ut.core')
     .factory('Profession', [
         function () {
 
-                var Profession = function (id, name, cost, talent) {
+                var Profession = function (id, name, talent) {
                     this.id = id;
                     this.name = name;
-                    this.cost = cost;
                     this.talent = talent;
                 };
             
