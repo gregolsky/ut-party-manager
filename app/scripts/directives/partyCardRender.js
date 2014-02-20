@@ -118,7 +118,7 @@ angular.module('ut.directives')
                         };
 
                         var renderCharacterPortrait = function () {
-                            var portraitSrc = css.getBackgroundImageUrl('.' + character.portrait);
+                            var portraitSrc = css.getBackgroundImageUrl('.' + (character.portrait || 'default'));
                             loadImage(portraitSrc)
                                 .then(function (img) {
                                     renderImage(img, adjustToCard(CHARACTER_FIELDS.portraitStart), adjustToCard(CHARACTER_FIELDS.portraitEnd));

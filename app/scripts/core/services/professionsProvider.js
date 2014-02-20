@@ -11,14 +11,24 @@ angular.module('ut.core.services')
                 return character.profession == BARD_ID;  
             };
             
-            var getAvailableProfessions = function (party) {
+            var getAvailableProfessions = function (character, party) {
+                var filtered = _(professions);
+                
                 if (_.some(party.members, isBard)) {
-                    return _.filter(professions, function (profession) {
+                    filtered = filtered.filter(function (profession) {
                        return profession.id !== BARD_ID; 
                     });
                 }
                 
-                return professions;
+                filtered = filtered.filter(function (profession) {
+                    return profession.raceFilter(character.race); 
+                });
+                
+                filtered = filtered.filter(function (profession) {
+                    return profession.natureFilter(party.nature); 
+                });
+                
+                return filtered.value();
             };
             
             return {

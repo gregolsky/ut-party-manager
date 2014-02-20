@@ -15,7 +15,7 @@ function EditCharacterController($scope, $q, ItemType, usabilityDeterminator, ra
     };
 
     $scope.getAvailableProfessions = function () {
-        return professionsProvider.getAvailableProfessions($scope.party);
+        return professionsProvider.getAvailableProfessions($scope.character, $scope.party);
     };
 
     $scope.isWeapon = function (item) {
@@ -45,7 +45,7 @@ function EditCharacterController($scope, $q, ItemType, usabilityDeterminator, ra
 
             return q.promise;
         };
-        
+
         _.each(avatars, function (av) {
             loadAv(av).then(onAvLoaded);
         });
@@ -53,8 +53,8 @@ function EditCharacterController($scope, $q, ItemType, usabilityDeterminator, ra
 
     $scope.showAvailableAvatars = function () {
 
-        loadAvatars(function(av) {
-           $scope.avatars.push(av); 
+        loadAvatars(function (av) {
+            $scope.avatars.push(av);
         });
 
         $scope.chooseAvatarMode = true;
@@ -64,7 +64,7 @@ function EditCharacterController($scope, $q, ItemType, usabilityDeterminator, ra
         $scope.character.portrait = imgPath;
         $scope.chooseAvatarMode = false;
     };
-    
+
     var dropUnusableItemsIfValueChanged = function (newValue, oldValue) {
         if (newValue == oldValue) {
             return;
@@ -73,8 +73,25 @@ function EditCharacterController($scope, $q, ItemType, usabilityDeterminator, ra
         $scope.character.dropUnusableItems(usabilityDeterminator, $scope.party);
     };
 
+    var resetProfessionIfNotAvailable = function (newValue, oldValue) {
+        if (newValue == oldValue) {
+            return;
+        }
+
+        var availableProfessions = $scope.getAvailableProfessions();
+
+        if (!_.some(availableProfessions, function (p) {
+            return p.id == $scope.character.profession;
+        })) {
+            $scope.character.profession = null;
+        }
+    };
+
     $scope.$watch('character.profession', dropUnusableItemsIfValueChanged);
-    $scope.$watch('character.race', dropUnusableItemsIfValueChanged);
+    $scope.$watch('character.race', function (newValue, oldValue) {
+        dropUnusableItemsIfValueChanged(newValue, oldValue);
+        resetProfessionIfNotAvailable(newValue, oldValue);
+    });
 }
 
 EditCharacterController.$inject = ['$scope', '$q', 'ItemType', 'usabilityDeterminator', 'racesProvider', 'professionsProvider', 'avatars', 'cssHelper'];

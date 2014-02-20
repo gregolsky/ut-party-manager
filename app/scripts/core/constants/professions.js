@@ -2,17 +2,44 @@ angular.module('ut.core')
     .factory('professions', [
         'Profession',
         function (Profession) {
+            
+            var isOneOf = function () {
+                var options = arguments;
+                return function (item) {
+                    if (!item) {
+                        return true;    
+                    }
+                    
+                    return _.some(options, function (opt) {
+                       return opt == item; 
+                    });
+                };
+            };
+            
+            var isNotOneOf = function () {
+                var options = arguments;
+                return function (item) {
+                    if (!item) {
+                        return true;    
+                    }
+                    
+                    return _.every(options, function (opt) {
+                       return opt != item; 
+                    });
+                };
+            };            
+            
             return [
                 new Profession(1, 'Akolita', 'Posługa'),
                 new Profession(2, 'Alchemik', 'Eliksiry'),
                 new Profession(3, 'Banita', 'Przebiegłość'),
-                new Profession(4, 'Barbarzyńca', 'Krzepa'),
+                new Profession(4, 'Barbarzyńca', 'Krzepa', null, isNotOneOf(4)),
                 new Profession(5, 'Bard', 'Poetyckie kroniki'),
-                new Profession(6, 'Berserker', 'Szał'),
-                new Profession(7, 'Czarny Rycerz', 'Aura Śmierci'),
+                new Profession(6, 'Berserker', 'Szał', null, isNotOneOf(4)),
+                new Profession(7, 'Czarny Rycerz', 'Aura Śmierci', isOneOf(7, 8, 9, 10, 11, 16), isOneOf(3)),
                 new Profession(8, 'Czarodziej', 'Rzucanie czarów'),
                 new Profession(9, 'Czempion Królewski', 'Wyspecjalizowanie'),
-                new Profession(10, 'Druid', 'Magiczny Menhir'),
+                new Profession(10, 'Druid', 'Magiczny Menhir', null, isNotOneOf(3)),
                 new Profession(11, 'Fałszywy Prorok', 'Przeklęte Wizje'),
                 new Profession(12, 'Giermek', 'Odwrócenie uwagi'),
                 new Profession(13, 'Gladiator', 'Słaby punkt'),

@@ -2,11 +2,17 @@ angular.module('ut.core')
     .factory('Profession', [
         function () {
 
-                var Profession = function (id, name, talent) {
-                    this.id = id;
-                    this.name = name;
-                    this.talent = talent;
-                };
-            
+            var trivialFilter = function () {
+                return true;
+            };
+
+            var Profession = function (id, name, talent, raceFilter, natureFilter) {
+                this.id = id;
+                this.name = name;
+                this.talent = talent;
+                this.raceFilter = raceFilter || trivialFilter;
+                this.natureFilter = natureFilter || trivialFilter;
+            };
+
             return Profession;
         }]);
