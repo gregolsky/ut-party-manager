@@ -28,6 +28,10 @@ angular.module('ut.core')
                 Item.prototype.isArmor = function () {
                     return this.type == ItemType.Helmet || this.type == ItemType.Shield || this.type == ItemType.Greaves || this.type == ItemType.Armor;
                 };
+            
+                Item.prototype.isEquipment = function () {
+                    return this.type == ItemType.Equipment;
+                };
 
                 Item.prototype.isA = function (itemType) {
                     return this.type == itemType;

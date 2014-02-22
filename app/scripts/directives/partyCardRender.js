@@ -43,7 +43,8 @@ angular.module('ut.directives')
                 equipment: buildCoords(437, 225),
                 psychology: buildCoords(592, 335),
                 portraitStart: buildCoords(57, 10),
-                portraitEnd: buildCoords(258, 248)
+                portraitEnd: buildCoords(258, 248),
+                points: buildCoords(220, 220),
             };
 
             var PARTY_FIELDS = {
@@ -65,6 +66,32 @@ angular.module('ut.directives')
 
                 return q.promise;
             };
+
+            CanvasRenderingContext2D.prototype.roundRect = function (x, y, width, height, radius, fill, stroke) {
+                if (typeof stroke == "undefined") {
+                    stroke = true;
+                }
+                if (typeof radius === "undefined") {
+                    radius = 5;
+                }
+                this.beginPath();
+                this.moveTo(x + radius, y);
+                this.lineTo(x + width - radius, y);
+                this.quadraticCurveTo(x + width, y, x + width, y + radius);
+                this.lineTo(x + width, y + height - radius);
+                this.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+                this.lineTo(x + radius, y + height);
+                this.quadraticCurveTo(x, y + height, x, y + height - radius);
+                this.lineTo(x, y + radius);
+                this.quadraticCurveTo(x, y, x + radius, y);
+                this.closePath();
+                if (stroke) {
+                    this.stroke();
+                }
+                if (fill) {
+                    this.fill();
+                }
+            }
 
             var cardImageLoading = loadImage(css.getBackgroundImageUrl(CARD_SELECTOR));
 
@@ -168,12 +195,17 @@ angular.module('ut.directives')
                         var armor = describeFilteredEq(function (x) {
                             return x.isArmor();
                         });
+                        
+                        var other = describeFilteredEq(function (x) {
+                            return x.isEquipment();
+                        });
 
                         renderCharacterText(weapons, CHARACTER_FIELDS.weapon);
                         renderCharacterText(armor, CHARACTER_FIELDS.armor);
-                        renderCharacterText("?", CHARACTER_FIELDS.equipment);
+                        renderCharacterText(other, CHARACTER_FIELDS.equipment);
                         renderCharacterText("?", CHARACTER_FIELDS.psychology);
-                        renderCharacterPortrait();
+                        
+                        renderCharacterPortrait();                        
                     };
 
                     _.each(party.members, function (e, i) {
