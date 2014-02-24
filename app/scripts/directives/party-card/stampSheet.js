@@ -17,13 +17,39 @@ angular.module('ut.directives')
                     var self = this;
 
                     self.canvas = $element.find('canvas');
+                    self.paintQueue = [];
                     
-                    self.getContext = function () {
-                        return self.canvas[0].getContext('2d');
+                    var paint = function () {
+                        var canvas = self.canvas[0];
+                        canvas.width = canvas.width;
+                        var context = canvas.getContext('2d');
+                        
+                        _.forEach(self.paintQueue, function (painter) {
+                            painter(context);
+                        });
                     };
                     
-                    self.canvas.attr('width', $scope.width);
-                    self.canvas.attr('height', $scope.height);
+                    self.addToQueue = function (painter) {
+                        self.paintQueue.push(painter);
+                    };
+                    
+                    $scope.$watch('width', function (old, nu) {
+                        if (old == nu) {
+                            return;    
+                        }
+                        
+                        self.canvas.attr('width', $scope.width);
+                        paint();
+                    });
+                    
+                    $scope.$watch('height', function (old, nu) {
+                        if (old == nu) {
+                            return;    
+                        }
+                        
+                        self.canvas.attr('height', $scope.height);
+                        paint();
+                    });                    
                 }
             };
 

@@ -31,5 +31,9 @@
         </div>
     </div>
     <div party-card-render></div>
-    <stamp-sheet width="10" height="20" ></stamp-sheet>
+    <div ng-controller="CardRenderingController">
+        <stamp-sheet width="partyCardImage.width" height="partyCardImage.height" >
+            <image-stamp src="partyCardImage.src" x="0" y="0" />
+        </stamp-sheet>
+    </div>
 </div>

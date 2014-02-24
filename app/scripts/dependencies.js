@@ -9,7 +9,8 @@ angular.module('ut.core.constants', ['ut.core']);
 angular.module('ut.core.services', ['ut.core.constants']);
 
 angular.module('ut.helpers', []);
-angular.module('ut.directives', ['ut.helpers']);
+angular.module('ut.utils', []);
+angular.module('ut.directives', ['ut.utils']);
 
 angular.module('ut.filters', []);
 
