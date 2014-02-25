@@ -1,7 +1,7 @@
 angular.module('ut.directives')
     .directive('stampSheet', [
-
-   function () {
+    '$q',
+   function ($q) {
             'use strict';
 
             var canvasMap = {
@@ -13,43 +13,87 @@ angular.module('ut.directives')
                     height: '=height'
                 },
                 controller: function ($scope, $element, $attrs, $transclude) {
-                    
+
                     var self = this;
 
                     self.canvas = $element.find('canvas');
                     self.paintQueue = [];
-                    
-                    var paint = function () {
-                        var canvas = self.canvas[0];
-                        canvas.width = canvas.width;
-                        var context = canvas.getContext('2d');
+                    self.paintRequest = null;
+
+                    var paintOnCanvas = function (canvas, paintQueue) {
                         
-                        _.forEach(self.paintQueue, function (painter) {
-                            painter(context);
+                        var q = $q.defer();
+                        
+                        canvas.width = canvas.width;
+
+                        if (paintQueue.length == 0) {
+                            return;
+                        }
+
+                        var context = canvas.getContext('2d');
+
+                        var useNextPainter = function (paintQueue, index) {
+                            
+                            var painterDeferred = $q.defer();
+                            
+                            if (index == paintQueue.length) {
+                                return;
+                            }
+
+                            var painter = paintQueue[index];
+
+                            painter(context)
+                                .then(function () {
+                                    return useNextPainter(paintQueue, index + 1);
+                                })
+                                .then(function () {
+                                    painterDeferred.resolve();
+                                });
+                            
+                            return painterDeferred.promise;
+                        }
+
+                        useNextPainter(paintQueue, 0)
+                            .then(function () {
+                                q.resolve();  
+                            });
+                        
+                        return q.promise;
+                    };
+
+                    self.paint = function () {
+
+                        if (self.paintRequest == null) {
+                            self.paintRequest = paintOnCanvas(self.canvas[0], self.paintQueue);
+                            return;
+                        }
+
+                        self.paintRequest.then(function () {
+                            return paintOnCanvas(self.canvas[0], self.paintQueue);
                         });
                     };
-                    
+
                     self.addToQueue = function (painter) {
-                        self.paintQueue.push(painter);
+                        self.paintQueue.splice(0, 0, painter);
                     };
-                    
+
                     $scope.$watch('width', function (old, nu) {
                         if (old == nu) {
-                            return;    
+                            return;
                         }
-                        
+
                         self.canvas.attr('width', $scope.width);
-                        paint();
+                        self.paint();
                     });
-                    
+
                     $scope.$watch('height', function (old, nu) {
                         if (old == nu) {
-                            return;    
+                            return;
                         }
-                        
+
                         self.canvas.attr('height', $scope.height);
-                        paint();
-                    });                    
+                        self.paint();
+                    });
                 }
             };
 

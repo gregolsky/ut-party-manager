@@ -6,6 +6,7 @@ angular.module('ut.directives')
 
             var imageStamp = {
                 restrict: 'E',
+                priority: 100,
                 require: '^stampSheet',
                 scope: {
                     src: '=src',
@@ -27,8 +28,12 @@ angular.module('ut.directives')
                     };
 
                     stampSheet.addToQueue(function (context) {
-                        imageLoaded($scope.src)
+                        return imageLoaded($scope.src)
                             .then(drawOn(context));
+                    });
+                    
+                    $scope.$watch('src', function () {
+                        stampSheet.paint();
                     });
                 }
             };
