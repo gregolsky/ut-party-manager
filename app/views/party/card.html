@@ -1,0 +1,8 @@
+    <div ng-controller="CardRenderingController">
+        <stamp-sheet width="partyCardImage.width" height="partyCardImage.height" >
+            <image-stamp src="partyCardImage.src" x="0" y="0" />
+            <text-stamp text="party.name" coords="partyFields.name" />
+            <text-stamp text="party.points" coords="partyFields.points" />
+            <text-stamp text="lookups.natures[party.nature].name" coords="partyFields.nature" />
+        </stamp-sheet>
+    </div>
