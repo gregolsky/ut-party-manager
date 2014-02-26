@@ -42,12 +42,13 @@ angular.module('ut.core')
             'use strict';
             return builder(lists.natures);
     }])
-    .factory('lookups', ['racesLookup', 'professionsLookup', 'itemsLookup',
-                     function (races, professions, items) {
+    .factory('lookups', ['racesLookup', 'professionsLookup', 'itemsLookup', 'naturesLookup',
+                     function (races, professions, items, natures) {
             'use strict';
             return {
                 'races': races,
                 'professions': professions,
-                'items': items
+                'items': items,
+                'natures': natures
             };
 }]);

@@ -12,6 +12,7 @@ angular.module('ut.directives')
                     src: '=src',
                     x: '=x',
                     y: '=y',
+                    coords: '=coords',
                     width: '=width',
                     height: '=height'
                 },
@@ -19,10 +20,11 @@ angular.module('ut.directives')
 
                     var drawOn = function (context) {
                         return function (image) {
+                            var coords = $scope.coords || { x: $scope.x, y: $scope.y };
                             if ($scope.width && $scope.height) {
-                                context.drawImage(image, $scope.x, $scope.y, $scope.width, $scope.height);
+                                context.drawImage(image, coords.x, coords.y, $scope.width, $scope.height);
                             } else {
-                                context.drawImage(image, $scope.x, $scope.y, image.width, image.height);
+                                context.drawImage(image, coords.x, coords.y, image.width, image.height);
                             }
                         };
                     };

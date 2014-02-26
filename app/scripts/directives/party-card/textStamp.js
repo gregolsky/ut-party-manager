@@ -12,14 +12,17 @@ angular.module('ut.directives')
                     text: '=text',
                     x: '=x',
                     y: '=y',
-                    fontSize: '=fontSize'
+                    fontSize: '=fontSize',
+                    coords: '=coords'
                 },
                 link: function ($scope, $element, $attrs, stampSheet) {
 
                     var draw = function (context) {
                         var q = $q.defer();
+                        var coords = $scope.coords || { x: $scope.x, y: $scope.y };
+                        
                         context.font = ($scope.fontSize || 18) + "px Georgia";
-                        context.fillText($scope.text, $scope.x, $scope.y);
+                        context.fillText($scope.text, coords.x, coords.y);
                         q.resolve();
                         return q.promise;
                     };

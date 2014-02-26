@@ -63,6 +63,10 @@ angular.module('ut.directives')
 
                     self.paint = function () {
 
+                        if (!$scope.width || !$scope.height) {
+                            return;   
+                        }
+                        
                         if (self.paintRequest == null) {
                             self.paintRequest = paintOnCanvas(self.canvas[0], self.paintQueue);
                             return;
