@@ -14,7 +14,9 @@ angular.module('ut.directives')
                     y: '=y',
                     coords: '=coords',
                     width: '=width',
-                    height: '=height'
+                    height: '=height',
+                    start: '=start',
+                    end: '=end'
                 },
                 link: function ($scope, $element, $attrs, stampSheet) {
 
@@ -23,6 +25,10 @@ angular.module('ut.directives')
                             var coords = $scope.coords || { x: $scope.x, y: $scope.y };
                             if ($scope.width && $scope.height) {
                                 context.drawImage(image, coords.x, coords.y, $scope.width, $scope.height);
+                            } else if ($scope.start && $scope.end) {
+                                var start = $scope.start,
+                                    end = $scope.end;
+                                context.drawImage(image, 0, 0, image.width, image.height, start.x, start.y, end.x - start.x, end.y - start.y);
                             } else {
                                 context.drawImage(image, coords.x, coords.y, image.width, image.height);
                             }

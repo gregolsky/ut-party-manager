@@ -78,7 +78,8 @@ angular.module('ut.directives')
                     };
 
                     self.addToQueue = function (painter) {
-                        self.paintQueue.splice(0, 0, painter);
+                        //self.paintQueue.splice(0, 0, painter);
+                        self.paintQueue.push(painter);
                     };
 
                     $scope.$watch('width', function (old, nu) {

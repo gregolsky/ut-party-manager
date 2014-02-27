@@ -1,8 +1,34 @@
-    <div ng-controller="CardRenderingController">
-        <stamp-sheet width="partyCardImage.width" height="partyCardImage.height" >
-            <image-stamp src="partyCardImage.src" x="0" y="0" />
-            <text-stamp text="party.name" coords="partyFields.name" />
-            <text-stamp text="party.points" coords="partyFields.points" />
-            <text-stamp text="lookups.natures[party.nature].name" coords="partyFields.nature" />
-        </stamp-sheet>
-    </div>
+<div ng-controller="CardRenderingController">
+    <stamp-sheet width="partyCardImage.width" height="partyCardImage.height">
+        <image-stamp src="partyCardImage.src" x="0" y="0"></image-stamp>
+        <text-stamp text="party.name" coords="partyFields.name"></text-stamp>
+        <text-stamp text="party.points" coords="partyFields.points"></text-stamp>
+        <text-stamp text="lookups.natures[party.nature].name" coords="partyFields.nature"></text-stamp>
+
+        <div ng-repeat="character in party.members">
+            <image-stamp src="portrait(character)" start="characterFields($index).portraitStart" end="characterFields($index).portraitEnd" ></image-stamp>
+            <text-stamp text="character.name" coords="characterFields($index).name"></text-stamp>
+            
+            <text-stamp text="race(character).name" coords="characterFields($index).race"></text-stamp>
+            <text-stamp text="race(character).talent" coords="characterFields($index).raceSkill"></text-stamp>
+            
+            <text-stamp text="raceAttributes(character).command" coords="characterFields($index).ld" ></text-stamp>
+            <text-stamp text="raceAttributes(character).mobility" coords="characterFields($index).m" ></text-stamp>
+            <text-stamp text="raceAttributes(character).normalCombat" coords="characterFields($index).ws" ></text-stamp>
+            <text-stamp text="raceAttributes(character).strength" coords="characterFields($index).s" ></text-stamp>
+            <text-stamp text="raceAttributes(character).condition" coords="characterFields($index).sp" ></text-stamp>
+            <text-stamp text="raceAttributes(character).rangeWeapons" coords="characterFields($index).bs" ></text-stamp>
+            <text-stamp text="raceAttributes(character).toughness" coords="characterFields($index).t" ></text-stamp>
+            <text-stamp text="raceAttributes(character).vitality" coords="characterFields($index).w" ></text-stamp>
+            
+            <text-stamp text="profession(character).name" coords="characterFields($index).profession"></text-stamp>
+            <text-stamp text="profession(character).talent" coords="characterFields($index).professionSkill"></text-stamp>
+            
+            <text-stamp text="weapons(character)" coords="characterFields($index).weapon"></text-stamp>
+            <text-stamp text="armor(character)" coords="characterFields($index).armor"></text-stamp>
+            <text-stamp text="equipment(character)" coords="characterFields($index).equipment"></text-stamp>
+            <text-stamp text="'?'" coords="characterFields($index).psychology"></text-stamp>
+            
+        </div>
+    </stamp-sheet>
+</div>
