@@ -53,7 +53,9 @@ function CardRenderingController($scope, imageLoaded, css) {
         psychology: buildCoords(592, 335),
         portraitStart: buildCoords(57, 10),
         portraitEnd: buildCoords(258, 248),
-        points: buildCoords(220, 220),
+        pointsStart: buildCoords(216, 216),
+        pointsEnd: buildCoords(254, 242),
+        points: buildCoords(220, 235)
     };
 
     var adjustToCharacterSection = function (fieldsCoords, cardCoords) {

@@ -4,13 +4,12 @@ angular.module('ut.directives')
    function ($q) {
             'use strict';
 
-            CanvasRenderingContext2D.prototype.roundRect = function (x, y, width, height, radius, fill, stroke) {
-                if (typeof stroke == "undefined") {
-                    stroke = true;
+            CanvasRenderingContext2D.prototype.roundRect = function (x, y, width, height, radius) {
+                
+                if (radius === undefined) {
+                    radius = 5;   
                 }
-                if (typeof radius === "undefined") {
-                    radius = 5;
-                }
+                
                 this.beginPath();
                 this.moveTo(x + radius, y);
                 this.lineTo(x + width - radius, y);
@@ -22,12 +21,10 @@ angular.module('ut.directives')
                 this.lineTo(x, y + radius);
                 this.quadraticCurveTo(x, y, x + radius, y);
                 this.closePath();
-                if (stroke) {
-                    this.stroke();
-                }
-                if (fill) {
-                    this.fill();
-                }
+                
+                this.stroke();
+                this.fill();
+                
             };
 
             var roundedRectStamp = {
@@ -35,15 +32,26 @@ angular.module('ut.directives')
                 require: '^stampSheet',
                 priority: 100,
                 scope: {
-                    coords: '=coords',
-                    bgColor: '=bgColor'
+                    start: '=start',
+                    end: '=end',
+                    stroke: '@stroke',
+                    fill: '@fill'
                 },
                 link: function ($scope, $element, $attrs, stampSheet) {
 
                     var draw = function (context) {
                         var q = $q.defer();
                         
-                        //TODO
+                        var prevFill = context.fillStyle, 
+                            prevStroke = context.strokeStyle;
+                        
+                        context.fillStyle = $scope.fill;
+                        context.strokeStyle = $scope.stroke;
+                        
+                        context.roundRect($scope.start.x, $scope.start.y, $scope.end.x - $scope.start.x, $scope.end.y - $scope.start.y);
+                        
+                        context.fillStyle = prevFill;
+                        context.strokeStyle= prevStroke;
                         
                         q.resolve();
                         return q.promise;
@@ -53,5 +61,5 @@ angular.module('ut.directives')
                 }
             };
 
-            return textStamp;
+            return roundedRectStamp;
    }]);
