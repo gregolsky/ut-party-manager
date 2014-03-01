@@ -165,7 +165,7 @@ hr.no-margin {
     background-repeat: no-repeat;
 }
 
-[party-card-render] {
+.partyCardSheet {
     display: none;
 }
 
