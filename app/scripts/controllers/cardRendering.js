@@ -55,7 +55,8 @@ function CardRenderingController($scope, imageLoaded, css) {
         portraitEnd: buildCoords(258, 248),
         pointsStart: buildCoords(216, 216),
         pointsEnd: buildCoords(254, 242),
-        points: buildCoords(220, 235)
+        points: buildCoords(220, 235),
+        vitality: buildCoords(785, 320)
     };
 
     var adjustToCharacterSection = function (fieldsCoords, cardCoords) {
@@ -92,6 +93,10 @@ function CardRenderingController($scope, imageLoaded, css) {
     
     $scope.portrait = function (character) {
         return css.getBackgroundImageUrl('.' + (character.portrait || 'default'));
+    };
+    
+    $scope.vitality = function (character) {
+        return '/images/w' + racesLookup[character.race].attributes.vitality + '.png';
     };
     
     var describeFilteredEq = function (filter) {

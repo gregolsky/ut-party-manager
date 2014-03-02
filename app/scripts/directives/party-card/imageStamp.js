@@ -12,7 +12,6 @@ angular.module('ut.directives')
                     src: '=src',
                     x: '=x',
                     y: '=y',
-                    coords: '=coords',
                     width: '=width',
                     height: '=height',
                     start: '=start',
@@ -22,16 +21,20 @@ angular.module('ut.directives')
 
                     var drawOn = function (context) {
                         return function (image) {
-                            var coords = $scope.coords || { x: $scope.x, y: $scope.y };
-                            if ($scope.width && $scope.height) {
-                                context.drawImage(image, coords.x, coords.y, $scope.width, $scope.height);
-                            } else if ($scope.start && $scope.end) {
-                                var start = $scope.start,
-                                    end = $scope.end;
-                                context.drawImage(image, 0, 0, image.width, image.height, start.x, start.y, end.x - start.x, end.y - start.y);
-                            } else {
-                                context.drawImage(image, coords.x, coords.y, image.width, image.height);
+                            var start = $scope.start || { x: $scope.x, y: $scope.y };
+                            var end = $scope.end;
+                            var width = $scope.width;
+                            var height = $scope.height;
+                            
+                            if (!width) { 
+                                width = end ? end.x - start.x : image.width;
                             }
+                            
+                            if (!height) { 
+                                height = end ? end.y - start.y : image.height;
+                            }
+                            
+                            context.drawImage(image, 0, 0, image.width, image.height, start.x, start.y, width, height);
                         };
                     };
 
